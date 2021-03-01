@@ -13,5 +13,6 @@
 
 ### Future Features 🧁
 - 5+ row and column matching 
-- Styled backgound
-- simple animation when candy disapears 
+- styled backgound
+- simple animation when candy disapear
+- set up github hosting
