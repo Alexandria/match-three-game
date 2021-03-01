@@ -1,0 +1,24 @@
+{
+  "name": "candy-crush",
+  "version": "1.0.0",
+  "description": "quick candy crush game",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-plugin-react": "^7.22.0"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexandria/candy-crush.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexandria/candy-crush/issues"
+  },
+  "homepage": "https://github.com/Alexandria/candy-crush#readme"
+}
