@@ -40,16 +40,56 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 const isFirstRow = firstRow.includes(i)
                 if(isFirstRow && squares[i].style.backgroundImage === ''){
                     let randomColor = Math.floor(Math.random() * candyColors.length)
-                    squares[i].style.backgroundImage =  candyColors[randomColor]                }
+                    squares[i].style.backgroundImage =  candyColors[randomColor]                
+                }
 
             }
 
         }
     }
 
+     // checking for matches of five
+     const checkRowForFive = () =>{
+        for(i=0; i<59; i++){
+            let rowOfFive = [i, i+1, i+2, i+3, i+4]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
+
+            const notValid = [4,5,6,7,12,13,14,15,20,21,22,23,28,29,30,31,37,38,39,44,45,46,47,52,53,54,55]
+
+            if(notValid.includes(i)) continue
+
+            if(rowOfFive.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
+                score +=5
+                scoreDisplay.innerHTML = score
+                rowOfFive.forEach(index =>{
+                    squares[index].style.backgroundImage=''
+                })
+            }
+        }
+        console.log("Score! ",score)
+    }
+
+    const checkColumnForFive = ()=>{
+        for(i=0; i<29; i++){
+            let checkColumnOfFive = [i, i+width, i+width*2, i+width*3, i+width*4]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
+
+            if(checkColumnOfFive.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
+                score +=5
+                scoreDisplay.innerHTML = score
+                checkColumnOfFive.forEach(index =>{
+                    squares[index].style.backgroundImage=''
+                })
+            }
+        }
+        console.log("Score! ",score)
+    }
+
         // checking for matches of Four
         const checkRowForFour = () =>{
-            for(i=0; i<61; i++){
+            for(i=0; i<60; i++){
                 let rowOfFour = [i, i+1, i+2, i+3]
                 let decidedColor = squares[i].style.backgroundImage
                 const isBlank = squares[i].style.backgroundImage === ''
@@ -70,7 +110,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
     
         const checkColumnForFour = ()=>{
-            for(i=0; i<47; i++){
+            for(i=0; i<31; i++){
                 let checkColumnOfFour = [i, i+width, i+width*2, i+width*3]
                 let decidedColor = squares[i].style.backgroundImage
                 const isBlank = squares[i].style.backgroundImage === ''
@@ -192,6 +232,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     
    window.setInterval(function(){
        moveDown()
+       checkRowForFive()
+       checkColumnForFive()
        checkColumnForFour()
        checkRowForFour()
        checkRowForThree()
