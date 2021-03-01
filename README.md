@@ -14,4 +14,4 @@
 ### Future Features 🧁
 - 5+ row and column matching 
 - Styled backgound
-- simple animartion when candy disapears 
+- simple animation when candy disapears 
