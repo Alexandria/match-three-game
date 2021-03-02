@@ -11,10 +11,11 @@
 - rows are being replaced when matched 
 - score keeping
 
-![candy-crush-clone-gif](https://user-images.githubusercontent.com/7613670/109446990-56d41a00-7a08-11eb-8ef2-807d7b17530a.gif)
+![updated-gif](https://user-images.githubusercontent.com/7613670/109595282-d251cc00-7ad9-11eb-87e7-31ce7aff3ce2.gif)
 
 ### Future Features 🧁
 - 5+ row and column matching 
 - styled backgound
 - simple animation when candy disapear
 - set up github hosting
+
