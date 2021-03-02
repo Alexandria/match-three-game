@@ -4,7 +4,7 @@
 
 Initial release.
 
-** Added:**
+**Added:**
 - README
 - CHANGELOG
 - Core Functionality 
