@@ -2,7 +2,8 @@
 ## This is a candy crush clone game created with the purpose of me sharpening my javascript and css skills.
 ### The base of this repo stimmed from [this youtube tutorial](https://www.youtube.com/watch?v=XD5sZWxwJUk)! 
 
-[Change Log](CHANGELOG.md)
+### [Change Log](CHANGELOG.md)
+### Play it [here](https://alexandria.github.io/candy-crush/index.html)! 
 
 ### Where I am at now 🍬
 - Basic drag and drop functionality
