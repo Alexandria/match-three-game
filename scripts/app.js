@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     const grid = document.querySelector('.grid')
     const width = 8
+    const fullBoardSize = width*width
     const squares = []
     const scoreDisplay = document.getElementById('score')
     let score = 0
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     //create board
     function createBoard(){
-        for(let i = 0; i < width*width; i++){
+        for(let i = 0; i < fullBoardSize; i++){
             const square = document.createElement('div')
             square.setAttribute('draggable', true)
             square.setAttribute('id', i)
@@ -47,125 +48,215 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         }
     }
-
-     // checking for matches of five
-     const checkRowForFive = () =>{
-        for(i=0; i<59; i++){
-            let rowOfFive = [i, i+1, i+2, i+3, i+4]
+    // find matches per row
+    const columnMatchesForEight = () =>{
+        for(let i = 0; i < fullBoardSize ; i++){
+            let rowToCheck = [i, i+1,i+2, i+3,i+4,i+5,i+6, i+7]
             let decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
-            const notValid = [4,5,6,7,12,13,14,15,20,21,22,23,28,29,30,31,37,38,39,44,45,46,47,52,53,54,55]
+            if(i%8 > 0) continue
 
-            if(notValid.includes(i)) continue
-
-            if(rowOfFive.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                score +=5
+            if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
+                score += rowToCheck.length()
                 scoreDisplay.innerHTML = score
-                rowOfFive.forEach(index =>{
-                    squares[index].style.backgroundImage=''
-                })
+                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                
             }
+
         }
-        console.log("Score! ",score)
     }
 
-    const checkColumnForFive = ()=>{
-        for(i=0; i<29; i++){
-            let checkColumnOfFive = [i, i+width, i+width*2, i+width*3, i+width*4]
+    const checkRowForSeven = () =>{
+        for(let i = 0; i < fullBoardSize -7 ; i++){
+            let rowToCheck = [i, i+1,i+2, i+3,i+4, i+5, i+6]
             let decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
-            if(checkColumnOfFive.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                score +=5
+            if(i%8 > 1) continue
+
+            if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
+                score += rowToCheck.length
                 scoreDisplay.innerHTML = score
-                checkColumnOfFive.forEach(index =>{
-                    squares[index].style.backgroundImage=''
-                })
+                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                
             }
+
         }
-        console.log("Score! ",score)
     }
 
-        // checking for matches of Four
-        const checkRowForFour = () =>{
-            for(i=0; i<60; i++){
-                let rowOfFour = [i, i+1, i+2, i+3]
-                let decidedColor = squares[i].style.backgroundImage
-                const isBlank = squares[i].style.backgroundImage === ''
-    
-                const notValid = [5,6,7,13,14,15,21,22,23,29,30,31,37,38, 39,45,46,47,53,54,55]
-    
-                if(notValid.includes(i)) continue
-    
-                if(rowOfFour.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                    score +=4
-                    scoreDisplay.innerHTML = score
-                    rowOfFour.forEach(index =>{
-                        squares[index].style.backgroundImage=''
-                    })
-                }
-            }
-            console.log("Score! ",score)
-        }
-    
-        const checkColumnForFour = ()=>{
-            for(i=0; i<31; i++){
-                let checkColumnOfFour = [i, i+width, i+width*2, i+width*3]
-                let decidedColor = squares[i].style.backgroundImage
-                const isBlank = squares[i].style.backgroundImage === ''
-    
-                if(checkColumnOfFour.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                    score +=4
-                    scoreDisplay.innerHTML = score
-                    checkColumnOfFour.forEach(index =>{
-                        squares[index].style.backgroundImage=''
-                    })
-                }
-            }
-            console.log("Score! ",score)
-        }
-    
+    const checkRowForSix = () =>{
+        for(let i = 0; i < fullBoardSize -6 ; i++){
+            let rowToCheck = [i, i+1,i+2, i+3,i+4, i+5]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
 
-    // checking for matches of three
+            if(i%8 > 2) continue
+
+            if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
+                score += rowToCheck.length
+                scoreDisplay.innerHTML = score
+                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                
+            }
+
+        }
+    }
+    const checkRowForFive = () =>{
+        for(let i = 0; i < fullBoardSize -5 ; i++){
+            let rowToCheck = [i, i+1,i+2, i+3,i+4]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
+
+            if(i%8 > 3) continue
+
+            if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
+                score += rowToCheck.length
+                scoreDisplay.innerHTML = score
+                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                
+            }
+
+        }
+    }
+
+    const checkRowForFour = () =>{
+        for(let i = 0; i < fullBoardSize -4 ; i++){
+            let rowToCheck = [i, i+1,i+2, i+3]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
+
+            if(i%8 > 4) continue
+
+            if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
+                score += rowToCheck.length
+                scoreDisplay.innerHTML = score
+                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                
+            }
+
+        }
+    }
+
     const checkRowForThree = () =>{
-        for(i=0; i<61; i++){
-            let rowOfThree = [i, i+1, i+2]
+        for(let i = 0; i < fullBoardSize -3 ; i++){
+            let rowToCheck = [i, i+1,i+2]
             let decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
-            const notValid = [6,7,14,15,22,23,30,31,38, 39, 46, 47, 54, 55]
+            if(i%8 > 5) continue
 
-            if(notValid.includes(i)) continue
-
-            if(rowOfThree.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                score +=3
+            if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
+                score += rowToCheck.length
                 scoreDisplay.innerHTML = score
-                rowOfThree.forEach(index =>{
-                    squares[index].style.backgroundImage=''
-                })
+                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                
             }
+
         }
-        console.log("Score! ",score)
     }
+
+    // Find Matches Per Column
 
     const checkColumnForThree = () =>{
-        for(i=0; i<47; i++){
-            let columnOfThree = [i, i+width, i+width*2]
+        for(i=0; i< fullBoardSize - width*2; i++){
+            let columnToCheck = [i, i+width, i+width*2]
             let decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
-            if(columnOfThree.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                score +=3
+            if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
+                score += columnToCheck.length
                 scoreDisplay.innerHTML = score
-                columnOfThree.forEach(index =>{
+                columnToCheck.forEach(index =>{
                     squares[index].style.backgroundImage=''
                 })
             }
         }
-        console.log("Score! ",score)
+
     }
 
+    const checkColumnForFour = () =>{
+        for(i=0; i< fullBoardSize - width*3; i++){
+            let columnToCheck = [i, i+width, i+width*2, i+width*3]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
+
+            if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
+                score += columnToCheck.length
+                scoreDisplay.innerHTML = score
+                columnToCheck.forEach(index =>{
+                    squares[index].style.backgroundImage=''
+                })
+            }
+        }
+
+    }
+
+    const checkColumnForFive = () =>{
+        for(i=0; i< fullBoardSize - width*4; i++){
+            let columnToCheck = [i, i+width, i+width*2, i+width*3, i+width*4]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
+
+            if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
+                score += columnToCheck.length
+                scoreDisplay.innerHTML = score
+                columnToCheck.forEach(index =>{
+                    squares[index].style.backgroundImage=''
+                })
+            }
+        }
+
+    }
+    const checkColumnForSix = () =>{
+        for(i=0; i< fullBoardSize - width*5; i++){
+            let columnToCheck = [i, i+width, i+width*2, i+width*3, i+width*4, i+width*5]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
+
+            if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
+                score += columnToCheck.length
+                scoreDisplay.innerHTML = score
+                columnToCheck.forEach(index =>{
+                    squares[index].style.backgroundImage=''
+                })
+            }
+        }
+
+    }
+    const checkColumnForSeven = () =>{
+        for(i=0; i< fullBoardSize - width*6; i++){
+            let columnToCheck = [i, i+width, i+width*2, i+width*3, i+width*4, i+width*5, i+width*6]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
+
+            if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
+                score += columnToCheck.length
+                scoreDisplay.innerHTML = score
+                columnToCheck.forEach(index =>{
+                    squares[index].style.backgroundImage=''
+                })
+            }
+        }
+
+    }
+
+    const checkColumnForEight = () =>{
+        for(i=0; i< fullBoardSize - width*7; i++){
+            let columnToCheck = [i, i+width, i+width*2, i+width*3, i+width*4, i+width*5, i+width*6, i+width*7]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
+
+            if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
+                score += columnToCheck.length
+                scoreDisplay.innerHTML = score
+                columnToCheck.forEach(index =>{
+                    squares[index].style.backgroundImage=''
+                })
+            }
+        }
+
+    }
 
 
     //dag the candies
