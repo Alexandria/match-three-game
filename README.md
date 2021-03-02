@@ -2,6 +2,8 @@
 ## This is a candy crush clone game created with the purpose of me sharpening my javascript and css skills.
 ### The base of this repo stimmed from [this youtube tutorial](https://www.youtube.com/watch?v=XD5sZWxwJUk)! 
 
+[Change Log](CHANGELOG.md)
+
 ### Where I am at now 🍬
 - Basic drag and drop functionality
 - 3 and 4 column/row matching
