@@ -10,3 +10,8 @@
     height: 70px;
     width: 70px;
 }
+
+body {
+    background-image: url('images/pastel-lines-background.jpg');
+    background-size: 100% 100%;
+}
