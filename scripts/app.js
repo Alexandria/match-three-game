@@ -15,24 +15,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
         'url(images/blue-candy.png)'
     ]
 
-    //create board
-    function createBoard(){
-        for(let i = 0; i < fullBoardSize; i++){
-            const square = document.createElement('div')
-            square.setAttribute('draggable', true)
-            square.setAttribute('id', i)
-            let randomColor = Math.floor(Math.random() * candyColors.length)
-            square.style.backgroundImage = candyColors[randomColor]
-            grid.appendChild(square)
-            squares.push(square)
-        }
-    }
 
-    createBoard()
 
     // drop candies onces some have been ceard 
     const moveDown = () =>{
         const firstRow = [0,1,2,3,4,5,6,7]
+
         for(i=0; i<55; i++){
             const isFirstRow = firstRow.includes(i)
             if(squares[i+width].style.backgroundImage === ''){
@@ -303,6 +291,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
         }
 
+
+
     }
 
     const dragDrop = (element) => {
@@ -311,7 +301,59 @@ document.addEventListener('DOMContentLoaded', ()=>{
         squareIdbeingReplaced = parseInt(element.target.id)
         element.target.style.backgroundImage = colorBeingDragged
         squares[squareIdBeingDragged].style.backgroundImage = colorBeingReplaced
+
+        let isBoardFull =  !!squares.find(square => square.style.backgroundImage === '')
+
+        
+        //Fill the board and check for matches if there is an empty square
+        setTheBoard()
+       
+        console.log("Is there a blank square? ", isBoardFull )
     }
+
+
+    const checkForAllMatches = () =>{
+        moveDown()
+        checkRowForFive()
+        checkColumnForFive()
+        checkColumnForFour()
+        checkRowForFour()
+        checkRowForThree()
+        checkColumnForThree()
+    }
+
+    const setTheBoard = () =>{
+        do{
+            checkForAllMatches()
+            isBoardFull =  !!squares.find(square => square.style.backgroundImage === '')
+        } while (isBoardFull)
+            
+    }
+
+    const resetScore = () =>{
+        score = 0;
+        scoreDisplay.innerHTML = score
+    }
+
+    //create board
+    function createBoard(){
+        for(let i = 0; i < fullBoardSize; i++){
+            const square = document.createElement('div')
+            square.setAttribute('draggable', true)
+            square.setAttribute('id', i)
+            let randomColor = Math.floor(Math.random() * candyColors.length)
+            square.style.backgroundImage = candyColors[randomColor]
+            grid.appendChild(square)
+            squares.push(square)
+        }
+        setTheBoard()
+        resetScore()
+        console.log("reset score",score)
+    }
+
+    createBoard()
+
+
 
     //Drag the candies
     squares.forEach(square => square.addEventListener('dragstart', dragStart))
@@ -321,15 +363,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
     squares.forEach(square => square.addEventListener('dragend', dragEnd))
     squares.forEach(square => square.addEventListener('drop', dragDrop))
 
+
+
+
     
-   window.setInterval(function(){
-       moveDown()
-       checkRowForFive()
-       checkColumnForFive()
-       checkColumnForFour()
-       checkRowForFour()
-       checkRowForThree()
-       checkColumnForThree()
-   }, 100)
+//    window.setInterval(function(){
+//        moveDown()
+//        checkRowForFive()
+//        checkColumnForFive()
+//        checkColumnForFour()
+//        checkRowForFour()
+//        checkRowForThree()
+//        checkColumnForThree()
+//    }, 100)
 
 })
