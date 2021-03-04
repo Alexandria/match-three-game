@@ -275,13 +275,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
         console.log(element.target.id,"Drag Leave event")
     }
 
-    const dragEnd = (element) =>{
-        console.log(element.target.id,"Drag End event")
+    const isValidMove = () =>{
         let validMoves = [squareIdBeingDragged -1, squareIdBeingDragged -width, squareIdBeingDragged+1, squareIdBeingDragged+width]
+        return validMoves.includes(squareIdbeingReplaced)
+    }
 
-        let validMove = validMoves.includes(squareIdbeingReplaced)
-        console.log("Valid move? ",validMove)
-
+   
+    const dragEnd = (element) =>{
+        const validMove = isValidMove()
         if(squareIdbeingReplaced && validMove){
             squareIdbeingReplaced = null
         } else if ( squareIdbeingReplaced && !validMove){
@@ -291,19 +292,24 @@ document.addEventListener('DOMContentLoaded', ()=>{
             squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
         }
 
-
-
     }
 
     const dragDrop = (element) => {
-        console.log(element.target.id, "Drag drop event", "Color being dragged ", element.target.style.backgroundImage)
+         
         colorBeingReplaced = element.target.style.backgroundImage
         squareIdbeingReplaced = parseInt(element.target.id)
+
+        const validMove = isValidMove()
+        
+        if(!validMove){
+            squares[squareIdbeingReplaced].style.backgroundImage = colorBeingReplaced
+            squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
+            return
+        }
         element.target.style.backgroundImage = colorBeingDragged
         squares[squareIdBeingDragged].style.backgroundImage = colorBeingReplaced
 
-        let isBoardFull =  !!squares.find(square => square.style.backgroundImage === '')
-
+        
         
         //Fill the board and check for matches if there is an empty square
         setTheBoard()
