@@ -3,6 +3,7 @@
     width: 560px;
     display: flex;
     flex-wrap: wrap;
+   padding: 50px;
    
 }
 
@@ -12,6 +13,34 @@
 }
 
 body {
-    background-image: url('images/pastel-lines-background.jpg');
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    background-image: url('images/cloud-background.jpg');
     background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.score-board {
+    height: 200px;
+    width: 300px;
+    background-color: #f7347a;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-width: 20px;
+    border-radius: 2px;
+    border-style: double;
+    border-color:#7af734
+}
+
+.score-board h1 {
+    font-family: 'DotGothic16', sans-serif;
+}
+
+#score{
+    font-family: 'DotGothic16', sans-serif;
 }
