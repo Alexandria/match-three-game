@@ -314,7 +314,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         //Fill the board and check for matches if there is an empty square
         setTheBoard()
        
-        console.log("Is there a blank square? ", isBoardFull )
     }
 
 
@@ -329,10 +328,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     const setTheBoard = () =>{
+        let isBoardFull = false
         do{
             checkForAllMatches()
-            isBoardFull =  !!squares.find(square => square.style.backgroundImage === '')
-        } while (isBoardFull)
+            isBoardFull = squares.every(square => square.style.backgroundImage !== '')
+        } while (isBoardFull === false)
             
     }
 
@@ -354,7 +354,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
         setTheBoard()
         resetScore()
-        console.log("reset score",score)
     }
 
     createBoard()
@@ -370,17 +369,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     squares.forEach(square => square.addEventListener('drop', dragDrop))
 
 
-
-
     
-//    window.setInterval(function(){
-//        moveDown()
-//        checkRowForFive()
-//        checkColumnForFive()
-//        checkColumnForFour()
-//        checkRowForFour()
-//        checkRowForThree()
-//        checkColumnForThree()
-//    }, 100)
 
 })
