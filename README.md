@@ -16,7 +16,8 @@
 - Simple animation when candy disapears
 - Github pages
 
-![updated-gif](https://user-images.githubusercontent.com/7613670/109595282-d251cc00-7ad9-11eb-87e7-31ce7aff3ce2.gif)
+![CandyCrushClonegif](https://user-images.githubusercontent.com/7613670/110415631-ce80f500-8057-11eb-9966-a6f2a5fff18f.gif)
+
 
 ### Future Features 🧁
 - Implment a timerlimit
