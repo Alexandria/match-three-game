@@ -17,26 +17,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 
-    // drop candies onces some have been ceard 
-    const moveDown = () =>{
-        const firstRow = [0,1,2,3,4,5,6,7]
-
-        for(i=0; i<55; i++){
-            const isFirstRow = firstRow.includes(i)
-            if(squares[i+width].style.backgroundImage === ''){
-                squares[i+width].style.backgroundImage = squares[i].style.backgroundImage
-                squares[i].style.backgroundImage = ''
-            }
-
-            if(isFirstRow && squares[i].style.backgroundImage === ''){
-                let randomColor = Math.floor(Math.random() * candyColors.length)
-                squares[i].style.backgroundImage =  candyColors[randomColor]        
-            }
-
-
-
-        }
-    }
     // find matches per row
     const columnMatchesForEight = () =>{
         for(let i = 0; i < fullBoardSize ; i++){
@@ -49,7 +29,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
                 score += rowToCheck.length()
                 scoreDisplay.innerHTML = score
-                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                rowToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
+                })
+                rowToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
                 
             }
 
@@ -67,7 +53,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
                 score += rowToCheck.length
                 scoreDisplay.innerHTML = score
-                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                rowToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
+                })
+                rowToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
                 
             }
 
@@ -85,7 +77,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
                 score += rowToCheck.length
                 scoreDisplay.innerHTML = score
-                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                rowToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
+                })
+                rowToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
                 
             }
 
@@ -102,7 +100,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
                 score += rowToCheck.length
                 scoreDisplay.innerHTML = score
-                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                rowToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
+                })
+                rowToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
                 
             }
 
@@ -120,31 +124,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
                 score += rowToCheck.length
                 scoreDisplay.innerHTML = score
-                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
+                rowToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
+                })
+                rowToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
                 
             }
 
         }
     }
 
-    const checkRowForThree = () =>{
-        for(let i = 0; i < fullBoardSize -3 ; i++){
-            let rowToCheck = [i, i+1,i+2]
-            let decidedColor = squares[i].style.backgroundImage
-            const isBlank = squares[i].style.backgroundImage === ''
 
-            if(i%8 > 5) continue
 
-            if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
-                score += rowToCheck.length
-                scoreDisplay.innerHTML = score
-                rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
-                
-            }
-
-        }
-    }
-
+ 
     // Find Matches Per Column
 
     const checkColumnForThree = () =>{
@@ -156,9 +151,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
                 score += columnToCheck.length
                 scoreDisplay.innerHTML = score
-                columnToCheck.forEach(index =>{
-                    squares[index].style.backgroundImage=''
+                // columnToCheck.forEach(index =>{
+                //     squares[index].style.backgroundImage=''
+                // })
+                columnToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
                 })
+                columnToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
             }
         }
 
@@ -173,9 +174,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
                 score += columnToCheck.length
                 scoreDisplay.innerHTML = score
-                columnToCheck.forEach(index =>{
-                    squares[index].style.backgroundImage=''
+                // columnToCheck.forEach(index =>{
+                //     squares[index].style.backgroundImage=''
+                // })
+                columnToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
                 })
+                columnToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
             }
         }
 
@@ -190,9 +197,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
                 score += columnToCheck.length
                 scoreDisplay.innerHTML = score
-                columnToCheck.forEach(index =>{
-                    squares[index].style.backgroundImage=''
+                // columnToCheck.forEach(index =>{
+                //     squares[index].style.backgroundImage=''
+                // })
+                columnToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
                 })
+                columnToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
             }
         }
 
@@ -206,9 +219,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
                 score += columnToCheck.length
                 scoreDisplay.innerHTML = score
-                columnToCheck.forEach(index =>{
-                    squares[index].style.backgroundImage=''
+                // columnToCheck.forEach(index =>{
+                //     squares[index].style.backgroundImage=''
+                // })
+                columnToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
                 })
+                columnToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
             }
         }
 
@@ -222,9 +241,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
                 score += columnToCheck.length
                 scoreDisplay.innerHTML = score
-                columnToCheck.forEach(index =>{
-                    squares[index].style.backgroundImage=''
+                // columnToCheck.forEach(index =>{
+                //     squares[index].style.backgroundImage=''
+                // })
+                columnToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
                 })
+                columnToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
             }
         }
 
@@ -239,9 +264,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
                 score += columnToCheck.length
                 scoreDisplay.innerHTML = score
-                columnToCheck.forEach(index =>{
-                    squares[index].style.backgroundImage=''
+                // columnToCheck.forEach(index =>{
+                //     squares[index].style.backgroundImage=''
+                // })
+                columnToCheck.forEach(index => {               
+                    squares[index].classList.add('square')
+                    
+                //    squares[index].style.backgroundImage = ''
                 })
+                columnToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
             }
         }
 
@@ -255,24 +286,26 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let squareIdBeingDragged
     let squareIdbeingReplaced
 
+    const animationStart = (element) =>{
+        element.preventDefault()
+    }
+
     const dragStart = (element) =>{
         colorBeingDragged = element.target.style.backgroundImage
         squareIdBeingDragged = parseInt(element.target.id)
-        // console.log(element.target.id, "Drag Start event", " Color ", colorBeingDragged)
     }
 
     const dragOver = (element) =>{
         element.preventDefault()
-        // console.log(element.target.id,"Drag over event")
     }
 
     const dragEnter = (element) =>{
         element.preventDefault()
-        console.log(element.target.id,"Drag Enter event")
+        
     }
 
     const dragLeave = (element) =>{
-        console.log(element.target.id,"Drag Leave event")
+   
     }
 
     const isValidMove = () =>{
@@ -295,9 +328,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     const dragDrop = (element) => {
-         
-        colorBeingReplaced = element.target.style.backgroundImage
-        squareIdbeingReplaced = parseInt(element.target.id)
+        colorBeingReplaced = element.target.style.backgroundImage //yellow
+        squareIdbeingReplaced = parseInt(element.target.id) //2
 
         const validMove = isValidMove()
         
@@ -306,7 +338,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
             return
         }
-        element.target.style.backgroundImage = colorBeingDragged
+        element.target.style.backgroundImage = colorBeingDragged //
+        element.target.id = squareIdbeingReplaced
         squares[squareIdBeingDragged].style.backgroundImage = colorBeingReplaced
 
         
@@ -317,8 +350,40 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
 
+ 
+    const checkRowForThree = () =>{
+        for(let i = 0; i < fullBoardSize -3 ; i++){
+            if(i%8 > 5) continue
+            let rowToCheck = [i, i+1, i+2]
+            let decidedColor = squares[i].style.backgroundImage
+            const isBlank = squares[i].style.backgroundImage === ''
+                 
+                      
+            if(rowToCheck.every(index => (squares[index].style.backgroundImage === decidedColor && !isBlank))){
+                score += rowToCheck.length
+                scoreDisplay.innerHTML = score
+                
+                        
+                rowToCheck.forEach(index => {      
+          
+                   squares[index].classList.add('square')
+                    
+                })
+                rowToCheck.forEach(index => {squares[index].addEventListener('animationend', removeBackgroundImage )})
+                
+            }
+
+        }
+       
+    }
+
     const checkForAllMatches = () =>{
-        moveDown()
+        columnMatchesForEight()
+        checkColumnForEight()
+        checkColumnForSeven()
+        checkRowForSeven()
+        checkRowForSix()
+        checkColumnForSix()
         checkRowForFive()
         checkColumnForFive()
         checkColumnForFour()
@@ -327,14 +392,45 @@ document.addEventListener('DOMContentLoaded', ()=>{
         checkColumnForThree()
     }
 
+
+
     const setTheBoard = () =>{
         let isBoardFull = false
         do{
-            checkForAllMatches()
+            moveDown()
             isBoardFull = squares.every(square => square.style.backgroundImage !== '')
         } while (isBoardFull === false)
             
     }
+
+    // drop candies onces some have been ceard 
+    const moveDown = () =>{
+        const firstRow = [0,1,2,3,4,5,6,7]
+        for(i=0; i<55; i++){
+            const isFirstRow = firstRow.includes(i)
+            if(squares[i+width].style.backgroundImage === ''){
+                squares[i+width].style.backgroundImage = squares[i].style.backgroundImage
+               
+                squares[i].style.backgroundImage = ''
+            }
+
+            if(isFirstRow && squares[i].style.backgroundImage === ''){
+                let randomColor = Math.floor(Math.random() * candyColors.length)
+                squares[i].style.backgroundImage =  candyColors[randomColor]    
+            }
+
+        }
+        
+    }
+
+    const removeBackgroundImage = (element) =>{
+        element.target.style.backgroundImage = ''
+        element.target.classList.remove('square')
+        setTheBoard()
+    }
+    
+
+ 
 
     const resetScore = () =>{
         score = 0;
@@ -347,6 +443,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             const square = document.createElement('div')
             square.setAttribute('draggable', true)
             square.setAttribute('id', i)
+            square.addEventListener('animationstart', ()=> console.log('animation started!'))
             let randomColor = Math.floor(Math.random() * candyColors.length)
             square.style.backgroundImage = candyColors[randomColor]
             grid.appendChild(square)
@@ -369,6 +466,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
     squares.forEach(square => square.addEventListener('drop', dragDrop))
 
 
-    
 
+    window.setInterval(function(){
+        checkForAllMatches()
+    }, 100)
+  
 })
