@@ -12,12 +12,15 @@
 - 3 and 4 column/row matching
 - rows are being replaced when matched 
 - score keeping
-
-![updated-gif](https://user-images.githubusercontent.com/7613670/109595282-d251cc00-7ad9-11eb-87e7-31ce7aff3ce2.gif)
-
-### Future Features 🧁
 - 5+ row and column matching 
 - styled backgound
 - simple animation when candy disapear
 - set up github hosting
+
+![updated-gif](https://user-images.githubusercontent.com/7613670/109595282-d251cc00-7ad9-11eb-87e7-31ce7aff3ce2.gif)
+
+### Future Features 🧁
+- Implment a timerlimit
+- Limit switches to only happ if there is a 3+match
+- Implment a win condition
 
