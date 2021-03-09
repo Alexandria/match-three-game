@@ -1,3 +1,8 @@
+@keyframes blowUp {
+    0% { transform: scale(1);}
+    100% {transform: scale(1.5);} 
+}
+
 .grid{
     height: 560px;
     width: 560px;
@@ -11,6 +16,12 @@
     height: 70px;
     width: 70px;
 }
+
+.square{
+    animation-name: blowUp;
+    animation-duration: 0.5s;
+}
+
 
 body {
     display: flex;
