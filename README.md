@@ -22,4 +22,4 @@
 - Implment a timerlimit
 - Limit switches to only happ if there is a 3+match
 - Implment a win condition
-
+- Remove draggable attribute when match is detected 
