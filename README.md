@@ -5,6 +5,8 @@
 ### [Change Log](CHANGELOG.md)
 ### Play it [here](https://alexandria.github.io/candy-crush/index.html)! 
 
+### Background Imgage https://www.pexels.com/photo/white-clouds-in-pink-and-blue-clouds-2310713/
+
 ### Where I am at now 🍬
 - Basic drag and drop functionality
 - 3 and 4 column/row matching
