@@ -9,13 +9,12 @@
 
 ### Where I am at now 🍬
 - Basic drag and drop functionality
-- 3 and 4 column/row matching
-- rows are being replaced when matched 
-- score keeping
+- Rows are being replaced when matched 
+- Score keeping
 - 5+ row and column matching 
-- styled backgound
-- simple animation when candy disapear
-- set up github hosting
+- Styled backgound
+- Simple animation when candy disapears
+- Github pages
 
 ![updated-gif](https://user-images.githubusercontent.com/7613670/109595282-d251cc00-7ad9-11eb-87e7-31ce7aff3ce2.gif)
 
