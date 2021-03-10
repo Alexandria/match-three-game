@@ -37,7 +37,7 @@ body {
     width: 300px;
     background-color: #f7347a;
     display: flex;
-    align-self: center;
+    /* align-self: center; */
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -52,6 +52,33 @@ body {
     font-family: 'DotGothic16', sans-serif;
 }
 
+.timerboard {
+    display: flex;
+    font-family: 'DotGothic16', sans-serif;
+     background-color: #7af734;
+     width: 100%;
+     justify-content: center;
+     margin-bottom: 30px;
+}
+
 #score{
     font-family: 'DotGothic16', sans-serif;
+}
+
+.menu {
+    display: flex;
+    /* background-color:burlywood; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menu button{
+    width: 200px;
+    height: 40px;
+    background-color: blueviolet;
+    margin-top: 30px;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: large;
+    font-weight: 700;
 }
