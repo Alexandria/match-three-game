@@ -4,7 +4,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const fullBoardSize = width*width
     const squares = []
     const scoreDisplay = document.getElementById('score')
+    const timerDisplay = document.getElementById('timer')
     let score = 0
+    timerDisplay.innerHTML = "1:00"
+    let startMatchChecking
+    let startCountDown 
+    let gameStarted = false
 
     const candyColors = [
         'url(images/red-candy.png)',
@@ -15,8 +20,62 @@ document.addEventListener('DOMContentLoaded', ()=>{
         'url(images/blue-candy.png)'
     ]
 
+ 
 
 
+    function makeCandyDraggable() {
+        squares.forEach(square => {
+            square.setAttribute('draggable', true)
+        });
+    }
+
+    function makeBoardNotDraggable(){
+        squares.forEach(square => square.setAttribute('draggable', false))
+    }
+
+    const startGame = () => {
+        console.log("The buton was clicked")
+        gameStarted = true 
+        scoreDisplay.innerHTML = 0
+        makeCandyDraggable()
+        countDown()
+        startMatchChecking = window.setInterval(function(){
+            checkForAllMatches()
+        }, 100)
+       
+    }
+
+    
+    const stopGame = () =>{
+        gameStarted = false 
+        clearInterval(startCountDown)
+        clearInterval(startMatchChecking)
+        makeBoardNotDraggable()
+    }
+
+
+    const countDown = () => {
+        console.log(" TIME PARSED ", Date.parse("2011-10-10T14:48:00"))
+        let seconds = 59
+       startCountDown = window.setInterval(function(){
+            console.log("Seconds ", seconds)
+            seconds= seconds-1
+            if(seconds < 0){
+                //stop countdown
+                 stopGame()
+                 return timerDisplay.innerHTML= "0:00"
+            }
+               
+            if(seconds < 10)
+               return timerDisplay.innerHTML = `0:0${seconds}`
+            
+           return timerDisplay.innerHTML= `0:${seconds}`
+        }, 1000)
+    }
+
+
+
+    document.getElementById('startButton').onclick = startGame
     // find matches per row
     const columnMatchesForEight = () =>{
         for(let i = 0; i < fullBoardSize ; i++){
@@ -27,7 +86,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(i%8 > 0) continue
 
             if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
-                score += rowToCheck.length()
+                if(gameStarted) score += rowToCheck.length
                 scoreDisplay.innerHTML = score
                 // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
                 rowToCheck.forEach(index => {               
@@ -42,6 +101,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
     }
 
+     
+    const removeBackgroundImage = (element) =>{
+        element.target.style.backgroundImage = ''
+        element.target.classList.remove('square')
+        setTheBoard()
+    }
+    
+
     const checkRowForSeven = () =>{
         for(let i = 0; i < fullBoardSize -7 ; i++){
             let rowToCheck = [i, i+1,i+2, i+3,i+4, i+5, i+6]
@@ -51,7 +118,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(i%8 > 1) continue
 
             if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
-                score += rowToCheck.length
+                if(gameStarted) score += rowToCheck.length
                 scoreDisplay.innerHTML = score
                 // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
                 rowToCheck.forEach(index => {               
@@ -75,7 +142,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(i%8 > 2) continue
 
             if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
-                score += rowToCheck.length
+                if(gameStarted) score += rowToCheck.length
                 scoreDisplay.innerHTML = score
                 // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
                 rowToCheck.forEach(index => {               
@@ -98,7 +165,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(i%8 > 3) continue
 
             if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
-                score += rowToCheck.length
+                if(gameStarted) score += rowToCheck.length
                 scoreDisplay.innerHTML = score
                 // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
                 rowToCheck.forEach(index => {               
@@ -122,7 +189,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(i%8 > 4) continue
 
             if(rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank )){
-                score += rowToCheck.length
+               if(gameStarted) score += rowToCheck.length
                 scoreDisplay.innerHTML = score
                 // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
                 rowToCheck.forEach(index => {               
@@ -149,7 +216,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             const isBlank = squares[i].style.backgroundImage === ''
 
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                score += columnToCheck.length
+                if(gameStarted) score += columnToCheck.length
                 scoreDisplay.innerHTML = score
                 // columnToCheck.forEach(index =>{
                 //     squares[index].style.backgroundImage=''
@@ -172,7 +239,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             const isBlank = squares[i].style.backgroundImage === ''
 
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                score += columnToCheck.length
+                if(gameStarted) score += columnToCheck.length
                 scoreDisplay.innerHTML = score
                 // columnToCheck.forEach(index =>{
                 //     squares[index].style.backgroundImage=''
@@ -195,7 +262,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             const isBlank = squares[i].style.backgroundImage === ''
 
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                score += columnToCheck.length
+                if(gameStarted) score += columnToCheck.length
                 scoreDisplay.innerHTML = score
                 // columnToCheck.forEach(index =>{
                 //     squares[index].style.backgroundImage=''
@@ -217,7 +284,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             const isBlank = squares[i].style.backgroundImage === ''
 
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                score += columnToCheck.length
+                if(gameStarted) score += columnToCheck.length
                 scoreDisplay.innerHTML = score
                 // columnToCheck.forEach(index =>{
                 //     squares[index].style.backgroundImage=''
@@ -239,7 +306,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             const isBlank = squares[i].style.backgroundImage === ''
 
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                score += columnToCheck.length
+                if(gameStarted) score += columnToCheck.length
                 scoreDisplay.innerHTML = score
                 // columnToCheck.forEach(index =>{
                 //     squares[index].style.backgroundImage=''
@@ -262,7 +329,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             const isBlank = squares[i].style.backgroundImage === ''
 
             if(columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)){
-                score += columnToCheck.length
+                if(gameStarted) score += columnToCheck.length
                 scoreDisplay.innerHTML = score
                 // columnToCheck.forEach(index =>{
                 //     squares[index].style.backgroundImage=''
@@ -328,6 +395,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     const dragDrop = (element) => {
+        if(!gameStarted){
+            return
+        }
         colorBeingReplaced = element.target.style.backgroundImage //yellow
         squareIdbeingReplaced = parseInt(element.target.id) //2
 
@@ -360,7 +430,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                  
                       
             if(rowToCheck.every(index => (squares[index].style.backgroundImage === decidedColor && !isBlank))){
-                score += rowToCheck.length
+                if (gameStarted) score += rowToCheck.length
                 scoreDisplay.innerHTML = score
                 
                         
@@ -377,6 +447,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
        
     }
 
+
+
     const checkForAllMatches = () =>{
         columnMatchesForEight()
         checkColumnForEight()
@@ -392,15 +464,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
         checkColumnForThree()
     }
 
-
-
-    const setTheBoard = () =>{
+    const resetBoard = () =>{
         let isBoardFull = false
+        startResetBoard = window.setInterval(function(){
+            checkForAllMatches()
+        },100)
+
         do{
             moveDown()
             isBoardFull = squares.every(square => square.style.backgroundImage !== '')
-        } while (isBoardFull === false)
-            
+         } while (isBoardFull === false)
+
+
     }
 
     // drop candies onces some have been ceard 
@@ -410,7 +485,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             const isFirstRow = firstRow.includes(i)
             if(squares[i+width].style.backgroundImage === ''){
                 squares[i+width].style.backgroundImage = squares[i].style.backgroundImage
-               
+                
                 squares[i].style.backgroundImage = ''
             }
 
@@ -423,25 +498,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
         
     }
 
-    const removeBackgroundImage = (element) =>{
-        element.target.style.backgroundImage = ''
-        element.target.classList.remove('square')
-        setTheBoard()
+    const setTheBoard = () =>{
+        let isBoardFull = false
+     
+        do{
+            moveDown()
+            isBoardFull = squares.every(square => square.style.backgroundImage !== '')
+        } while (isBoardFull === false)
+            
     }
-    
 
- 
-
-    const resetScore = () =>{
-        score = 0;
-        scoreDisplay.innerHTML = score
-    }
+   
 
     //create board
     function createBoard(){
         for(let i = 0; i < fullBoardSize; i++){
             const square = document.createElement('div')
-            square.setAttribute('draggable', true)
+            // square.setAttribute('draggable', true)
             square.setAttribute('id', i)
             square.addEventListener('animationstart', ()=> console.log('animation started!'))
             let randomColor = Math.floor(Math.random() * candyColors.length)
@@ -449,12 +522,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
             grid.appendChild(square)
             squares.push(square)
         }
-        setTheBoard()
-        resetScore()
+        // setTheBoard()
+        resetBoard()
+
+        //setscor to zero
+        score = 0;
+        scoreDisplay.innerHTML = score
+       
     }
+
+ 
 
     createBoard()
 
+
+
+ 
 
 
     //Drag the candies
@@ -467,8 +550,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 
-    window.setInterval(function(){
-        checkForAllMatches()
-    }, 100)
+
   
 })
