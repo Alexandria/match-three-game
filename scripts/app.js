@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const scoreDisplay = document.getElementById('score')
     const timerDisplay = document.getElementById('timer') 
     const timerBoard = document.querySelector('.timerboard')
+    const bgImage = new Image()
     timerBoard.addAt
   
 
@@ -24,9 +25,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
         'url(images/blue-candy.png)'
     ]
 
+    //Load background image
    
-  
+   bgImage.onload=function(){
+       document.getElementsByTagName('body')[0].style.backgroundImage = "url('images/cloud-background.jpg')"
+   }
 
+   bgImage.src = 'images/cloud-background.jpg'
 
     function makeCandyDraggable() {
         squares.forEach(square => {

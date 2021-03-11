@@ -35,7 +35,6 @@ body {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
-    background-image: url('images/cloud-background.jpg');
     background-size: 100% 250%;
     background-repeat: no-repeat;
 }
