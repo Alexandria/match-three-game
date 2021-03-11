@@ -16,7 +16,7 @@
 - Simple animation when candy disapears
 - Github pages
 
-![CandyCrushClonegif](https://user-images.githubusercontent.com/7613670/110415631-ce80f500-8057-11eb-9966-a6f2a5fff18f.gif)
+![CandyCrushgif](https://user-images.githubusercontent.com/7613670/110735281-1ede8b00-81ef-11eb-9776-d7a452b52c07.gif)
 
 
 ### Future Features 🧁
