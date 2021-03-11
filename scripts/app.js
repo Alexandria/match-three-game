@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const fullBoardSize = width*width
     const squares = []
     const scoreDisplay = document.getElementById('score')
-    const timerDisplay = document.getElementById('timer')
+    const timerDisplay = document.getElementById('timer') 
+    const timerBoard = document.querySelector('.timerboard')
+    timerBoard.addAt
+  
+
     let score = 0
     timerDisplay.innerHTML = "1:00"
     let startMatchChecking
@@ -20,7 +24,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
         'url(images/blue-candy.png)'
     ]
 
- 
+   
+  
 
 
     function makeCandyDraggable() {
@@ -33,9 +38,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
         squares.forEach(square => square.setAttribute('draggable', false))
     }
 
+    const stopBounce = () =>{
+        timerBoard.style.animation = "bounce 0.5s"
+    }
+
+
     const startGame = () => {
-        console.log("The buton was clicked")
+        console.log("The buton was clicked")     
+        timerBoard.addEventListener('animationstart', ()=> console.log(""))
+        timerBoard.addEventListener('click', stopBounce)
         gameStarted = true 
+        score = 0
         scoreDisplay.innerHTML = 0
         makeCandyDraggable()
         countDown()
@@ -48,6 +61,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     
     const stopGame = () =>{
         gameStarted = false 
+        timerBoard.style.animation = "bounce 0.5s infinite"
         clearInterval(startCountDown)
         clearInterval(startMatchChecking)
         makeBoardNotDraggable()
@@ -514,7 +528,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     function createBoard(){
         for(let i = 0; i < fullBoardSize; i++){
             const square = document.createElement('div')
-            // square.setAttribute('draggable', true)
             square.setAttribute('id', i)
             square.addEventListener('animationstart', ()=> console.log('animation started!'))
             let randomColor = Math.floor(Math.random() * candyColors.length)
@@ -525,7 +538,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         // setTheBoard()
         resetBoard()
 
-        //setscor to zero
+        //setscore to zero
         score = 0;
         scoreDisplay.innerHTML = score
        
@@ -547,7 +560,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     squares.forEach(square => square.addEventListener('dragleave', dragLeave))
     squares.forEach(square => square.addEventListener('dragend', dragEnd))
     squares.forEach(square => square.addEventListener('drop', dragDrop))
-
 
 
 

@@ -1,6 +1,13 @@
+
+
 @keyframes blowUp {
     0% { transform: scale(1);}
     100% {transform: scale(1.5);} 
+}
+
+@keyframes bounce {
+    0% {transform: translateY(10%);}
+    100%{transform: translateY(-10%);}
 }
 
 .grid{
@@ -21,6 +28,7 @@
     animation-name: blowUp;
     animation-duration: 0.5s;
 }
+
 
 
 body {
