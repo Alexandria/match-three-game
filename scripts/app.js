@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const timerDisplay = document.getElementById('timer') 
     const timerBoard = document.querySelector('.timerboard')
     const bgImage = new Image()
-    timerBoard.addAt
+    bgImage.src = 'images/cloud-background.jpg'
+   
   
 
     let score = 0
-    timerDisplay.innerHTML = "1:00"
+ 
     let startMatchChecking
     let startCountDown 
     let gameStarted = false
@@ -27,11 +28,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     //Load background image
    
-   bgImage.onload=function(){
-       document.getElementsByTagName('body')[0].style.backgroundImage = "url('images/cloud-background.jpg')"
-   }
 
-   bgImage.src = 'images/cloud-background.jpg'
+  
 
     function makeCandyDraggable() {
         squares.forEach(square => {
@@ -94,7 +92,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 
-    document.getElementById('startButton').onclick = startGame
+  
     // find matches per row
     const columnMatchesForEight = () =>{
         for(let i = 0; i < fullBoardSize ; i++){
@@ -551,8 +549,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
  
 
-    createBoard()
-
+    window.onload=function(){
+        document.getElementsByTagName('body')[0].style.backgroundImage = "url('images/cloud-background.jpg')"
+        createBoard()
+        timerDisplay.innerHTML = "1:00"
+        document.getElementById('startButton').onclick = startGame
+    }
+ 
+   
 
 
  
