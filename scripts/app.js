@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const timerDisplay = document.getElementById('timer')
     const timerBoard = document.querySelector('.timerboard')
     const bgImage = new Image()
+    const startButton = document.getElementById('startButton')
     bgImage.src = 'images/cloud-background.jpg'
-    document.getElementsByTagName('body')[0].style.backgroundImage = "url('images/cloud-background.jpg')"
+    // document.getElementsByTagName('body')[0].style.backgroundImage = "url('images/cloud-background.jpg')"
+
 
     timerDisplay.innerHTML = "1:00"
 
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const startGame = () => {
-        console.log("The buton was clicked")
+        startButton.style.animation ='click 0.2s'
         timerBoard.addEventListener('animationstart', () => console.log(""))
         timerBoard.addEventListener('click', stopBounce)
         gameStarted = true
@@ -64,10 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    document.getElementById('startButton').onclick = startGame
-
+    startButton.addEventListener('click',startGame)
+    
+    
 
     const stopGame = () => {
+        startButton.style.animation =''
         gameStarted = false
         timerBoard.style.animation = "bounce 0.5s infinite"
         clearInterval(startCountDown)
