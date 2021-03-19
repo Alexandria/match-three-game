@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const countDown = () => {
         console.log(" TIME PARSED ", Date.parse("2011-10-10T14:48:00"))
-        let seconds = 15
+        let seconds = 59
         startCountDown = window.setInterval(function () {
             console.log("Seconds ", seconds)
             seconds = seconds - 1
