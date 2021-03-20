@@ -15,13 +15,17 @@
 - Styled backgound
 - Simple animation when candy disapears
 - Github pages
+- Implment a timelimit
+- Have a "Start" and Restart Button 
 
 ![CandyCrushgif](https://user-images.githubusercontent.com/7613670/110735281-1ede8b00-81ef-11eb-9776-d7a452b52c07.gif)
 
 
 ### Future Features 🧁
-- Implment a timelimit
-- Have a "Start" and Restart Button 
-- Limit switches to only happ if there is a 3+match
+- Limit switches to only happen if there is a 3+match
 - Implment a win condition
 - Remove draggable attribute when match is detected 
+- Save Score in broswer to keep track of high score
+- Fix but that crashes game at the bottom right candy
+- Update background image
+- More cohesive color pallet 
