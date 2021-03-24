@@ -26,6 +26,8 @@
 - Implment a win condition
 - Remove draggable attribute when match is detected 
 - Save Score in broswer to keep track of high score
-- Fix but that crashes game at the bottom right candy
+- Fix bug that crashes game at the bottom right candy
 - Update background image
 - More cohesive color pallet 
+- Implement "severless" db and functions
+- Add High score list 
