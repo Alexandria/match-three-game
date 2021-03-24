@@ -31,3 +31,4 @@
 - More cohesive color pallet 
 - Implement "severless" db and functions
 - Add High score list 
+- Add min width and height to candyboard
