@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const startGame = () => {
         startButton.style.animation ='click 0.2s'
-        timerBoard.addEventListener('animationstart', () => console.log(""))
         timerBoard.addEventListener('click', stopBounce)
         gameStarted = true
         score = 0
@@ -81,10 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const countDown = () => {
-        console.log(" TIME PARSED ", Date.parse("2011-10-10T14:48:00"))
         let seconds = 59
         startCountDown = window.setInterval(function () {
-            console.log("Seconds ", seconds)
             seconds = seconds - 1
             if (seconds < 0) {
                 //stop countdown
@@ -136,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const checkRowForSeven = () => {
-        for (let i = 0; i < fullBoardSize - 7; i++) {
+        for (let i = 0; i < fullBoardSize - 6; i++) {
             let rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6]
             let decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
@@ -160,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const checkRowForSix = () => {
-        for (let i = 0; i < fullBoardSize - 6; i++) {
+        for (let i = 0; i < fullBoardSize - 5; i++) {
             let rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5]
             let decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
@@ -183,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     const checkRowForFive = () => {
-        for (let i = 0; i < fullBoardSize - 5; i++) {
+        for (let i = 0; i < fullBoardSize - 4; i++) {
             let rowToCheck = [i, i + 1, i + 2, i + 3, i + 4]
             let decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
@@ -207,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const checkRowForFour = () => {
-        for (let i = 0; i < fullBoardSize - 4; i++) {
+        for (let i = 0; i < fullBoardSize - 3; i++) {
             let rowToCheck = [i, i + 1, i + 2, i + 3]
             let decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
@@ -448,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const checkRowForThree = () => {
-        for (let i = 0; i < fullBoardSize - 3; i++) {
+        for (let i = 0; i < fullBoardSize - 2; i++) {
             if (i % 8 > 5) continue
             let rowToCheck = [i, i + 1, i + 2]
             let decidedColor = squares[i].style.backgroundImage
@@ -504,12 +501,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    // drop candies onces some have been ceard 
+    // drop candies onces some have been cleard 
     const moveDown = () => {
         const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
-        for (i = 0; i < 55; i++) {
+        const lastRow = [56, 57,58,59,60,61,62,63]
+        for (i = 0; i < 56; i++) {
             const isFirstRow = firstRow.includes(i)
-            if (squares[i + width].style.backgroundImage === '') {
+            const isLastRow = lastRow.includes(i)
+
+            if(lastRow && squares[i].style.backgroundImage === ''){
+
+            }
+
+            if (!isLastRow && squares[i + width].style.backgroundImage === '') {
                 squares[i + width].style.backgroundImage = squares[i].style.backgroundImage
 
                 squares[i].style.backgroundImage = ''
@@ -541,7 +545,6 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < fullBoardSize; i++) {
             const square = document.createElement('div')
             square.setAttribute('id', i)
-            square.addEventListener('animationstart', () => console.log('animation started!'))
             let randomColor = Math.floor(Math.random() * candyColors.length)
             square.style.backgroundImage = candyColors[randomColor]
             grid.appendChild(square)
@@ -557,19 +560,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     createBoard()
-
-
-
-    // window.onload=function(){
-    //     document.getElementsByTagName('body')[0].style.backgroundImage = "url('images/cloud-background.jpg')"
-    //     createBoard()
-    //     timerDisplay.innerHTML = "1:00"
-    //     document.getElementById('startButton').onclick = startGame
-    // }
-
-
-
-
 
 
 
