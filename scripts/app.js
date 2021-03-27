@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'url(images/red-candy.png)',
         'url(images/yellow-candy.png)',
         'url(images/orange-candy.png)',
-        'url(images/purple-candy.png)',
+        'url(images/dragon-candy.png)',
         'url(images/green-candy.png)',
         'url(images/blue-candy.png)'
     ]
