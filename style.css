@@ -33,12 +33,14 @@
   width: 560px;
   display: flex;
   flex-wrap: wrap;
-  padding: 50px;
+  padding: 20px;
+  /* background-color: #986F9C; opacity: 0.8; */
 }
 
 .grid div {
   height: 70px;
   width: 70px;
+  /* background-color: #986F9C; */
 }
 
 .square {
@@ -50,7 +52,8 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
-  background-size: 100% 250%;
+  background-size: 100% 115%;
+  background-image: url(images/pixelBackground.png);
   background-repeat: no-repeat;
 }
 
