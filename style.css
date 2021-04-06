@@ -52,9 +52,14 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
-  background-size: 100% 115%;
+  align-items: center;
   background-image: url(images/pixelBackground.png);
+  background-position: center center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #d85f6f;
+
 }
 
 .score-board {
@@ -92,8 +97,6 @@ body {
 
 .menu {
   display: flex;
-  /* background-color:burlywood; */
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
