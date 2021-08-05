@@ -50,8 +50,11 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
-  background-size: 100% 250%;
-  background-repeat: no-repeat;
+  width: 1120;
+  height: 1120;
+  background-color: bisque;
+  /* background-size: 100% 250%;
+  background-repeat: no-repeat; */
 }
 
 .score-board {
