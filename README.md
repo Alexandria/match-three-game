@@ -23,13 +23,5 @@
 
 
 ### Future Features 🧁
-- Limit switches to only happen if there is a 3+match
-- Implment a win condition
-- Remove draggable attribute when match is detected 
-- Save Score in broswer to keep track of high score
 - Update background image
 - More cohesive color pallet 
-- Implement "severless" db and functions
-- Add High score list 
-- Add min width and height to candyboard
-- Add better dragging and matching mechanics
