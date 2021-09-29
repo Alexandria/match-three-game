@@ -23,3 +23,5 @@
 ### Future Features 🧁
 - Update background image
 - More cohesive color pallet 
+
+#### This project is licensed under the terms of the [MIT license](https://choosealicense.com/licenses/mit/#).
