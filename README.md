@@ -1,4 +1,4 @@
-# Candy Crush Clone 🍭
+# Match Three Game 🍭
 ## This is a candy crush clone game created with the purpose of me sharpening my javascript and css skills.
 ### The base of this repo stimmed from [this youtube tutorial](https://www.youtube.com/watch?v=XD5sZWxwJUk)! 
 
