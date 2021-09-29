@@ -22,6 +22,10 @@
 
 ---
 
+### Run it locally
+- Clone this repository 
+- Open 'index.html' file in your prefered browser
+---
 ### Where I am at now 🍬
 
 - Basic drag and drop functionality
