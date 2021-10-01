@@ -3,7 +3,7 @@
 ### The base of this repo stimmed from [this youtube tutorial](https://www.youtube.com/watch?v=XD5sZWxwJUk)! 
 
 ### [Change Log](CHANGELOG.md)
-### Play it [here](https://alexandria.github.io/candy-crush/index.html)! 
+### Play it [here](https://alexandria.github.io/match-three-game/index.html)! 
 
 ### Where I am at now 🍬
 - Basic drag and drop functionality
