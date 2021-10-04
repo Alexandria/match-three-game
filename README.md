@@ -17,7 +17,7 @@
 - Have a "Start" and Restart Button 
 - Fix bug that crashes game at the bottom right candy
 
-![CandyCrushgif](https://user-images.githubusercontent.com/7613670/110735281-1ede8b00-81ef-11eb-9776-d7a452b52c07.gif)
+![CandyCrushgif](currentstate.gif)
 
 
 ### Future Features 🧁
