@@ -21,7 +21,7 @@ Is there anything specific that you want to be added or imporved on? If so, make
 - Update the gifs in the README to be a more recent example of the current game play
 - Anything else you can think of that relates to discribing the game and how it works.
 
-## 🙅🏾 Please do not steal any art  or music assests and submit them as a PR
+## 🙅🏾 Please do not steal any art  or music assests
 Currently all the art is custom pixel art that I made and yea... I know its rough. 😅 With that being said if you want to update any art assests or add sound assets to the game they must be royalty free or you must have permission from the artist to use thier work in this project before submitting it. And of course, you will need to give credit to the artist. 
 
 ## Final notes 
