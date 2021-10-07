@@ -34,4 +34,4 @@ Currently, all the art is custom pixel art that I made, and yea... I know it's r
 
 ## Final notes
 
-### This contributing doc itself is STILL being worked on, if you feel like there is some additional information that needs to add create an [issue](https://alexandria.github.io/match-three-game/index.html) and I or another contributor will look into it.
+### This contributing doc itself is STILL being worked on, if you feel like there is some additional information that needs to be added, then create an [issue](https://alexandria.github.io/match-three-game/index.html) and I or another contributor will look into it.
