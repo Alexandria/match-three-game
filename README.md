@@ -16,6 +16,7 @@
 - Can only drag and drop to right, left, top and bottom.
 - Match at least 3 candies in a row or column to score.
 - Create combos by matching more than 3 candies.
+- Click the timer box to stop it from bouncing.
 
 ### Play it [here](https://alexandria.github.io/match-three-game/index.html)!
 
