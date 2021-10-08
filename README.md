@@ -22,6 +22,10 @@
 
 ---
 
+### Run it locally
+- Clone this repository 
+- Open `index.html` file in your prefered browser - either by double-click the file in explorer or by drag & drop the file into the browser's search field.
+---
 ### Where I am at now 🍬
 
 - Basic drag and drop functionality
