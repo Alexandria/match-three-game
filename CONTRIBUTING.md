@@ -8,7 +8,7 @@
 
 ### All are welcome to contribute but my goal is to make this a low-pressure project for those who are learning git and git hub and those who are just dipping their toes into open source work.
 
-If you know Javascript, html, or css this project should be very easy for you to jump into. However, this codebase is not pretty. There is A LOT of repeating functions and other things that could be cleaner that could use some work. This project was created out of my love for mentorship and community so if you have any questions or need clarifications please feel free to ask.
+If you know Javascript, html, or css this project should be very easy for you to jump into. However, this codebase is not pretty. There are A LOT of repeating functions and other things that could be cleaner that could use some work. This project was created out of my love for mentorship and community so if you have any questions or need clarifications please feel free to ask.
 
 ## 🤔What should I do now??
 
@@ -30,7 +30,7 @@ Is there anything specific that you want to be added or improved on? If so, make
 
 ## 🙅🏾 Please do not steal any art or music assets
 
-Currently, all the art is custom pixel art that I made, and yea... I know it's rough. 😅 With that being said if you want to update any art assets or add sound assets to the game they must be royalty free or you must have permission from the artist to use their work in this project before submitting it. And of course, you will need to give credit to the artist.
+Currently, all the art is custom pixel art that I made, and yeah... I know it's rough. 😅 With that being said if you want to update any art assets or add sound assets to the game they must be royalty free or you must have permission from the artist to use their work in this project before submitting it. And of course, you will need to give credit to the artist.
 
 ## Final notes
 
