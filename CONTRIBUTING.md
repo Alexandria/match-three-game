@@ -18,7 +18,15 @@ Is there anything specific that you want to be added or improved on? If so, make
 
 ## 🦸🏾‍♀️Want to add code to the project and make this game better or cleaner?
 
-### Fantastic make a PR request with your additions and I will try my best to review it and merge it in a timely manner.
+Fantastic! 
+Make a PR request with your additions and I will try my best to review it and merge it in a timely manner.
+
+## PR request guide 
+1. Fork the project.
+2. Create a new branch (`git checkout -b 'branch name'`).
+3. Commit your changes (`git commit -m 'Add something new'`).
+4. Push to the branch (`git push -u origin 'branch name'`).
+5. Open a Pull Request (PR) using the provided link.
 
 ## 🧙🏾What if I am not a coder?
 
