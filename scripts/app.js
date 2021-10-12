@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gameStarted = true
         score = 0
         scoreDisplay.innerHTML = 0
+        timerBoard.style.animation = ""
         makeCandyDraggable()
         countDown()
         startMatchChecking = window.setInterval(function () {
