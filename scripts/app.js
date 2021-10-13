@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const startGame = () => {
         startButton.style.animation ='click 0.2s'
+        timerBoard.style.animation = ''
         timerBoard.addEventListener('click', stopBounce)
         gameStarted = true
         score = 0
