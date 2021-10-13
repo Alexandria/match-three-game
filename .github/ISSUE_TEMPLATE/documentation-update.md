@@ -2,7 +2,7 @@
 name: Documentation Update
 about: Use this template for documentation requests or fixes
 title: ''
-labels: documentation
+labels: documentation, hacktoberfest
 assignees: ''
 
 ---
