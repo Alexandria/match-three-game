@@ -5,7 +5,7 @@ Also feel free to add any screenshots or gifs if applicable -->
 
 ### Fixes # (issue)
 
-### Discribe how to test your PR locally
+### Describe how to test your PR locally
 
 - Open `index.html` locally 
 <!--- Write any other instructions for testing -->
