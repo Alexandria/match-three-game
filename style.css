@@ -103,3 +103,28 @@ body {
   height: 200px;
   background-image: url(images/startbutton.png);
 }
+
+/* Screen size: 1024 or lower */
+@media screen and (max-width: 1024px) {
+  body {
+    flex-direction: column;
+  }
+
+  .timerboard {
+    grid-area: a;
+  }
+  .score-board {
+    grid-area: b;
+  }
+  #startButton {
+    grid-area: c;
+  }
+
+  .menu {
+    display: grid;
+    grid-template:
+      "a a a"
+      "b c c"
+      "b c c";
+  }
+}
