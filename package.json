@@ -6,10 +6,11 @@
   "dependencies": {},
   "devDependencies": {
     "eslint": "^7.21.0",
-    "eslint-plugin-react": "^7.22.0"
+    "eslint-plugin-react": "^7.22.0",
+    "jest": "^27.2.5"
   },
   "scripts": {
-    "test": "test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
