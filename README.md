@@ -25,7 +25,29 @@
 ### Run it locally
 - Clone this repository 
 - Open `index.html` file in your prefered browser - either by double-click the file in explorer or by drag & drop the file into the browser's search field.
+
 ---
+
+### Run ESlint
+
+- Install Node.js
+
+- Install dependencies
+
+```
+npm install
+```
+
+- Run eslint on scripts folder
+
+```
+npm run eslint
+```
+
+Some rules will be auto-fixed, others will be logged so developer can fix them manually.
+
+---
+
 ### Where I am at now 🍬
 
 - Basic drag and drop functionality
