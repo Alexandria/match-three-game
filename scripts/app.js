@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  const dragEnd = (element) => {
+  const dragEnd = () => {
     const validMove = isValidMove()
     if (squareIdbeingReplaced && validMove) {
       squareIdbeingReplaced = null
