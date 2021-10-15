@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         timerBoard.style.animation = "bounce 0.5s infinite"
         clearInterval(startCountDown)
         clearInterval(startMatchChecking)
-        saveValue()
+        saveMaxScore()
         makeBoardNotDraggable()
     }
 
@@ -102,14 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000)
     }
 
-
-    const saveValue = () => 
-    {
-        const maxScore = localStorage.getItem("maxScore")
-        const score = document.getElementById("maxScore").textContent
-        if(score>maxScore)
-            localStorage.setItem("maxScore", score)
-    }
 
 
     // find matches per row
@@ -540,6 +532,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    
+    // Setting the max score
+    const saveMaxScore = () => 
+    {
+        const maxScore = getMaxScore()
+        const score = document.getElementById("score").textContent
+        // Comparing the Max Score (if it exists) with the score the user got
+        if(maxScore === null || parseInt(score) > parseInt(maxScore))
+        {
+            localStorage.setItem("maxScore", score)
+            displayMaxScore()
+        }
+    }
+
+    // Displaying the max score
+    const displayMaxScore = () => 
+    {
+        const maxScore = getMaxScore()
+        document.getElementById("maxScore").innerText = maxScore === null ? 0 : maxScore
+    }
+
+    // Returning the max store
+    const getMaxScore = () => {
+        return localStorage.getItem("maxScore")
+    }
 
     //create board
     function createBoard() {
@@ -556,9 +573,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //setscore to zero
         score = 0;
-        scoreDisplay.innerHTML = score
+        scoreDisplay.innerText = score
+
+        // Displaying the max score
+        displayMaxScore();
     }
 
+    
     createBoard()
 
 
