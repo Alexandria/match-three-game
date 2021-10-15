@@ -5,10 +5,12 @@
   "main": "app.js",
   "dependencies": {},
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.21.0",
     "eslint-plugin-react": "^7.22.0"
   },
   "scripts": {
+    "eslint": "eslint --fix scripts/**",
     "test": "test"
   },
   "repository": {
