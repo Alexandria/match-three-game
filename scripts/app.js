@@ -77,13 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
     timerBoard.style.animation = 'bounce 0.5s infinite'
     clearInterval(startCountDown)
     clearInterval(startMatchChecking)
-    saveMaxScore()
+    saveHighScore()
     makeBoardNotDraggable()
   }
 
 
   const countDown = () => {
-    let seconds = 59
+    let seconds = 5
     startCountDown = window.setInterval(function () {
       seconds = seconds - 1
       if (seconds < 0) {
@@ -556,28 +556,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  const saveMaxScore = () => 
+  // Saving the high score to the local storage
+  const saveHighScore = () => 
   {
-      const maxScore = getMaxScore()
+      const highScore = getHighScore()
       const score = document.getElementById("score").textContent
-      // Comparing the Max Score (if it exists) with the score the user got
-      if(maxScore === null || parseInt(score) > parseInt(maxScore))
+      // Comparing the high Score (if it exists) with the score the user got
+      if(highScore === null || parseInt(score) > parseInt(highScore))
       {
-          localStorage.setItem("maxScore", score)
-          displayMaxScore()
+          localStorage.setItem("highScore", score)
+          displayHighScore()
       }
   }
 
-  // Displaying the max score
-  const displayMaxScore = () => 
+  // Displaying the high score
+  const displayHighScore = () => 
   {
-      const maxScore = getMaxScore()
-      document.getElementById("maxScore").innerText = maxScore === null ? 0 : maxScore
+      const highScore = getHighScore()
+      document.getElementById("highScore").innerText = highScore === null ? 0 : highScore
   }
 
-  // Returning the max store
-  const getMaxScore = () => {
-      return localStorage.getItem("maxScore")
+  // Returning the high store
+  const getHighScore = () => {
+      return localStorage.getItem("highScore")
   }
 
 
@@ -598,8 +599,8 @@ document.addEventListener('DOMContentLoaded', () => {
     score = 0
     scoreDisplay.innerHTML = score
     
-    // Displaying the max score
-    displayMaxScore();
+    // Displaying the high score
+    displayHighScore();
 
   }
 
