@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         timerBoard.style.animation = "bounce 0.5s infinite"
         clearInterval(startCountDown)
         clearInterval(startMatchChecking)
+        saveValue()
         makeBoardNotDraggable()
     }
 
@@ -102,6 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    const saveValue = () => 
+    {
+        const maxScore = localStorage.getItem("maxScore")
+        const score = document.getElementById("maxScore").textContent
+        if(score>maxScore)
+            localStorage.setItem("maxScore", score)
+    }
 
 
     // find matches per row
@@ -549,7 +557,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //setscore to zero
         score = 0;
         scoreDisplay.innerHTML = score
-
     }
 
     createBoard()
