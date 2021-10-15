@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   const countDown = () => {
-    let seconds = 5
+    let seconds = 60
     startCountDown = window.setInterval(function () {
       seconds = seconds - 1
       if (seconds < 0) {
