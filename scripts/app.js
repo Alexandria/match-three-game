@@ -23,12 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameStarted = false
 
   const candyColors = [
-<<<<<<< HEAD
-=======
     'url(images/candy-corn.png)',
     'url(images/candy-pumpkin.png)',
     'url(images/orange-candy.png)',
->>>>>>> 77bb15d (add icons, rename variables, replace fonts)
     'url(images/dragon-candy.png)',
     'url(images/pumpkin-candy.png)',
     'url(images/purple-teeth.png)',
