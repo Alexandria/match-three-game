@@ -55,7 +55,7 @@ body {
   justify-content: space-around;
   width: 1120;
   height: 1120;
-  background-color: bisque;
+  background-color: #50338E;
   /* background-size: 100% 250%;
   background-repeat: no-repeat; */
 }
@@ -63,17 +63,14 @@ body {
 .score-board {
   height: 200px;
   width: 300px;
-  background-color: #ff9c4d;
+  background-color: #F2DD20;
   display: flex;
-  /* align-self: center; */
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  border-width: 20px;
+  border: 20px double #72BC4B;
   border-radius: 2px;
-  border-style: double;
-  border-color: #eddb66;
 }
 
 .score-board h1,h2 {
@@ -85,7 +82,10 @@ body {
   /* font-family: "DotGothic16", sans-serif; */
   font-family: 'Electrolize', sans-serif;
   font-size: 16px;
-  background-color: #65c96f;
+  background-color: #F2DD20;
+  border: 8px double #72BC4B;
+  border-radius: 2px;
+
   width: 100%;
   justify-content: center;
   margin-bottom: 30px;
