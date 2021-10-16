@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameStarted = false
 
   const candyColors = [
-    'url(images/red-candy.png)',
-    'url(images/yellow-candy.png)',
+    'url(images/candy-corn.png)',
+    'url(images/candy-pumpkin.png)',
     'url(images/orange-candy.png)',
     'url(images/dragon-candy.png)',
     'url(images/green-candy.png)',
