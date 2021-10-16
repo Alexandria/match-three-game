@@ -76,13 +76,24 @@ body {
   border-color: #eddb66;
 }
 
+<<<<<<< HEAD
 .score-board h1,h2 {
   font-family: "DotGothic16", sans-serif;
+=======
+.score-board h1 {
+  font-family: 'Creepster', cursive;
+  font-size: 60px;
+>>>>>>> 77bb15d (add icons, rename variables, replace fonts)
 }
 
 .timerboard {
   display: flex;
+<<<<<<< HEAD
   font-family: "DotGothic16", sans-serif;
+=======
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+>>>>>>> 77bb15d (add icons, rename variables, replace fonts)
   background-color: #65c96f;
   width: 100%;
   justify-content: center;
@@ -90,7 +101,13 @@ body {
 }
 
 #score {
+<<<<<<< HEAD
   font-family: "DotGothic16", sans-serif;
+=======
+  font-family: 'Press Start 2P', cursive;
+  /* 'Press Start 2P' works best in px * multiples of 8 */
+  font-size: 32px;
+>>>>>>> 77bb15d (add icons, rename variables, replace fonts)
 }
 
 .menu {
