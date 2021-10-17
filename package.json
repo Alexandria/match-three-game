@@ -10,7 +10,7 @@
     "jest": "^27.2.5"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --watchAll"
   },
   "repository": {
     "type": "git",
