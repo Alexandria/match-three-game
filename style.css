@@ -75,7 +75,7 @@ body {
   border-color: #eddb66;
 }
 
-.score-board h1 {
+.score-board h1,h2 {
   font-family: "DotGothic16", sans-serif;
 }
 

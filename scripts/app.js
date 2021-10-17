@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // document.getElementsByTagName('body')[0].style.backgroundImage = "url('images/cloud-background.jpg')"
 
 
-    timerDisplay.innerHTML = "1:00"
+    timerDisplay.innerHTML = '1:00'
 
 
 
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function makeCandyDraggable() {
         squares.forEach(square => {
             square.setAttribute('draggable', true)
-        });
+        })
     }
 
     function makeBoardNotDraggable() {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const stopBounce = () => {
-        timerBoard.style.animation = "bounce 0.5s"
+        timerBoard.style.animation = 'bounce 0.5s'
     }
 
 
@@ -78,21 +78,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const stopGame = () => {
         startButton.style.animation = ''
         gameStarted = false
-        timerBoard.style.animation = "bounce 0.5s infinite"
+        timerBoard.style.animation = 'bounce 0.5s infinite'
         clearInterval(startCountDown)
         clearInterval(startMatchChecking)
+        saveHighScore()
         makeBoardNotDraggable()
     }
 
 
     const countDown = () => {
-        let seconds = 59
+        let seconds = 60
         startCountDown = window.setInterval(function () {
             seconds = seconds - 1
             if (seconds < 0) {
                 //stop countdown
                 stopGame()
-                timerDisplay.innerHTML = "0:00"
+                timerDisplay.innerHTML = '0:00'
                 return timerDisplay
             }
 
@@ -111,8 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // find matches per row
     const columnMatchesForEight = () => {
         for (let i = 0; i < fullBoardSize; i++) {
-            let rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7]
-            let decidedColor = squares[i].style.backgroundImage
+            const rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (i % 8 > 0) continue
@@ -126,7 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                rowToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                rowToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
 
             }
 
@@ -143,8 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const checkRowForSeven = () => {
         for (let i = 0; i < fullBoardSize - 6; i++) {
-            let rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6]
-            let decidedColor = squares[i].style.backgroundImage
+            const rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (i % 8 > 1) continue
@@ -158,7 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                rowToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                rowToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
 
             }
 
@@ -167,8 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const checkRowForSix = () => {
         for (let i = 0; i < fullBoardSize - 5; i++) {
-            let rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5]
-            let decidedColor = squares[i].style.backgroundImage
+            const rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (i % 8 > 2) continue
@@ -182,7 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                rowToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                rowToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
 
             }
 
@@ -190,8 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const checkRowForFive = () => {
         for (let i = 0; i < fullBoardSize - 4; i++) {
-            let rowToCheck = [i, i + 1, i + 2, i + 3, i + 4]
-            let decidedColor = squares[i].style.backgroundImage
+            const rowToCheck = [i, i + 1, i + 2, i + 3, i + 4]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (i % 8 > 3) continue
@@ -205,7 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                rowToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                rowToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
 
             }
 
@@ -214,8 +223,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const checkRowForFour = () => {
         for (let i = 0; i < fullBoardSize - 3; i++) {
-            let rowToCheck = [i, i + 1, i + 2, i + 3]
-            let decidedColor = squares[i].style.backgroundImage
+            const rowToCheck = [i, i + 1, i + 2, i + 3]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (i % 8 > 4) continue
@@ -229,7 +238,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                rowToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                rowToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
 
             }
 
@@ -243,8 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const checkColumnForThree = () => {
         for (let i = 0; i < fullBoardSize - width * 2; i++) {
-            let columnToCheck = [i, i + width, i + width * 2]
-            let decidedColor = squares[i].style.backgroundImage
+            const columnToCheck = [i, i + width, i + width * 2]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)) {
@@ -258,7 +269,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                columnToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                columnToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
             }
         }
 
@@ -266,8 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const checkColumnForFour = () => {
         for (let i = 0; i < fullBoardSize - width * 3; i++) {
-            let columnToCheck = [i, i + width, i + width * 2, i + width * 3]
-            let decidedColor = squares[i].style.backgroundImage
+            const columnToCheck = [i, i + width, i + width * 2, i + width * 3]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)) {
@@ -281,7 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                columnToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                columnToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
             }
         }
 
@@ -289,8 +304,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const checkColumnForFive = () => {
         for (let i = 0; i < fullBoardSize - width * 4; i++) {
-            let columnToCheck = [i, i + width, i + width * 2, i + width * 3, i + width * 4]
-            let decidedColor = squares[i].style.backgroundImage
+            const columnToCheck = [i, i + width, i + width * 2, i + width * 3, i + width * 4]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)) {
@@ -304,15 +319,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                columnToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                columnToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
             }
         }
 
     }
     const checkColumnForSix = () => {
         for (let i = 0; i < fullBoardSize - width * 5; i++) {
-            let columnToCheck = [i, i + width, i + width * 2, i + width * 3, i + width * 4, i + width * 5]
-            let decidedColor = squares[i].style.backgroundImage
+            const columnToCheck = [i, i + width, i + width * 2, i + width * 3, i + width * 4, i + width * 5]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)) {
@@ -326,15 +343,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                columnToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                columnToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
             }
         }
 
     }
     const checkColumnForSeven = () => {
         for (let i = 0; i < fullBoardSize - width * 6; i++) {
-            let columnToCheck = [i, i + width, i + width * 2, i + width * 3, i + width * 4, i + width * 5, i + width * 6]
-            let decidedColor = squares[i].style.backgroundImage
+            const columnToCheck = [i, i + width, i + width * 2, i + width * 3, i + width * 4, i + width * 5, i + width * 6]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)) {
@@ -348,7 +367,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                columnToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                columnToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
             }
         }
 
@@ -356,8 +377,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const checkColumnForEight = () => {
         for (let i = 0; i < fullBoardSize - width * 7; i++) {
-            let columnToCheck = [i, i + width, i + width * 2, i + width * 3, i + width * 4, i + width * 5, i + width * 6, i + width * 7]
-            let decidedColor = squares[i].style.backgroundImage
+            const columnToCheck = [i, i + width, i + width * 2, i + width * 3, i + width * 4, i + width * 5, i + width * 6, i + width * 7]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
             if (columnToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)) {
@@ -371,12 +392,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //    squares[index].style.backgroundImage = ''
                 })
-                columnToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                columnToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
             }
         }
 
     }
-
 
     //drag the candies
 
@@ -396,7 +418,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const dragEnter = (element) => {
         element.preventDefault()
-
     }
 
     function isFoundMatching() {
@@ -552,29 +573,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return validMoves.includes(squareIdbeingReplaced) && isFoundMatching()
     }
 
-    const dragEnd = (event) => {
-        console.log('in dragEnd')
-        const validMove = isValidMove(event)
-        if (squareIdbeingReplaced && validMove) {
-            squareIdbeingReplaced = null
-        } else if (squareIdbeingReplaced && !validMove) {
-            squares[squareIdbeingReplaced].style.backgroundImage = colorBeingReplaced
-            squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
-        } else {
-            squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
-        }
-
-    }
-
-    const dragDrop = (event) => {
-        console.log('in dragDrop ', event)
+    const dragDrop = (element) => {
         if (!gameStarted) {
             return
         }
-        colorBeingReplaced = event.target.style.backgroundImage //yellow
-        squareIdbeingReplaced = parseInt(event.target.id) //2
+        colorBeingReplaced = element.target.style.backgroundImage //yellow
+        squareIdbeingReplaced = parseInt(element.target.id) //2
 
-        const validMove = isValidMove(event)
+        const validMove = isValidMove()
 
         if (!validMove) {
             squares[squareIdbeingReplaced].style.backgroundImage = colorBeingReplaced
@@ -583,6 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         squares[squareIdBeingDragged].style.backgroundImage = colorBeingReplaced
         squares[squareIdbeingReplaced].style.backgroundImage = colorBeingDragged
+
 
         //Fill the board and check for matches if there is an empty square
         setTheBoard()
@@ -594,8 +601,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkRowForThree = () => {
         for (let i = 0; i < fullBoardSize - 2; i++) {
             if (i % 8 > 5) continue
-            let rowToCheck = [i, i + 1, i + 2]
-            let decidedColor = squares[i].style.backgroundImage
+            const rowToCheck = [i, i + 1, i + 2]
+            const decidedColor = squares[i].style.backgroundImage
             const isBlank = squares[i].style.backgroundImage === ''
 
 
@@ -609,7 +616,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     squares[index].classList.add('square')
 
                 })
-                rowToCheck.forEach(index => { squares[index].addEventListener('animationend', removeBackgroundImage) })
+                rowToCheck.forEach(index => {
+                    squares[index].addEventListener('animationend', removeBackgroundImage)
+                })
 
             }
 
@@ -663,7 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (isFirstRow && squares[i].style.backgroundImage === '') {
-                let randomColor = Math.floor(Math.random() * candyColors.length)
+                const randomColor = Math.floor(Math.random() * candyColors.length)
                 squares[i].style.backgroundImage = candyColors[randomColor]
             }
 
@@ -681,6 +690,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    // Saving the high score to the local storage
+    const saveHighScore = () => {
+        const highScore = getHighScore()
+        const endScore = document.getElementById("score").textContent
+        // Comparing the high Score (if it exists) with the score the user got
+        if (highScore === null || parseInt(endScore) > parseInt(highScore)) {
+            localStorage.setItem("highScore", endScore)
+            displayHighScore()
+        }
+    }
+
+    // Displaying the high score
+    const displayHighScore = () => {
+        const highScore = getHighScore()
+        document.getElementById("highScore").innerText = highScore === null ? 0 : highScore
+    }
+
+    // Returning the high store
+    const getHighScore = () => {
+        return localStorage.getItem("highScore")
+    }
 
 
     //create board
@@ -688,7 +718,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < fullBoardSize; i++) {
             const square = document.createElement('div')
             square.setAttribute('id', i)
-            let randomColor = Math.floor(Math.random() * candyColors.length)
+            const randomColor = Math.floor(Math.random() * candyColors.length)
             square.style.backgroundImage = candyColors[randomColor]
             grid.appendChild(square)
             squares.push(square)
@@ -697,8 +727,11 @@ document.addEventListener('DOMContentLoaded', () => {
         resetBoard()
 
         //setscore to zero
-        score = 0;
+        score = 0
         scoreDisplay.innerHTML = score
+
+        // Displaying the high score
+        displayHighScore();
 
     }
 
@@ -710,7 +743,6 @@ document.addEventListener('DOMContentLoaded', () => {
     squares.forEach(square => square.addEventListener('dragstart', dragStart))
     squares.forEach(square => square.addEventListener('dragover', dragOver))
     squares.forEach(square => square.addEventListener('dragenter', dragEnter))
-    // squares.forEach(square => square.addEventListener('dragend', dragEnd))
     squares.forEach(square => square.addEventListener('drop', dragDrop))
 
 

@@ -18,7 +18,15 @@ Is there anything specific that you want to be added or improved on? If so, make
 
 ## 🦸🏾‍♀️Want to add code to the project and make this game better or cleaner?
 
-### Fantastic make a PR request with your additions and I will try my best to review it and merge it in a timely manner.
+Fantastic! 
+Make a PR request with your additions and I will try my best to review it and merge it in a timely manner.
+
+## PR request guide 
+1. Fork the project.
+2. Create a new branch (`git checkout -b 'branch name'`).
+3. Commit your changes (`git commit -m 'Add something new'`).
+4. Push to the branch (`git push -u origin 'branch name'`).
+5. Open a Pull Request (PR) using the provided link.
 
 ## 🧙🏾What if I am not a coder?
 
@@ -34,4 +42,4 @@ Currently, all the art is custom pixel art that I made, and yeah... I know it's 
 
 ## Final notes
 
-### This contributing doc itself is STILL being worked on, if you feel like there is some additional information that needs to be added, then create an [issue](https://alexandria.github.io/match-three-game/index.html) and I or another contributor will look into it.
+### This contributing doc itself is STILL being worked on, if you feel like there is some additional information that needs to be added, then create an [issue](https://github.com/Alexandria/match-three-game/issues/new/choose) and I or another contributor will look into it.
