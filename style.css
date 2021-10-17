@@ -55,7 +55,8 @@ body {
   justify-content: space-around;
   width: 1120;
   height: 1120;
-  background-color: #50338E;
+  background-color: lightgrey;
+  /* background-color: #F2FFEB; */
   /* background-size: 100% 250%;
   background-repeat: no-repeat; */
 }
@@ -63,13 +64,13 @@ body {
 .score-board {
   height: 200px;
   width: 300px;
-  background-color: #F2DD20;
+  background-color: #9C9C9C;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  border: 20px double #72BC4B;
+  border: 20px double darkslategrey;
   border-radius: 2px;
 }
 
@@ -78,13 +79,20 @@ body {
   font-family: "DotGothic16", sans-serif;
 =======
 .score-board h1 {
+<<<<<<< HEAD
   font-family: 'Creepster', cursive;
   font-size: 60px;
 >>>>>>> 77bb15d (add icons, rename variables, replace fonts)
+=======
+  font-family: 'Lusitana', serif;
+  font-size: 36px;
+  text-transform: uppercase;
+>>>>>>> dfbf206 (add candy icons, change fonts, colors)
 }
 
 .timerboard {
   display: flex;
+<<<<<<< HEAD
 <<<<<<< HEAD
   font-family: "DotGothic16", sans-serif;
 =======
@@ -100,15 +108,28 @@ body {
 
 >>>>>>> 60d5159 (tighten up css)
   width: 100%;
+=======
+  font-family: 'Lusitana', serif;
+  font-size: 16px;
+  background-color: #9c9c9c;
+  border: 8px double darkslategrey;
+  border-radius: 40px 40px 20px 20px;
+  width: 350px;
+>>>>>>> dfbf206 (add candy icons, change fonts, colors)
   justify-content: center;
-  margin-bottom: 30px;
+  margin-top: 20px;
 }
 
 #score {
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-family: "DotGothic16", sans-serif;
 =======
   font-family: 'Press Start 2P', cursive;
+=======
+  font-family: 'Lusitana', serif;
+  /* font-family: 'Press Start 2P', cursive; */
+>>>>>>> dfbf206 (add candy icons, change fonts, colors)
   /* 'Press Start 2P' works best in px * multiples of 8 */
   font-size: 32px;
 >>>>>>> 77bb15d (add icons, rename variables, replace fonts)
@@ -124,7 +145,7 @@ body {
 #startButton {
   width: 200px;
   height: 200px;
-  background-image: url(images/startbutton.png);
+  background-image: url(images/candy-startbutton.png);
 }
 
 /* Screen size: 1024 or lower */
