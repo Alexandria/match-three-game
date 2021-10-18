@@ -83,18 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameStarted = false
 
   const candyColors = [
-<<<<<<< HEAD
     'url(images/red-candy.png)',
     'url(images/yellow-candy.png)',
     'url(images/orange-candy.png)',
-=======
-    'url(images/candy-corn.png)',
-    'url(images/candy-pumpkin.png)',
-    'url(images/green-teeth.png)',
->>>>>>> dfbf206 (add candy icons, change fonts, colors)
     'url(images/dragon-candy.png)',
-    'url(images/blue-candy.png)',
-    'url(images/purple-teeth.png)'
+    'url(images/green-candy.png)',
+    'url(images/blue-candy.png)'
   ]
 
   //Load background image
