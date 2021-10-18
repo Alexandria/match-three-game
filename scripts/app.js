@@ -77,12 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
     timerBoard.style.animation = 'bounce 0.5s infinite'
     clearInterval(startCountDown)
     clearInterval(startMatchChecking)
+    saveHighScore()
     makeBoardNotDraggable()
   }
 
 
   const countDown = () => {
-    let seconds = 59
+    let seconds = 60
     startCountDown = window.setInterval(function () {
       seconds = seconds - 1
       if (seconds < 0) {
@@ -555,6 +556,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
+  // Saving the high score to the local storage
+  const saveHighScore = () => 
+  {
+      const highScore = getHighScore()
+      const score = document.getElementById("score").textContent
+      // Comparing the high Score (if it exists) with the score the user got
+      if(highScore === null || parseInt(score) > parseInt(highScore))
+      {
+          localStorage.setItem("highScore", score)
+          displayHighScore()
+      }
+  }
+
+  // Displaying the high score
+  const displayHighScore = () => 
+  {
+      const highScore = getHighScore()
+      document.getElementById("highScore").innerText = highScore === null ? 0 : highScore
+  }
+
+  // Returning the high store
+  const getHighScore = () => {
+      return localStorage.getItem("highScore")
+  }
 
 
   //create board
@@ -573,6 +598,9 @@ document.addEventListener('DOMContentLoaded', () => {
     //setscore to zero
     score = 0
     scoreDisplay.innerHTML = score
+    
+    // Displaying the high score
+    displayHighScore();
 
   }
 
