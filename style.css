@@ -75,7 +75,7 @@ body {
   border-color: #eddb66;
 }
 
-.score-board h1 {
+.score-board h1,h2 {
   font-family: "DotGothic16", sans-serif;
 }
 
@@ -102,4 +102,29 @@ body {
   width: 200px;
   height: 200px;
   background-image: url(images/startbutton.png);
+}
+
+/* Screen size: 1024 or lower */
+@media screen and (max-width: 1024px) {
+  body {
+    flex-direction: column;
+  }
+
+  .timerboard {
+    grid-area: a;
+  }
+  .score-board {
+    grid-area: b;
+  }
+  #startButton {
+    grid-area: c;
+  }
+
+  .menu {
+    display: grid;
+    grid-template:
+      "a a a"
+      "b c c"
+      "b c c";
+  }
 }

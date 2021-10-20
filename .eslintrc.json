@@ -5,11 +5,9 @@
         "es2021": true
     },
     "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
+        "eslint:recommended"
     ],
     "globals": {
-        "angular": true,
         "$": true
       },
     "parser": "babel-eslint",
@@ -19,9 +17,6 @@
         },
         "ecmaVersion": 12
     },
-    "plugins": [
-        "react"
-    ],
     "rules": {
         "brace-style": "error",
         "camelcase": ["error", { "properties": "never" }],
@@ -34,7 +29,6 @@
         "no-fallthrough": "warn",
         "prefer-const": "error",
         "quotes": [ "error", "single" ],
-        "semi": [ "error", "never" ],
-        "react/prop-types": [ 0 ]
+        "semi": [ "error", "never" ]
       }
 }
