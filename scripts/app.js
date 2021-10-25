@@ -557,28 +557,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Saving the high score to the local storage
-  const saveHighScore = () => 
-  {
-      const highScore = getHighScore()
-      const score = document.getElementById("score").textContent
-      // Comparing the high Score (if it exists) with the score the user got
-      if(highScore === null || parseInt(score) > parseInt(highScore))
-      {
-          localStorage.setItem("highScore", score)
-          displayHighScore()
-      }
+  const saveHighScore = () => {
+    const highScore = getHighScore()
+    const score = document.getElementById('score').textContent
+    // Comparing the high Score (if it exists) with the score the user got
+    if(highScore === null || parseInt(score) > parseInt(highScore)) {
+      localStorage.setItem('highScore', score)
+      displayHighScore()
+    }
   }
 
   // Displaying the high score
-  const displayHighScore = () => 
-  {
-      const highScore = getHighScore()
-      document.getElementById("highScore").innerText = highScore === null ? 0 : highScore
+  const displayHighScore = () => {
+    const highScore = getHighScore()
+    document.getElementById('highScore').innerText = highScore === null ? 0 : highScore
   }
 
   // Returning the high store
   const getHighScore = () => {
-      return localStorage.getItem("highScore")
+    return localStorage.getItem('highScore')
   }
 
 
@@ -600,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scoreDisplay.innerHTML = score
     
     // Displaying the high score
-    displayHighScore();
+    displayHighScore()
 
   }
 

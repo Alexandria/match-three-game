@@ -6,7 +6,8 @@
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.21.0"
+    "eslint": "^7.21.0",
+    "husky": "^7.0.4"
   },
   "scripts": {
     "eslint": "eslint --fix scripts/**",
