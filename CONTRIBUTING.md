@@ -1,10 +1,10 @@
 # Contributing
 
-### Yay congrats on your first step to open source code! And hello to those who are not so new to this world 😁
+### Yay!! Congratulations on your first step to open source code! And hello to those who are not so new to this world 😁
 
 #### My goal is to make this project low pressure and fun. This project has A LOT of work that needs to be done and with your help perhaps we can create a fun game together.
 
-## 🍭 Who is this repo for ?
+## 🍭 Who is this repo for?
 
 ### All are welcome to contribute but my goal is to make this a low-pressure project for those who are learning git and git hub and those who are just dipping their toes into open source work.
 
@@ -38,7 +38,7 @@ Make a PR request with your additions and I will try my best to review it and me
 
 ## 🙅🏾 Please do not steal any art or music assets
 
-Currently, all the art is custom pixel art that I made, and yeah... I know it's rough. 😅 With that being said if you want to update any art assets or add sound assets to the game they must be royalty free or you must have permission from the artist to use their work in this project before submitting it. And of course, you will need to give credit to the artist.
+Currently, all the art is custom pixel art that I made, and yeah. I know it's rough. 😅 With that being said if you want to update any art assets or add sound assets to the game they must be royalty free or you must have permission from the artist to use their work in this project before submitting it. And of course, you will need to give credit to the artist.
 
 ## Final notes
 
