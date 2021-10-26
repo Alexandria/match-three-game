@@ -55,21 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameStarted = false
 
   const candyColors = [
-<<<<<<< HEAD
     'url(images/red-candy.png)',
     'url(images/yellow-candy.png)',
     'url(images/orange-candy.png)',
     'url(images/dragon-candy.png)',
     'url(images/green-candy.png)',
     'url(images/blue-candy.png)'
-=======
-    'url(images/dragon-candy.png)',
-    'url(images/pumpkin-candy.png)',
-    'url(images/purple-teeth.png)',
-    'url(images/cup-candy.png)',
-    'url(images/skull-candy.png)',
-    'url(images/worm-candy.png)'
->>>>>>> d0655a6 (replaced skull candy with dragon candy)
   ]
 
   //Load background image
