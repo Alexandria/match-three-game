@@ -38,7 +38,7 @@ Make a PR request with your additions and I will try my best to review it and me
 
 ## 🙅🏾 Please do not steal any art or music assets
 
-Currently, all the art is custom pixel art that I made, and yeah. I know it's rough. 😅 With that being said if you want to update any art assets or add sound assets to the game they must be royalty free or you must have permission from the artist to use their work in this project before submitting it. And of course, you will need to give credit to the artist.
+Currently, all the art is custom pixel art that I made, and yeah I know it's rough. 😅 With that being said if you want to update any art assets or add sound assets to the game they must be royalty free or you must have permission from the artist to use their work in this project before submitting it. And of course, you will need to give credit to the artist.
 
 ## Final notes
 
