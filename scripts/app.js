@@ -27,16 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
     'url(images/candy-pumpkin.png)',
     'url(images/green-teeth.png)',
     'url(images/dragon-candy.png)',
-<<<<<<< HEAD
     'url(images/pumpkin-candy.png)',
     'url(images/purple-teeth.png)',
     'url(images/cup-candy.png)',
     'url(images/skull-candy.png)',
     'url(images/worm-candy.png)'
-=======
-    'url(images/blue-candy.png)',
-    'url(images/purple-teeth.png)'
->>>>>>> dfbf206 (add candy icons, change fonts, colors)
   ]
 
   //Load background image
