@@ -34,7 +34,9 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
-  /* background-color: #986F9C; opacity: 0.8; */
+  background-color: #F6FCF2;
+  border: 20px double #482217;
+  border-radius: 2px;
 }
 
 .grid div {
@@ -54,7 +56,8 @@ body {
   justify-content: space-around;
   width: 1120;
   height: 1120;
-  background-color: bisque;
+  background-color: #50338E;
+  /* background-color: #F2FFEB; */
   /* background-size: 100% 250%;
   background-repeat: no-repeat; */
 }
@@ -62,35 +65,39 @@ body {
 .score-board {
   height: 200px;
   width: 300px;
-  background-color: #ff9c4d;
+  background-color: lightgray;
   display: flex;
-  /* align-self: center; */
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  border-width: 20px;
+  border: 20px double #482217;
   border-radius: 2px;
-  border-style: double;
-  border-color: #eddb66;
 }
 
-.score-board h1,h2 {
-  font-family: "DotGothic16", sans-serif;
+.score-board h1 {
+  font-family: 'Emilys Candy', cursive;
+  font-size: 35px;
+  text-transform: uppercase;
 }
 
 .timerboard {
   display: flex;
-  font-family: "DotGothic16", sans-serif;
-  background-color: #65c96f;
-  width: 100%;
+  font-family: 'Electrolize', sans-serif;
+  font-size: 16px;
+  background-color: lightgray;
+  border: 8px double #482217;
+  border-radius: 40px 40px 20px 20px;
+  width: 350px;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-top: 20px;
 }
 
 #score {
-  font-family: "DotGothic16", sans-serif;
+  font-family: 'Electrolize', sans-serif;
+  font-size: 32px;
 }
+
 
 .menu {
   display: flex;
@@ -101,7 +108,7 @@ body {
 #startButton {
   width: 200px;
   height: 200px;
-  background-image: url(images/startbutton.png);
+  background-image: url(images/corn_startbutton.png);
 }
 
 /* Screen size: 1024 or lower */
