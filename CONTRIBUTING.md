@@ -22,11 +22,59 @@ Fantastic!
 Make a PR request with your additions and I will try my best to review it and merge it in a timely manner.
 
 ## PR request guide 
-1. Fork the project.
-2. Create a new branch (`git checkout -b 'branch name'`).
-3. Commit your changes (`git commit -m 'Add something new'`).
-4. Push to the branch (`git push -u origin 'branch name'`).
-5. Open a Pull Request (PR) using the provided link.
+1. Fork [this](https://github.com/Alexandria/match-three-game) repository.
+
+2. Clone your forked copy of the repository.
+```
+https://github.com/<your_user_name>/match-three-game.git
+```
+3. Navigate to the project directory 📁.
+```
+cd match-three-game
+```
+
+4. Add a reference(remote) to the original repository.
+```
+git remote add upstream https://github.com/Alexandria/match-three-game.git
+```
+
+5. Check the remotes for this repository.
+```
+git remote -v
+```
+
+6. Always pull from the upstream repository to your `main` branch to keep abreast of the main project (updated repository).
+```
+git pull upstream main
+```
+
+7. Create a new branch.
+```
+git checkout -b <branch_name>
+```
+
+8. Perform your desired changes to the code base.
+
+9. Stage your changes✔️.
+```
+git add .
+```
+
+10. Commit your changes 
+```
+git commit -m 'Add something new'
+```
+
+11. Push to the branch 
+```
+git push -u origin 'branch name'
+```
+
+12. To open a Pull Request (PR), click on `compare and pull requests`. Please ensure that you compare your feature branch to the desired branch of the repo you are supposed to make a PR to.
+
+13. Add an appropriate title and description.
+
+14. Woohoooo ❗ You have successfully made a PR in the match-three-game repository 💥 
 
 ## 🧙🏾What if I am not a coder?
 
