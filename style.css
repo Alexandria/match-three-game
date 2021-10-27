@@ -76,14 +76,14 @@ body {
 }
 
 .score-board h1 {
-  font-family: 'Eater', cursive;
-  font-size: 40px;
+  font-family: 'Emilys Candy', cursive;
+  font-size: 35px;
   text-transform: uppercase;
 }
 
 .timerboard {
   display: flex;
-  font-family: 'Arvo', serif;
+  font-family: 'Electrolize', sans-serif;
   font-size: 16px;
   background-color: lightgray;
   border: 8px double #482217;
@@ -94,9 +94,7 @@ body {
 }
 
 #score {
-  font-family: 'Arvo', serif;
-  /* font-family: 'Press Start 2P', cursive; */
-  /* 'Press Start 2P' works best in px * multiples of 8 */
+  font-family: 'Electrolize', sans-serif;
   font-size: 32px;
 }
 
