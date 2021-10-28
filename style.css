@@ -77,12 +77,14 @@ body {
 }
 
 .score-board h1,h2 {
-  font-family: "DotGothic16", sans-serif;
+  font-family: 'Emilys Candy', cursive;
 }
 
 .timerboard {
   display: flex;
-  font-family: "DotGothic16", sans-serif;
+  /* font-family: "DotGothic16", sans-serif; */
+  font-family: 'Electrolize', sans-serif;
+  font-size: 16px;
   background-color: #65c96f;
   width: 100%;
   justify-content: center;
@@ -90,7 +92,10 @@ body {
 }
 
 #score {
-  font-family: "DotGothic16", sans-serif;
+  /* font-family: "DotGothic16", sans-serif; */
+  font-family: 'Electrolize', sans-serif;
+  /* 'Press Start 2P' works best in px * multiples of 8 */
+  font-size: 32px;
 }
 
 .menu {
