@@ -53,10 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const candyColors = [
     'url(images/candy-corn.png)',
     'url(images/candy-pumpkin.png)',
-    'url(images/orange-candy.png)',
+    'url(images/green-teeth.png)',
     'url(images/dragon-candy.png)',
-    'url(images/green-candy.png)',
-    'url(images/blue-candy.png)'
+    'url(images/blue-candy.png)',
+    'url(images/purple-teeth.png)'
   ]
 
   //Load background image
