@@ -92,9 +92,13 @@ body {
 }
 
 #score {
+<<<<<<< HEAD
   /* font-family: "DotGothic16", sans-serif; */
   font-family: 'Electrolize', sans-serif;
   /* 'Press Start 2P' works best in px * multiples of 8 */
+=======
+  font-family: 'Electrolize', sans-serif;
+>>>>>>> 41decf2 (change fonts for charater and accessibility)
   font-size: 32px;
 }
 
