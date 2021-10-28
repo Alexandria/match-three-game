@@ -34,6 +34,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
+  caret-color: transparent;
   /* background-color: #986F9C; opacity: 0.8; */
 }
 
@@ -96,6 +97,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  caret-color: transparent;
 }
 
 #startButton {
