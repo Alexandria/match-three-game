@@ -34,9 +34,8 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
-  background-color: #F6FCF2;
-  border: 20px double #482217;
-  border-radius: 2px;
+  caret-color: transparent;
+  /* background-color: #986F9C; opacity: 0.8; */
 }
 
 .grid div {
@@ -56,7 +55,7 @@ body {
   justify-content: space-around;
   width: 1120;
   height: 1120;
-  background-color: #50338E;
+  background-color: bisque;
   /* background-size: 100% 250%;
   background-repeat: no-repeat; */
 }
@@ -64,40 +63,35 @@ body {
 .score-board {
   height: 200px;
   width: 300px;
-  background-color: #F2DD20;
+  background-color: #ff9c4d;
   display: flex;
+  /* align-self: center; */
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  border: 20px double #72BC4B;
+  border-width: 20px;
   border-radius: 2px;
+  border-style: double;
+  border-color: #eddb66;
 }
 
 .score-board h1,h2 {
-  font-family: 'Emilys Candy', cursive;
+  font-family: "DotGothic16", sans-serif;
 }
 
 .timerboard {
   display: flex;
-  font-family: 'Electrolize', sans-serif;
-  font-size: 16px;
-  background-color: #F2DD20;
-  border: 8px double #72BC4B;
-  border-radius: 2px;
-
+  font-family: "DotGothic16", sans-serif;
+  background-color: #65c96f;
   width: 100%;
   justify-content: center;
-  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 #score {
-  /* font-family: "DotGothic16", sans-serif; */
-  font-family: 'Electrolize', sans-serif;
-  /* 'Press Start 2P' works best in px * multiples of 8 */
-  font-size: 32px;
+  font-family: "DotGothic16", sans-serif;
 }
-
 
 .menu {
   display: flex;
@@ -109,7 +103,7 @@ body {
 #startButton {
   width: 200px;
   height: 200px;
-  background-image: url(images/corn_startbutton.png);
+  background-image: url(images/startbutton.png);
 }
 
 /* Screen size: 1024 or lower */
