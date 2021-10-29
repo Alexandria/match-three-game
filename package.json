@@ -7,24 +7,12 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.21.0",
-<<<<<<< HEAD
     "husky": "^7.0.4",
     "jest": "^27.3.1"
   },
   "scripts": {
     "eslint": "eslint --fix scripts/**",
     "test": "jest --watchAll"
-=======
-    "eslint-plugin-react": "^7.22.0",
-    "jest": "^27.2.5"
-  },
-  "scripts": {
-<<<<<<< HEAD
-    "test": "jest"
->>>>>>> 0d01b79 (add: jest test sample)
-=======
-    "test": "jest --watchAll"
->>>>>>> 83de04d (fix: logic modification to prevent moves)
   },
   "repository": {
     "type": "git",
