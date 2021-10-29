@@ -34,7 +34,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
-  background-color: #F6FCF2;
+  background-color: #FCFCFC;
   border: 20px double #482217;
   border-radius: 2px;
 }
@@ -56,7 +56,7 @@ body {
   justify-content: space-around;
   width: 1120;
   height: 1120;
-  background-color: lightgrey;
+  background-color: #AE3200;
   /* background-color: #F2FFEB; */
   /* background-size: 100% 250%;
   background-repeat: no-repeat; */
@@ -65,13 +65,14 @@ body {
 .score-board {
   height: 200px;
   width: 300px;
-  background-color: #D3D3D3;
+  background-color: #211A18;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  border: 20px double rgb(72, 34, 23);
+  color: #FCFCFC;
+  border: 15px double #FCFCFC;
   border-radius: 2px;
 }
 
@@ -85,11 +86,12 @@ body {
   display: flex;
   font-family: 'Electrolize', sans-serif;
   font-size: 16px;
-  background-color: #D3D3D3;
+  background-color: #211A18;
+  color: #FCFCFC;
   width: 350px;
   justify-content: center;
   margin-top: 20px;
-  border: 8px double rgb(72, 34, 23);
+  border: 8px double #FCFCFC;
   border-radius: 40px 40px 20px 20px;
 }
 
