@@ -7,6 +7,7 @@ function isValidPosition(squareIndex) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   return 0 <= squareIndex && squareIndex <= 63
 =======
     return 0 <= squareIndex && squareIndex <= 63
@@ -52,6 +53,9 @@ function isValidPosition(squareIndex) {
 >>>>>>> 681c19e (restore HighScore)
 =======
 >>>>>>> 884fea5 (restore .js files)
+=======
+  return 0 <= squareIndex && squareIndex <= 63
+>>>>>>> 9e4ea23 (restore .js files)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -185,74 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 8aba79a (update package.json)
-  startButton.addEventListener('click', startGame)
-
-
-
-  const stopGame = () => {
-    startButton.style.animation = ''
-    gameStarted = false
-    timerBoard.style.animation = 'bounce 0.5s infinite'
-    clearInterval(startCountDown)
-    clearInterval(startMatchChecking)
-    saveHighScore()
-    makeBoardNotDraggable()
-  }
-
-
-  const countDown = () => {
-    let seconds = 60
-    startCountDown = window.setInterval(function() {
-      seconds = seconds - 1
-      if (seconds < 0) {
-        //stop countdown
-        stopGame()
-        timerDisplay.innerHTML = '0:00'
-        return timerDisplay
-      }
-
-      if (seconds < 10) {
-        timerDisplay.innerHTML = `0:0${seconds}`
-        return timerDisplay
-      }
-      timerDisplay.innerHTML = `0:${seconds}`
-      return timerDisplay
-    }, 1000)
-  }
-
-
-
-
-  // find matches per row
-  const columnMatchesForEight = () => {
-    for (let i = 0; i < fullBoardSize; i++) {
-      const rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7]
-      const decidedColor = squares[i].style.backgroundImage
-      const isBlank = squares[i].style.backgroundImage === ''
-
-      if (i % 8 > 0) continue
-<<<<<<< HEAD
-=======
-=======
-    startButton.addEventListener('click', startGame)
-
-
-
-    const stopGame = () => {
-        startButton.style.animation = ''
-        gameStarted = false
-        timerBoard.style.animation = "bounce 0.5s infinite"
-        clearInterval(startCountDown)
-        clearInterval(startMatchChecking)
-        makeBoardNotDraggable()
-    }
->>>>>>> 702f017 (update script)
-=======
   startButton.addEventListener('click', startGame)
 
 
@@ -290,9 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-<<<<<<< HEAD
->>>>>>> 486652c (Husky integration)
-=======
 
 
   // find matches per row
@@ -301,45 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7]
       const decidedColor = squares[i].style.backgroundImage
       const isBlank = squares[i].style.backgroundImage === ''
->>>>>>> 07d5b01 (add husky integration)
 
       if (i % 8 > 0) continue
-
-      if (rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)) {
-        if (gameStarted) score += rowToCheck.length
-        scoreDisplay.innerHTML = score
-        // rowToCheck.forEach(index => {squares[index].style.backgroundImage = ''})
-        rowToCheck.forEach(index => {
-          squares[index].classList.add('square')
-
->>>>>>> f7bcb5f (update package.json)
-          //    squares[index].style.backgroundImage = ''
-        })
-        rowToCheck.forEach(index => {
-          squares[index].addEventListener('animationend', removeBackgroundImage)
-        })
-
-      }
-
-    }
-  }
-
-  const checkRowForSix = () => {
-    for (let i = 0; i < fullBoardSize - 5; i++) {
-      const rowToCheck = [i, i + 1, i + 2, i + 3, i + 4, i + 5]
-      const decidedColor = squares[i].style.backgroundImage
-      const isBlank = squares[i].style.backgroundImage === ''
-
-<<<<<<< HEAD
-      if (i % 8 > 2) continue
-=======
-  const removeBackgroundImage = (element) => {
-    element.target.style.backgroundImage = ''
-    element.target.classList.remove('square')
-    setTheBoard()
-  }
->>>>>>> 486652c (Husky integration)
->>>>>>> 8aba79a (update package.json)
 
       if (rowToCheck.every(index => squares[index].style.backgroundImage === decidedColor && !isBlank)) {
         if (gameStarted) score += rowToCheck.length
@@ -626,6 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   //drag the candies
 =======
 <<<<<<< HEAD
@@ -780,6 +677,9 @@ document.addEventListener('DOMContentLoaded', () => {
 =======
   //drag the candies
 >>>>>>> 07d5b01 (add husky integration)
+=======
+  //drag the candies
+>>>>>>> 9e4ea23 (restore .js files)
 
   let colorBeingDragged
   let colorBeingReplaced
@@ -798,7 +698,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const dragEnter = (element) => {
     element.preventDefault()
   }
-<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -816,167 +715,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function hasRowMatching() {
     return isLeftSideHasMatch() || isRightSideHasMatch() || isMiddleMatchingHorizontal()
   }
-<<<<<<< HEAD
-=======
-=======
-    function isFoundMatching() {
-        return hasRowMatching() || hasColumnMatching()
-    }
-=======
-
-  function isFoundMatching() {
-    return hasRowMatching() || hasColumnMatching()
-  }
->>>>>>> 07d5b01 (add husky integration)
-
-  function hasColumnMatching() {
-    return isMiddleMatchVertical() || isUpMatch() || isDownMatch()
-  }
-
-  function hasRowMatching() {
-    return isLeftSideHasMatch() || isRightSideHasMatch() || isMiddleMatchingHorizontal()
-  }
-
-  function isMiddleMatchingHorizontal() {
-    const squareIndex = squareIdbeingReplaced
-    const oneSquareRight = squareIndex + 1
-    const oneSquareLeft = squareIndex - 1
-    if (isValidPosition(oneSquareRight) && isValidPosition(oneSquareLeft)) {
-      if (isSameRow(squareIndex, oneSquareRight) && isSameRow(squareIndex, oneSquareLeft)) {
-        const middleImage = squares[squareIdBeingDragged].style.backgroundImage
-        const rightImage = squares[oneSquareRight].style.backgroundImage
-        const leftImage = squares[oneSquareLeft].style.backgroundImage
-        console.log('In middle matching')
-        console.log('right image is: ', rightImage)
-        console.log('middle image is: ', middleImage)
-        console.log('left image is: ', leftImage)
-        if (middleImage === rightImage && rightImage === leftImage) {
-          return true
-        }
-      }
-    }
-    return false
-  }
-
-  function isMiddleMatchVertical() {
-    const squareIndex = squareIdbeingReplaced
-    const oneSquareUp = squareIndex - 8
-    const oneSquareDown = squareIndex + 8
-    if (isValidPosition(oneSquareUp) && isValidPosition(oneSquareDown)) {
-      if (isSameColumn(squareIndex, oneSquareUp) && isSameColumn(squareIndex, oneSquareDown)) {
-        const middleImage = squares[squareIdBeingDragged].style.backgroundImage
-        const upperImage = squares[oneSquareUp].style.backgroundImage
-        const lowerImage = squares[oneSquareDown].style.backgroundImage
-        console.log('In middle matching vertical')
-        console.log('upper image is: ', upperImage)
-        console.log('middle image is: ', middleImage)
-        console.log('lower image is: ', lowerImage)
-        if (middleImage === upperImage && upperImage === lowerImage) {
-          return true
-        }
-      }
-    }
-    return false
-  }
-
-  function isRightSideHasMatch() {
-    const squareIndex = squareIdbeingReplaced
-    const oneSquareRight = squareIndex + 1
-    const twoSquareRight = squareIndex + 2
-    if (isValidPosition(oneSquareRight) && isValidPosition(twoSquareRight)) {
-      if (isSameRow(squareIndex, oneSquareRight) && isSameRow(squareIndex, twoSquareRight)) {
-        const leftImage = squares[squareIdBeingDragged].style.backgroundImage
-        const middleImage = squares[oneSquareRight].style.backgroundImage
-        const rightImage = squares[twoSquareRight].style.backgroundImage
-        console.log('In right matching')
-        console.log('right image is: ', rightImage)
-        console.log('middle image is: ', middleImage)
-        console.log('left image is: ', leftImage)
-        if (leftImage === middleImage && middleImage === rightImage) {
-          return true
-        }
-      }
-    }
-    return false
-  }
-
-  function isUpMatch() {
-    const squareIndex = squareIdbeingReplaced
-    const oneSquareUp = squareIndex - 8
-    const twoSquareUp = squareIndex - 16
-    if (isValidPosition(oneSquareUp) && isValidPosition(twoSquareUp)) {
-      if (isSameColumn(squareIndex, oneSquareUp) && isSameColumn(squareIndex, twoSquareUp)) {
-        const lowerImage = squares[squareIdBeingDragged].style.backgroundImage
-        const middleImage = squares[oneSquareUp].style.backgroundImage
-        const upperImage = squares[twoSquareUp].style.backgroundImage
-        console.log('In up matching')
-        console.log('upper image is: ', upperImage)
-        console.log('middle image is: ', middleImage)
-        console.log('lower image is: ', lowerImage)
-        if (lowerImage === middleImage && middleImage === upperImage) {
-          return true
-        }
-      }
-    }
-    return false
-  }
-
-  function isLeftSideHasMatch() {
-    const squareIndex = squareIdbeingReplaced
-    const oneSquareLeft = squareIndex - 1
-    const twoSquareLeft = squareIndex - 2
-    if (isValidPosition(oneSquareLeft) && isValidPosition(twoSquareLeft)) {
-      if (isSameRow(squareIndex, oneSquareLeft) && isSameRow(squareIndex, twoSquareLeft)) {
-        const rightImage = squares[squareIdBeingDragged].style.backgroundImage
-        const middleImage = squares[oneSquareLeft].style.backgroundImage
-        const leftImage = squares[twoSquareLeft].style.backgroundImage
-        console.log('In left matching')
-        console.log('right image is: ', rightImage)
-        console.log('middle image is: ', middleImage)
-        console.log('left image is: ', leftImage)
-        if (leftImage === middleImage && middleImage === rightImage) {
-          return true
-        }
-      }
-    }
-    return false
-  }
-
-  function isDownMatch() {
-    const squareIndex = squareIdbeingReplaced
-    const oneSquareDown = squareIndex + 8
-    const twoSquareDown = squareIndex + 16
-    if (isValidPosition(oneSquareDown) && isValidPosition(twoSquareDown)) {
-      if (isSameColumn(squareIndex, oneSquareDown) && isSameColumn(squareIndex, twoSquareDown)) {
-        const upperImage = squares[squareIdBeingDragged].style.backgroundImage
-        const middleImage = squares[oneSquareDown].style.backgroundImage
-        const lowerImage = squares[twoSquareDown].style.backgroundImage
-        console.log('In down matching')
-        console.log('upper image is: ', upperImage)
-        console.log('middle image is: ', middleImage)
-        console.log('lower image is: ', lowerImage)
-        if (lowerImage === middleImage && middleImage === upperImage) {
-          return true
-        }
-      }
-    }
-    return false
-  }
-
-<<<<<<< HEAD
-    const dragEnd = (event) => {
-        console.log('in dragEnd')
-        const validMove = isValidMove(event)
-        if (squareIdbeingReplaced && validMove) {
-            squareIdbeingReplaced = null
-        } else if (squareIdbeingReplaced && !validMove) {
-            squares[squareIdbeingReplaced].style.backgroundImage = colorBeingReplaced
-            squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
-        } else {
-            squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
-        }
->>>>>>> 702f017 (update script)
->>>>>>> 8aba79a (update package.json)
 
   function isMiddleMatchingHorizontal() {
     const squareIndex = squareIdbeingReplaced
@@ -1114,18 +852,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return (currentIndex % 8) === (offsetIndex % 8)
   }
 
-=======
-  function isSameRow(currentIndex, offsetIndex) {
-    const currentIndexRow = Math.floor(currentIndex / 8)
-    const offsetIndexRow = Math.floor(offsetIndex / 8)
-    return currentIndexRow === offsetIndexRow
-  }
-
-  function isSameColumn(currentIndex, offsetIndex) {
-    return (currentIndex % 8) === (offsetIndex % 8)
-  }
-
->>>>>>> 07d5b01 (add husky integration)
   function isValidMove() {
     const validMoves = [squareIdBeingDragged - 1, squareIdBeingDragged - width, squareIdBeingDragged + 1, squareIdBeingDragged + width]
     return validMoves.includes(squareIdbeingReplaced) && isFoundMatching()
@@ -1594,21 +1320,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 486652c (Husky integration)
-=======
->>>>>>> 8069a7e (fix conflicts)
-=======
-=======
->>>>>>> 07d5b01 (add husky integration)
->>>>>>> f7bcb5f (update package.json)
->>>>>>> 8aba79a (update package.json)
   //Drag the candies
   squares.forEach(square => square.addEventListener('dragstart', dragStart))
   squares.forEach(square => square.addEventListener('dragover', dragOver))
@@ -1620,6 +1331,7 @@ document.addEventListener('DOMContentLoaded', () => {
   squares.forEach(square => square.addEventListener('dragend', dragEnd))
 >>>>>>> 7819b0a (adding Husky)
   squares.forEach(square => square.addEventListener('drop', dragDrop))
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -1717,3 +1429,9 @@ module.exports = { isValidPosition }
 >>>>>>> 07d5b01 (add husky integration)
 >>>>>>> 8aba79a (update package.json)
 >>>>>>> 884fea5 (restore .js files)
+=======
+
+
+})
+module.exports = { isValidPosition }
+>>>>>>> 9e4ea23 (restore .js files)
