@@ -24,14 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const candyColors = [
     'url(images/candy-corn.png)',
-    'url(images/candy-pumpkin.png)',
-    'url(images/green-teeth.png)',
-    'url(images/dragon-candy.png)',
+    'url(images/worm-candy.png)',
     'url(images/pumpkin-candy.png)',
     'url(images/purple-teeth.png)',
     'url(images/cup-candy.png)',
     'url(images/skull-candy.png)',
-    'url(images/worm-candy.png)'
   ]
 
   //Load background image
