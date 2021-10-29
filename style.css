@@ -34,8 +34,14 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
+<<<<<<< HEAD
   caret-color: transparent;
   /* background-color: #986F9C; opacity: 0.8; */
+=======
+  background-color: #F6FCF2;
+  border: 20px double #482217;
+  border-radius: 2px;
+>>>>>>> d651afe (resolve merge)
 }
 
 .grid div {
@@ -76,8 +82,18 @@ body {
   border-color: #eddb66;
 }
 
+<<<<<<< HEAD
 .score-board h1,h2 {
   font-family: "DotGothic16", sans-serif;
+=======
+
+
+.score-board h1 {
+
+  font-family: 'Emilys Candy', cursive;
+  font-size: 35px;
+  text-transform: uppercase;
+>>>>>>> d651afe (resolve merge)
 }
 
 .timerboard {
