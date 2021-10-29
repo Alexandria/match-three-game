@@ -1,5 +1,8 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 83de04d (fix: logic modification to prevent moves)
   "version": "0.2.0",
   "configurations": [
     {
@@ -16,6 +19,7 @@
       "port": 9229
     }
   ]
+<<<<<<< HEAD
 }
 =======
     "version": "0.2.0",
@@ -36,3 +40,6 @@
     ]
   }
 >>>>>>> 0d01b79 (add: jest test sample)
+=======
+}
+>>>>>>> 83de04d (fix: logic modification to prevent moves)
