@@ -1,4 +1,5 @@
 {
     "eslint.run": "onSave",
-    "editor.dragAndDrop": true
+    "editor.dragAndDrop": true,
+    "git.terminalAuthentication": false
 }
