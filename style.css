@@ -57,7 +57,6 @@ body {
   width: 1120;
   height: 1120;
   background-color: #50338E;
-  /* background-color: #F2FFEB; */
   /* background-size: 100% 250%;
   background-repeat: no-repeat; */
 }
@@ -65,13 +64,13 @@ body {
 .score-board {
   height: 200px;
   width: 300px;
-  background-color: lightgray;
+  background-color: #F2DD20;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  border: 20px double #482217;
+  border: 20px double #72BC4B;
   border-radius: 2px;
 }
 
@@ -83,10 +82,11 @@ body {
   display: flex;
   font-family: 'Electrolize', sans-serif;
   font-size: 16px;
-  background-color: lightgray;
-  border: 8px double #482217;
-  border-radius: 40px 40px 20px 20px;
-  width: 350px;
+  background-color: #F2DD20;
+  border: 8px double #72BC4B;
+  border-radius: 2px;
+
+  width: 100%;
   justify-content: center;
   margin-top: 20px;
 }
