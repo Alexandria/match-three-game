@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
  const app = require('../scripts/app');
 
  test('use jsdom in this test file', () => {
@@ -25,6 +26,8 @@
  
  })
 =======
+=======
+>>>>>>> 56cd688 (restore .json files to remedy rebase)
 const app = require('../scripts/app');
 
 test('use jsdom in this test file', () => {
@@ -46,5 +49,17 @@ describe('Validate Move', () => {
     expect(app.isValidPosition(64)).toBe(false);
   })
 
+=======
+
+test('use jsdom in this test file', () => {
+    const element = document.createElement('div');
+    expect(element).not.toBeNull();
+});
+
+const app = require("../scripts/app")
+test('should be valid', () => {
+    const element = document.createElement('div');
+    expect(element).not.toBe(1)
+>>>>>>> 0d01b79 (add: jest test sample)
 })
 >>>>>>> dafed93 (restore .json files)
