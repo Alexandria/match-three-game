@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 83de04d (fix: logic modification to prevent moves)
 =======
@@ -17,6 +18,10 @@
 >>>>>>> dafed93 (restore .json files)
 =======
 >>>>>>> 56cd688 (restore .json files to remedy rebase)
+=======
+=======
+>>>>>>> 83de04d (fix: logic modification to prevent moves)
+>>>>>>> d8547cd (restore .json files to remedy rebase)
   "version": "0.2.0",
   "configurations": [
     {
@@ -38,12 +43,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 3771025 (update vsc permissions)
 =======
 >>>>>>> d47d94a (restore test files)
 =======
 >>>>>>> 56cd688 (restore .json files to remedy rebase)
+=======
+>>>>>>> d8547cd (restore .json files to remedy rebase)
 }
 =======
     "version": "0.2.0",
@@ -83,4 +91,10 @@
 >>>>>>> dafed93 (restore .json files)
 =======
 >>>>>>> 0d01b79 (add: jest test sample)
+<<<<<<< HEAD
 >>>>>>> 56cd688 (restore .json files to remedy rebase)
+=======
+=======
+}
+>>>>>>> 83de04d (fix: logic modification to prevent moves)
+>>>>>>> d8547cd (restore .json files to remedy rebase)

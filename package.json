@@ -19,8 +19,12 @@
     "jest": "^27.2.5"
   },
   "scripts": {
+<<<<<<< HEAD
     "test": "jest"
 >>>>>>> 0d01b79 (add: jest test sample)
+=======
+    "test": "jest --watchAll"
+>>>>>>> 83de04d (fix: logic modification to prevent moves)
   },
   "repository": {
     "type": "git",
