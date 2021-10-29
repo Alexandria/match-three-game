@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 83de04d (fix: logic modification to prevent moves)
 =======
@@ -11,6 +12,8 @@
 =======
 >>>>>>> dafed93 (restore .json files)
 >>>>>>> d47d94a (restore test files)
+=======
+>>>>>>> dafed93 (restore .json files)
   "version": "0.2.0",
   "configurations": [
     {
@@ -27,6 +30,7 @@
       "port": 9229
     }
   ]
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -67,3 +71,6 @@
 }
 >>>>>>> dafed93 (restore .json files)
 >>>>>>> d47d94a (restore test files)
+=======
+}
+>>>>>>> dafed93 (restore .json files)
