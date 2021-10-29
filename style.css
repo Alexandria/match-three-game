@@ -34,8 +34,9 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
-  caret-color: transparent;
-  /* background-color: #986F9C; opacity: 0.8; */
+  background-color: #F6FCF2;
+  border: 20px double #482217;
+  border-radius: 2px;
 }
 
 .grid div {
@@ -55,7 +56,7 @@ body {
   justify-content: space-around;
   width: 1120;
   height: 1120;
-  background-color: lightgrey;
+  background-color: #50338E;
   /* background-color: #F2FFEB; */
   /* background-size: 100% 250%;
   background-repeat: no-repeat; */
@@ -64,13 +65,13 @@ body {
 .score-board {
   height: 200px;
   width: 300px;
-  background-color: #9C9C9C;
+  background-color: lightgray;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  border: 20px double darkslategrey;
+  border: 20px double #482217;
   border-radius: 2px;
 }
 
@@ -83,8 +84,8 @@ body {
   /* font-family: "DotGothic16", sans-serif; */
   font-family: 'Electrolize', sans-serif;
   font-size: 16px;
-  background-color: #9c9c9c;
-  border: 8px double darkslategrey;
+  background-color: lightgray;
+  border: 8px double #482217;
   border-radius: 40px 40px 20px 20px;
   width: 350px;
   justify-content: center;
@@ -97,6 +98,7 @@ body {
   /* 'Press Start 2P' works best in px * multiples of 8 */
   font-size: 32px;
 }
+
 
 .menu {
   display: flex;
