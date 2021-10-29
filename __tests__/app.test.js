@@ -3,6 +3,9 @@
  */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3771025 (update vsc permissions)
 const app = require('../scripts/app');
 
 test('use jsdom in this test file', () => {
@@ -35,6 +38,7 @@ const app = require("../scripts/app")
 test('should be valid', () => {
     const element = document.createElement('div');
     expect(element).not.toBe(1)
+<<<<<<< HEAD
 >>>>>>> 0d01b79 (add: jest test sample)
 =======
 const app = require('../scripts/app');
@@ -59,4 +63,7 @@ describe('Validate Move', () => {
   })
 
 >>>>>>> 83de04d (fix: logic modification to prevent moves)
+=======
+>>>>>>> 12df19a (restore package-lock and package.json)
+>>>>>>> 3771025 (update vsc permissions)
 })

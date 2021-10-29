@@ -1,8 +1,11 @@
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 83de04d (fix: logic modification to prevent moves)
+=======
+>>>>>>> 3771025 (update vsc permissions)
   "version": "0.2.0",
   "configurations": [
     {
@@ -20,6 +23,9 @@
     }
   ]
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3771025 (update vsc permissions)
 }
 =======
     "version": "0.2.0",
@@ -39,7 +45,11 @@
       }
     ]
   }
+<<<<<<< HEAD
 >>>>>>> 0d01b79 (add: jest test sample)
 =======
 }
 >>>>>>> 83de04d (fix: logic modification to prevent moves)
+=======
+>>>>>>> 12df19a (restore package-lock and package.json)
+>>>>>>> 3771025 (update vsc permissions)
