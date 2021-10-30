@@ -1,3 +1,7 @@
+function isValidPosition(squareIndex) {
+  return 0 <= squareIndex && squareIndex <= 63
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.grid')
   const width = 8
@@ -23,12 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameStarted = false
 
   const candyColors = [
-    'url(images/candy-corn.png)',
-    'url(images/worm-candy.png)',
-    'url(images/pumpkin-candy.png)',
-    'url(images/purple-teeth.png)',
-    'url(images/cup-candy.png)',
-    'url(images/skull-candy.png)',
+    'url(images/red-candy.png)',
+    'url(images/yellow-candy.png)',
+    'url(images/orange-candy.png)',
+    'url(images/dragon-candy.png)',
+    'url(images/green-candy.png)',
+    'url(images/blue-candy.png)'
   ]
 
   //Load background image
@@ -52,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   const startGame = () => {
-    startButton.style.animation ='click 0.2s'
+    startButton.style.animation = 'click 0.2s'
     timerBoard.style.animation = ''
     timerBoard.addEventListener('click', stopBounce)
     gameStarted = true
@@ -61,29 +65,30 @@ document.addEventListener('DOMContentLoaded', () => {
     timerBoard.style.animation = ''
     makeCandyDraggable()
     countDown()
-    startMatchChecking = window.setInterval(function () {
+    startMatchChecking = window.setInterval(function() {
       checkForAllMatches()
     }, 100)
 
   }
 
-  startButton.addEventListener('click',startGame)
-    
-    
+  startButton.addEventListener('click', startGame)
+
+
 
   const stopGame = () => {
-    startButton.style.animation =''
+    startButton.style.animation = ''
     gameStarted = false
     timerBoard.style.animation = 'bounce 0.5s infinite'
     clearInterval(startCountDown)
     clearInterval(startMatchChecking)
+    saveHighScore()
     makeBoardNotDraggable()
   }
 
 
   const countDown = () => {
-    let seconds = 59
-    startCountDown = window.setInterval(function () {
+    let seconds = 60
+    startCountDown = window.setInterval(function() {
       seconds = seconds - 1
       if (seconds < 0) {
         //stop countdown
@@ -395,8 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-
-  //dag the candies
+  //drag the candies
 
   let colorBeingDragged
   let colorBeingReplaced
@@ -414,26 +418,159 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const dragEnter = (element) => {
     element.preventDefault()
-
   }
 
-  const isValidMove = () => {
-    const validMoves = [squareIdBeingDragged - 1, squareIdBeingDragged - width, squareIdBeingDragged + 1, squareIdBeingDragged + width]
-    return validMoves.includes(squareIdbeingReplaced)
+  function isFoundMatching() {
+    return hasRowMatching() || hasColumnMatching()
   }
 
+  function hasColumnMatching() {
+    return isMiddleMatchVertical() || isUpMatch() || isDownMatch()
+  }
 
-  const dragEnd = () => {
-    const validMove = isValidMove()
-    if (squareIdbeingReplaced && validMove) {
-      squareIdbeingReplaced = null
-    } else if (squareIdbeingReplaced && !validMove) {
-      squares[squareIdbeingReplaced].style.backgroundImage = colorBeingReplaced
-      squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
-    } else {
-      squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
+  function hasRowMatching() {
+    return isLeftSideHasMatch() || isRightSideHasMatch() || isMiddleMatchingHorizontal()
+  }
+
+  function isMiddleMatchingHorizontal() {
+    const squareIndex = squareIdbeingReplaced
+    const oneSquareRight = squareIndex + 1
+    const oneSquareLeft = squareIndex - 1
+    if (isValidPosition(oneSquareRight) && isValidPosition(oneSquareLeft)) {
+      if (isSameRow(squareIndex, oneSquareRight) && isSameRow(squareIndex, oneSquareLeft)) {
+        const middleImage = squares[squareIdBeingDragged].style.backgroundImage
+        const rightImage = squares[oneSquareRight].style.backgroundImage
+        const leftImage = squares[oneSquareLeft].style.backgroundImage
+        console.log('In middle matching')
+        console.log('right image is: ', rightImage)
+        console.log('middle image is: ', middleImage)
+        console.log('left image is: ', leftImage)
+        if (middleImage === rightImage && rightImage === leftImage) {
+          return true
+        }
+      }
     }
+    return false
+  }
 
+  function isMiddleMatchVertical() {
+    const squareIndex = squareIdbeingReplaced
+    const oneSquareUp = squareIndex - 8
+    const oneSquareDown = squareIndex + 8
+    if (isValidPosition(oneSquareUp) && isValidPosition(oneSquareDown)) {
+      if (isSameColumn(squareIndex, oneSquareUp) && isSameColumn(squareIndex, oneSquareDown)) {
+        const middleImage = squares[squareIdBeingDragged].style.backgroundImage
+        const upperImage = squares[oneSquareUp].style.backgroundImage
+        const lowerImage = squares[oneSquareDown].style.backgroundImage
+        console.log('In middle matching vertical')
+        console.log('upper image is: ', upperImage)
+        console.log('middle image is: ', middleImage)
+        console.log('lower image is: ', lowerImage)
+        if (middleImage === upperImage && upperImage === lowerImage) {
+          return true
+        }
+      }
+    }
+    return false
+  }
+
+  function isRightSideHasMatch() {
+    const squareIndex = squareIdbeingReplaced
+    const oneSquareRight = squareIndex + 1
+    const twoSquareRight = squareIndex + 2
+    if (isValidPosition(oneSquareRight) && isValidPosition(twoSquareRight)) {
+      if (isSameRow(squareIndex, oneSquareRight) && isSameRow(squareIndex, twoSquareRight)) {
+        const leftImage = squares[squareIdBeingDragged].style.backgroundImage
+        const middleImage = squares[oneSquareRight].style.backgroundImage
+        const rightImage = squares[twoSquareRight].style.backgroundImage
+        console.log('In right matching')
+        console.log('right image is: ', rightImage)
+        console.log('middle image is: ', middleImage)
+        console.log('left image is: ', leftImage)
+        if (leftImage === middleImage && middleImage === rightImage) {
+          return true
+        }
+      }
+    }
+    return false
+  }
+
+  function isUpMatch() {
+    const squareIndex = squareIdbeingReplaced
+    const oneSquareUp = squareIndex - 8
+    const twoSquareUp = squareIndex - 16
+    if (isValidPosition(oneSquareUp) && isValidPosition(twoSquareUp)) {
+      if (isSameColumn(squareIndex, oneSquareUp) && isSameColumn(squareIndex, twoSquareUp)) {
+        const lowerImage = squares[squareIdBeingDragged].style.backgroundImage
+        const middleImage = squares[oneSquareUp].style.backgroundImage
+        const upperImage = squares[twoSquareUp].style.backgroundImage
+        console.log('In up matching')
+        console.log('upper image is: ', upperImage)
+        console.log('middle image is: ', middleImage)
+        console.log('lower image is: ', lowerImage)
+        if (lowerImage === middleImage && middleImage === upperImage) {
+          return true
+        }
+      }
+    }
+    return false
+  }
+
+  function isLeftSideHasMatch() {
+    const squareIndex = squareIdbeingReplaced
+    const oneSquareLeft = squareIndex - 1
+    const twoSquareLeft = squareIndex - 2
+    if (isValidPosition(oneSquareLeft) && isValidPosition(twoSquareLeft)) {
+      if (isSameRow(squareIndex, oneSquareLeft) && isSameRow(squareIndex, twoSquareLeft)) {
+        const rightImage = squares[squareIdBeingDragged].style.backgroundImage
+        const middleImage = squares[oneSquareLeft].style.backgroundImage
+        const leftImage = squares[twoSquareLeft].style.backgroundImage
+        console.log('In left matching')
+        console.log('right image is: ', rightImage)
+        console.log('middle image is: ', middleImage)
+        console.log('left image is: ', leftImage)
+        if (leftImage === middleImage && middleImage === rightImage) {
+          return true
+        }
+      }
+    }
+    return false
+  }
+
+  function isDownMatch() {
+    const squareIndex = squareIdbeingReplaced
+    const oneSquareDown = squareIndex + 8
+    const twoSquareDown = squareIndex + 16
+    if (isValidPosition(oneSquareDown) && isValidPosition(twoSquareDown)) {
+      if (isSameColumn(squareIndex, oneSquareDown) && isSameColumn(squareIndex, twoSquareDown)) {
+        const upperImage = squares[squareIdBeingDragged].style.backgroundImage
+        const middleImage = squares[oneSquareDown].style.backgroundImage
+        const lowerImage = squares[twoSquareDown].style.backgroundImage
+        console.log('In down matching')
+        console.log('upper image is: ', upperImage)
+        console.log('middle image is: ', middleImage)
+        console.log('lower image is: ', lowerImage)
+        if (lowerImage === middleImage && middleImage === upperImage) {
+          return true
+        }
+      }
+    }
+    return false
+  }
+
+  function isSameRow(currentIndex, offsetIndex) {
+    const currentIndexRow = Math.floor(currentIndex / 8)
+    const offsetIndexRow = Math.floor(offsetIndex / 8)
+    return currentIndexRow === offsetIndexRow
+  }
+
+  function isSameColumn(currentIndex, offsetIndex) {
+    return (currentIndex % 8) === (offsetIndex % 8)
+  }
+
+  function isValidMove() {
+    const validMoves = [squareIdBeingDragged - 1, squareIdBeingDragged - width, squareIdBeingDragged + 1, squareIdBeingDragged + width]
+    return validMoves.includes(squareIdbeingReplaced) && isFoundMatching()
   }
 
   const dragDrop = (element) => {
@@ -450,10 +587,8 @@ document.addEventListener('DOMContentLoaded', () => {
       squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
       return
     }
-    element.target.style.backgroundImage = colorBeingDragged //
-    element.target.id = squareIdbeingReplaced
     squares[squareIdBeingDragged].style.backgroundImage = colorBeingReplaced
-
+    squares[squareIdbeingReplaced].style.backgroundImage = colorBeingDragged
 
 
     //Fill the board and check for matches if there is an empty square
@@ -510,7 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const resetBoard = () => {
     let isBoardFull = false
-    window.setInterval(function () {
+    window.setInterval(function() {
       checkForAllMatches()
     }, 100)
 
@@ -525,7 +660,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // drop candies onces some have been cleard 
   const moveDown = () => {
     const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
-    const lastRow = [56, 57,58,59,60,61,62,63]
+    const lastRow = [56, 57, 58, 59, 60, 61, 62, 63]
     for (let i = 0; i < 56; i++) {
       const isFirstRow = firstRow.includes(i)
       const isLastRow = lastRow.includes(i)
@@ -555,6 +690,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
+  // Saving the high score to the local storage
+  const saveHighScore = () => {
+    const highScore = getHighScore()
+    const endScore = document.getElementById('score').textContent
+    // Comparing the high Score (if it exists) with the score the user got
+    if (highScore === null || parseInt(endScore) > parseInt(highScore)) {
+      localStorage.setItem('highScore', endScore)
+      displayHighScore()
+    }
+  }
+
+  // Displaying the high score
+  const displayHighScore = () => {
+    const highScore = getHighScore()
+    document.getElementById('highScore').innerText = highScore === null ? 0 : highScore
+  }
+
+  // Returning the high store
+  const getHighScore = () => {
+    return localStorage.getItem('highScore')
+  }
 
 
   //create board
@@ -574,6 +730,9 @@ document.addEventListener('DOMContentLoaded', () => {
     score = 0
     scoreDisplay.innerHTML = score
 
+    // Displaying the high score
+    displayHighScore()
+
   }
 
   createBoard()
@@ -584,10 +743,8 @@ document.addEventListener('DOMContentLoaded', () => {
   squares.forEach(square => square.addEventListener('dragstart', dragStart))
   squares.forEach(square => square.addEventListener('dragover', dragOver))
   squares.forEach(square => square.addEventListener('dragenter', dragEnter))
-  squares.forEach(square => square.addEventListener('dragend', dragEnd))
   squares.forEach(square => square.addEventListener('drop', dragDrop))
 
 
-
-
 })
+module.exports = { isValidPosition }
