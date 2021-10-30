@@ -27,12 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameStarted = false
 
   const candyColors = [
-    'url(images/red-candy.png)',
-    'url(images/yellow-candy.png)',
-    'url(images/orange-candy.png)',
-    'url(images/dragon-candy.png)',
-    'url(images/green-candy.png)',
-    'url(images/blue-candy.png)'
+    "url(images/cup-candy.png)",
+    "url(images/corn-candy.png)",
+    "url(images/purple-teeth.png)",
+    "url(images/pumpkin-candy.png)",
+    "url(images/skull-candy.png)",
+    "url(images/worm-candy.png)",
   ]
 
   //Load background image
@@ -667,6 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!isLastRow && squares[i + width].style.backgroundImage === '') {
         squares[i + width].style.backgroundImage = squares[i].style.backgroundImage
+        squares[i + width].style.cursor = "pointer";
 
         squares[i].style.backgroundImage = ''
       }
@@ -674,6 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isFirstRow && squares[i].style.backgroundImage === '') {
         const randomColor = Math.floor(Math.random() * candyColors.length)
         squares[i].style.backgroundImage = candyColors[randomColor]
+        squares[i].style.cursor = "pointer";
       }
 
     }

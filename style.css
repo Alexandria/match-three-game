@@ -73,32 +73,38 @@ body {
   align-items: center;
   padding: 10px;
   color: #FCFCFC;
-  border: 15px double #FCFCFC;
+  border-width: 20px;
   border-radius: 2px;
+  border-style: double;
+  border-color: #FCFCFC;
 }
 
 .score-board h1 {
   font-family: 'Emilys Candy', cursive;
-  font-size: 35px;
+  /* font-size: 35px; */
   text-transform: uppercase;
 }
 
 .timerboard {
   display: flex;
   font-family: 'Electrolize', sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   background-color: #211A18;
   color: #FCFCFC;
-  width: 350px;
+  width: 100%;
   justify-content: center;
-  margin-top: 20px;
-  border: 8px double #FCFCFC;
+  /* margin-top: 20px; */
+
+  border-width: 20px;
+  border-radius: 2px;
+  border-style: double;
+  border-color: #FCFCFC;
+  /* border: 8px double #FCFCFC; */
   border-radius: 40px 40px 20px 20px;
 }
 
-#score {
+#score, h2 {
   font-family: 'Electrolize', sans-serif;
-  font-size: 32px;
 }
 
 
@@ -113,6 +119,7 @@ body {
   width: 200px;
   height: 200px;
   background-image: url(images/corn_startbutton.png);
+  cursor: pointer;
 }
 
 /* Screen size: 1024 or lower */
