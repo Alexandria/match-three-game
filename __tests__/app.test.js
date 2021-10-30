@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> b088523 (reconcile after deleing fonts branch)
  const app = require('../scripts/app');
@@ -40,6 +41,8 @@
 =======
 >>>>>>> 3771025 (update vsc permissions)
 >>>>>>> 38adce2 (update vsc permissions)
+=======
+>>>>>>> purple-background
 const app = require('../scripts/app');
 
 test('use jsdom in this test file', () => {
@@ -73,6 +76,7 @@ test('should be valid', () => {
     const element = document.createElement('div');
     expect(element).not.toBe(1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0d01b79 (add: jest test sample)
 =======
 const app = require('../scripts/app');
@@ -105,3 +109,7 @@ describe('Validate Move', () => {
 =======
  })
 >>>>>>> b088523 (reconcile after deleing fonts branch)
+=======
+>>>>>>> 12df19a (restore package-lock and package.json)
+})
+>>>>>>> purple-background

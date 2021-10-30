@@ -8,6 +8,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 38adce2 (update vsc permissions)
 =======
@@ -37,6 +38,8 @@
 >>>>>>> 38adce2 (update vsc permissions)
 =======
 >>>>>>> b088523 (reconcile after deleing fonts branch)
+=======
+>>>>>>> purple-background
   "version": "0.2.0",
   "configurations": [
     {
@@ -61,6 +64,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> b088523 (reconcile after deleing fonts branch)
 =======
@@ -78,6 +82,8 @@
 >>>>>>> 38adce2 (update vsc permissions)
 =======
 >>>>>>> b088523 (reconcile after deleing fonts branch)
+=======
+>>>>>>> purple-background
 }
 =======
     "version": "0.2.0",
@@ -97,6 +103,7 @@
       }
     ]
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -140,3 +147,6 @@
 >>>>>>> dafed93 (restore .json files)
 >>>>>>> d47d94a (restore test files)
 >>>>>>> b088523 (reconcile after deleing fonts branch)
+=======
+>>>>>>> 12df19a (restore package-lock and package.json)
+>>>>>>> purple-background

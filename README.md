@@ -68,4 +68,7 @@ Some rules will be auto-fixed, others will be logged so developer can fix them m
 - Update background image
 - More cohesive color pallet
 
+### Art and Assets Credit
+- Halloween Theme candy [silverwavetidaldragon](https://github.com/silverwavetidaldragon) 
+
 #### This project is licensed under the terms of the [MIT license](https://choosealicense.com/licenses/mit/#).
