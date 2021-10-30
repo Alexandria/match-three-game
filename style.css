@@ -104,6 +104,7 @@ body {
   width: 200px;
   height: 200px;
   background-image: url(images/startbutton.png);
+  cursor: pointer;
 }
 
 /* Screen size: 1024 or lower */

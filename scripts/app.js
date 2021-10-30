@@ -667,6 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!isLastRow && squares[i + width].style.backgroundImage === '') {
         squares[i + width].style.backgroundImage = squares[i].style.backgroundImage
+        squares[i + width].style.cursor = "pointer";
 
         squares[i].style.backgroundImage = ''
       }
@@ -674,6 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isFirstRow && squares[i].style.backgroundImage === '') {
         const randomColor = Math.floor(Math.random() * candyColors.length)
         squares[i].style.backgroundImage = candyColors[randomColor]
+        squares[i].style.cursor = "pointer";
       }
 
     }
