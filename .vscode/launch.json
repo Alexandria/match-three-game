@@ -7,17 +7,24 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 38adce2 (update vsc permissions)
+=======
+>>>>>>> b088523 (reconcile after deleing fonts branch)
 =======
 >>>>>>> 83de04d (fix: logic modification to prevent moves)
 =======
 >>>>>>> 3771025 (update vsc permissions)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b088523 (reconcile after deleing fonts branch)
 =======
 =======
 >>>>>>> dafed93 (restore .json files)
 >>>>>>> d47d94a (restore test files)
+<<<<<<< HEAD
 =======
 >>>>>>> dafed93 (restore .json files)
 =======
@@ -28,6 +35,8 @@
 >>>>>>> d8547cd (restore .json files to remedy rebase)
 =======
 >>>>>>> 38adce2 (update vsc permissions)
+=======
+>>>>>>> b088523 (reconcile after deleing fonts branch)
   "version": "0.2.0",
   "configurations": [
     {
@@ -51,10 +60,14 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b088523 (reconcile after deleing fonts branch)
 =======
 >>>>>>> 3771025 (update vsc permissions)
 =======
 >>>>>>> d47d94a (restore test files)
+<<<<<<< HEAD
 =======
 >>>>>>> 56cd688 (restore .json files to remedy rebase)
 =======
@@ -63,6 +76,8 @@
 =======
 >>>>>>> 3771025 (update vsc permissions)
 >>>>>>> 38adce2 (update vsc permissions)
+=======
+>>>>>>> b088523 (reconcile after deleing fonts branch)
 }
 =======
     "version": "0.2.0",
@@ -95,6 +110,7 @@
 >>>>>>> 12df19a (restore package-lock and package.json)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 3771025 (update vsc permissions)
 =======
 =======
@@ -116,3 +132,11 @@
 =======
 >>>>>>> 3771025 (update vsc permissions)
 >>>>>>> 38adce2 (update vsc permissions)
+=======
+>>>>>>> 3771025 (update vsc permissions)
+=======
+=======
+}
+>>>>>>> dafed93 (restore .json files)
+>>>>>>> d47d94a (restore test files)
+>>>>>>> b088523 (reconcile after deleing fonts branch)

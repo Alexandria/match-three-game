@@ -5,6 +5,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b088523 (reconcile after deleing fonts branch)
  const app = require('../scripts/app');
 
  test('use jsdom in this test file', () => {
@@ -26,6 +29,7 @@
      expect(app.isValidPosition(64)).toBe(false);
    })
  
+<<<<<<< HEAD
  })
 =======
 =======
@@ -98,3 +102,6 @@ describe('Validate Move', () => {
 >>>>>>> 3771025 (update vsc permissions)
 })
 >>>>>>> dafed93 (restore .json files)
+=======
+ })
+>>>>>>> b088523 (reconcile after deleing fonts branch)
