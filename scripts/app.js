@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const timerBoard = document.querySelector('.timerboard')
   const bgImage = new Image()
   const startButton = document.getElementById('startButton')
+  const replay_popup = document.getElementById('replay_popup');
+  const replay_button = document.getElementById('replay_button');
+
   bgImage.src = 'images/cloud-background.jpg'
   // document.getElementsByTagName('body')[0].style.backgroundImage = "url('images/cloud-background.jpg')"
 
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function makeBoardNotDraggable() {
     squares.forEach(square => square.setAttribute('draggable', false))
+
   }
 
   const stopBounce = () => {
@@ -72,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   startButton.addEventListener('click', startGame)
-
-
+  replay_button.addEventListener("click",replayGame) // replay button click event listner
+ 
 
   const stopGame = () => {
     startButton.style.animation = ''
@@ -83,8 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(startMatchChecking)
     saveHighScore()
     makeBoardNotDraggable()
+    replay_popup.style.display = "block"; //Display replay pop up if game stopped.
+
   }
 
+  function replayGame(){ //function to restart the game if replay button clicked.
+   
+      replay_popup.style.display = "none";
+      startGame();
+    
+  }
 
   const countDown = () => {
     let seconds = 60
