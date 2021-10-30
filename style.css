@@ -34,7 +34,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
-  background-color: #F6FCF2;
+  background-color: #FCFCFC;
   border: 20px double #482217;
   border-radius: 2px;
 }
@@ -103,6 +103,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  caret-color: transparent;
 }
 
 #startButton {
