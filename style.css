@@ -28,6 +28,7 @@
   }
 }
 
+
 .grid {
   height: 560px;
   width: 560px;
@@ -56,7 +57,7 @@ body {
   justify-content: space-around;
   width: 1120;
   height: 1120;
-  background-color: #50338E;
+  background-color: #AE3200;
   /* background-color: #F2FFEB; */
   /* background-size: 100% 250%;
   background-repeat: no-repeat; */
@@ -65,37 +66,45 @@ body {
 .score-board {
   height: 200px;
   width: 300px;
-  background-color: lightgray;
+  background-color: #211A18;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  border: 20px double #482217;
+  color: #FCFCFC;
+  border-width: 20px;
   border-radius: 2px;
+  border-style: double;
+  border-color: #FCFCFC;
 }
 
 .score-board h1 {
   font-family: 'Emilys Candy', cursive;
-  font-size: 35px;
+  /* font-size: 35px; */
   text-transform: uppercase;
 }
 
 .timerboard {
   display: flex;
   font-family: 'Electrolize', sans-serif;
-  font-size: 16px;
-  background-color: lightgray;
-  border: 8px double #482217;
-  border-radius: 40px 40px 20px 20px;
-  width: 350px;
+  font-size: 1em;
+  background-color: #211A18;
+  color: #FCFCFC;
+  width: 100%;
   justify-content: center;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+
+  border-width: 20px;
+  border-radius: 2px;
+  border-style: double;
+  border-color: #FCFCFC;
+  /* border: 8px double #FCFCFC; */
+  border-radius: 40px 40px 20px 20px;
 }
 
-#score {
+#score, h2 {
   font-family: 'Electrolize', sans-serif;
-  font-size: 32px;
 }
 
 
@@ -110,6 +119,7 @@ body {
   width: 200px;
   height: 200px;
   background-image: url(images/corn_startbutton.png);
+  cursor: pointer;
 }
 
 /* Screen size: 1024 or lower */
