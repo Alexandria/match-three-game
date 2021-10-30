@@ -27,12 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameStarted = false
 
   const candyColors = [
-    'url(images/red-candy.png)',
-    'url(images/yellow-candy.png)',
-    'url(images/orange-candy.png)',
-    'url(images/dragon-candy.png)',
-    'url(images/green-candy.png)',
-    'url(images/blue-candy.png)'
+    "url(images/halloween/brain-candy.png)",
+    "url(images/halloween/corn-candy.png)",
+    "url(images/halloween/teeth-candy.png)",
+    "url(images/halloween/pumpkin-candy.png)",
+    "url(images/halloween/skull-candy.png)",
+    "url(images/halloween/worm-candy.png)",
   ]
 
   //Load background image
