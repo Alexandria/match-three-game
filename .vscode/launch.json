@@ -2,10 +2,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 83de04d (fix: logic modification to prevent moves)
 =======
 >>>>>>> 3771025 (update vsc permissions)
+=======
+=======
+>>>>>>> dafed93 (restore .json files)
+>>>>>>> d47d94a (restore test files)
   "version": "0.2.0",
   "configurations": [
     {
@@ -24,8 +29,11 @@
   ]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 3771025 (update vsc permissions)
+=======
+>>>>>>> d47d94a (restore test files)
 }
 =======
     "version": "0.2.0",
@@ -52,4 +60,10 @@
 >>>>>>> 83de04d (fix: logic modification to prevent moves)
 =======
 >>>>>>> 12df19a (restore package-lock and package.json)
+<<<<<<< HEAD
 >>>>>>> 3771025 (update vsc permissions)
+=======
+=======
+}
+>>>>>>> dafed93 (restore .json files)
+>>>>>>> d47d94a (restore test files)
