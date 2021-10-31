@@ -83,9 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     countDown()
     startMatchChecking = window.setInterval(function() {
       checkForAllMatches()
-     
         stopButton.addEventListener('click', stopGame);
-     
     }, 100)
 
   }
