@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,30 +10,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class='menu'>
 
-    <div class="timerboard"><h1 id='timer'></h1></div>
-    <div class="score-board">
-        <h2>HighScore: <span id="highScore">0</span> </h2>
-        <h1>Score Board</h1>
-        <h1 id="score"></h1>
-    </div>
-    <div id="startButton"></div>
-    <div class = "replay_popup" id = "replay_popup">
-        <div class = "replay_popup_content">
-            <p>GAME OVER</p>
-            <p>Do you want to play again?</p>
-            <div id = replay_button>REPLAY</div>
+        <div class="timerboard">
+            <h1 id='timer'></h1>
         </div>
+        <div class="score-board">
+            <h2>HighScore: <span id="highScore">0</span> </h2>
+            <h1>Score Board</h1>
+            <h1 id="score"></h1>
+        </div>
+        <div id="startButton"></div>
+        <div id="stopButton"></div>
+        <div class="replay_popup" id="replay_popup">
+            <div class="replay_popup_content">
+                <p>GAME OVER</p>
+                <p>Do you want to play again?</p>
+                <div id=replay_button>REPLAY</div>
+            </div>
 
         </div>
     </div>
-    </div>
+
 
     <div class="grid"></div>
-    
+
     <script src="scripts/app.js" charset="utf-8"></script>
 
 </body>
+
 </html>
