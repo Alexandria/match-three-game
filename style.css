@@ -101,10 +101,17 @@ body {
 }
 
 #startButton {
+  display:block;
   width: 200px;
   height: 200px;
   background-image: url(images/startbutton.png);
   cursor: pointer;
+}
+#stopButton {
+  display:none;
+  width: 200px;
+  height: 200px;
+  background-image: url(images/stopButton.png);
 }
 .replay_popup{
   display: none;
