@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   let score = 0
+  let pause = false
 
   let startMatchChecking
   let startCountDown
@@ -56,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   const startGame = () => {
+    window.addEventListener('blur', onPageBlur)
+    window.addEventListener('focus', onPageFocus)
     startButton.style.animation = 'click 0.2s'
     timerBoard.style.animation = ''
     timerBoard.addEventListener('click', stopBounce)
@@ -73,7 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   startButton.addEventListener('click', startGame)
 
+  const onPageBlur = () => {
+    pause = true
+  }
 
+  const onPageFocus = () => {
+    pause = false
+  }
 
   const stopGame = () => {
     startButton.style.animation = ''
@@ -83,26 +92,30 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(startMatchChecking)
     saveHighScore()
     makeBoardNotDraggable()
+    window.removeEventListener('blur', onPageBlur)
+    window.removeEventListener('focus', onPageFocus)
   }
 
 
   const countDown = () => {
     let seconds = 60
     startCountDown = window.setInterval(function() {
-      seconds = seconds - 1
-      if (seconds < 0) {
-        //stop countdown
-        stopGame()
-        timerDisplay.innerHTML = '0:00'
-        return timerDisplay
-      }
+      if (!pause) {
+        seconds = seconds - 1
+        if (seconds < 0) {
+          //stop countdown
+          stopGame()
+          timerDisplay.innerHTML = '0:00'
+          return timerDisplay
+        }
 
-      if (seconds < 10) {
-        timerDisplay.innerHTML = `0:0${seconds}`
+        if (seconds < 10) {
+          timerDisplay.innerHTML = `0:0${seconds}`
+          return timerDisplay
+        }
+        timerDisplay.innerHTML = `0:${seconds}`
         return timerDisplay
       }
-      timerDisplay.innerHTML = `0:${seconds}`
-      return timerDisplay
     }, 1000)
   }
 
@@ -657,7 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  // drop candies onces some have been cleard 
+  // drop candies onces some have been cleard
   const moveDown = () => {
     const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
     const lastRow = [56, 57, 58, 59, 60, 61, 62, 63]
