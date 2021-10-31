@@ -11,7 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const timerDisplay = document.getElementById('timer')
   const timerBoard = document.querySelector('.timerboard')
   const bgImage = new Image()
-  const startButton = document.getElementById('startButton')
+  const startButton = document.getElementById('startButton');
+  const stopButton = document.getElementById('stopButton');
+  const replay_popup = document.getElementById('replay_popup');
+  const replay_button = document.getElementById('replay_button');
+
   bgImage.src = 'images/cloud-background.jpg'
   // document.getElementsByTagName('body')[0].style.backgroundImage = "url('images/cloud-background.jpg')"
 
@@ -55,11 +59,23 @@ document.addEventListener('DOMContentLoaded', () => {
     timerBoard.style.animation = 'bounce 0.5s'
   }
 
+  function displayButton(ClickedButton){//Switch display start and stop button
+    if (ClickedButton == "start") {
+      stopButton.style.display = "block";
+      startButton.style.display = "none";
+      replay_popup.style.display = "none";
+    } else {
+      stopButton.style.display = "none";
+      startButton.style.display = "block";
+      replay_popup.style.display = "block";//Display replay pop up if game stopped.
+    }
+  }
 
   const startGame = () => {
     window.addEventListener('blur', onPageBlur)
     window.addEventListener('focus', onPageFocus)
     startButton.style.animation = 'click 0.2s'
+    displayButton("start");
     timerBoard.style.animation = ''
     timerBoard.addEventListener('click', stopBounce)
     gameStarted = true
@@ -70,11 +86,19 @@ document.addEventListener('DOMContentLoaded', () => {
     countDown()
     startMatchChecking = window.setInterval(function() {
       checkForAllMatches()
+      stopButton.addEventListener('click', stopGame);
     }, 100)
 
   }
 
-  startButton.addEventListener('click', startGame)
+  startButton.addEventListener('click', ()=>{
+    startGame();
+    startButton.removeEventListener('click');
+  });
+  // stopButton.addEventListener('click', stopGame());
+
+
+  replay_button.addEventListener("click",replayGame); // replay button click event listner
 
   const onPageBlur = () => {
     pause = true
@@ -94,8 +118,15 @@ document.addEventListener('DOMContentLoaded', () => {
     makeBoardNotDraggable()
     window.removeEventListener('blur', onPageBlur)
     window.removeEventListener('focus', onPageFocus)
+    displayButton(stop);//Switch display start and stop button
   }
 
+  function replayGame(){ //function to restart the game if replay button clicked.
+
+      replay_popup.style.display = "none";
+      startGame();
+
+  }
 
   const countDown = () => {
     let seconds = 60
