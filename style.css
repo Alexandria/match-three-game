@@ -106,6 +106,51 @@ body {
   background-image: url(images/startbutton.png);
   cursor: pointer;
 }
+.replay_popup{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 18.5%;
+  top: 28%;
+  width: 22%;
+  height: 33%;
+  background-color: #F9A694;
+  border-radius: 20px;
+}
+
+/*Replay Pop up CSS*/
+
+.replay_popup_content{ 
+  background-color: #ffd7ce;
+  margin: 8% auto;
+  padding: 5%;
+  /* border: 1px solid #888; */
+  width: 67%;
+  height: auto;
+  /* position: relative; */
+  border-radius: 20%;
+  text-align: center;
+  font-weight: bold;
+}
+.replay_popup_content > p{
+  font-size: 15px;
+}
+#replay_button{
+  background-color: #F76D4E;
+  margin: 0% auto;
+  padding: 6%;
+  border: 1px solid #888;
+  width: 50%;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 30%;
+  font-size: 20px;
+
+
+}
+#replay_button:hover {
+  background-color : #d16a53 
+}
 
 /* Screen size: 1024 or lower */
 @media screen and (max-width: 1024px) {
