@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   let score = 0
+  let pause = false
 
   let startMatchChecking
   let startCountDown
@@ -52,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function makeBoardNotDraggable() {
     squares.forEach(square => square.setAttribute('draggable', false))
-
   }
 
   const stopBounce = () => {
@@ -70,8 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
       replay_popup.style.display = "block";//Display replay pop up if game stopped.
     }
   }
-  const startGame = () => { 
-    startButton.style.animation = 'click 0.2s' 
+
+  const startGame = () => {
+    window.addEventListener('blur', onPageBlur)
+    window.addEventListener('focus', onPageFocus)
+    startButton.style.animation = 'click 0.2s'
     displayButton("start");
     timerBoard.style.animation = ''
     timerBoard.addEventListener('click', stopBounce)
@@ -83,11 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
     countDown()
     startMatchChecking = window.setInterval(function() {
       checkForAllMatches()
-        stopButton.addEventListener('click', stopGame);
+      stopButton.addEventListener('click', stopGame);
     }, 100)
 
   }
-  
+
   startButton.addEventListener('click', ()=>{
     startGame();
     startButton.removeEventListener('click');
@@ -96,8 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   replay_button.addEventListener("click",replayGame); // replay button click event listner
- 
 
+  const onPageBlur = () => {
+    pause = true
+  }
+
+  const onPageFocus = () => {
+    pause = false
+  }
 
   const stopGame = () => {
     startButton.style.animation = ''
@@ -107,34 +116,37 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(startMatchChecking)
     saveHighScore()
     makeBoardNotDraggable()
+    window.removeEventListener('blur', onPageBlur)
+    window.removeEventListener('focus', onPageFocus)
     displayButton(stop);//Switch display start and stop button
-    
   }
 
   function replayGame(){ //function to restart the game if replay button clicked.
-   
+
       replay_popup.style.display = "none";
       startGame();
-    
+
   }
 
   const countDown = () => {
     let seconds = 60
     startCountDown = window.setInterval(function() {
-      seconds = seconds - 1
-      if (seconds < 0) {
-        //stop countdown
-        stopGame()
-        timerDisplay.innerHTML = '0:00'
-        return timerDisplay
-      }
+      if (!pause) {
+        seconds = seconds - 1
+        if (seconds < 0) {
+          //stop countdown
+          stopGame()
+          timerDisplay.innerHTML = '0:00'
+          return timerDisplay
+        }
 
-      if (seconds < 10) {
-        timerDisplay.innerHTML = `0:0${seconds}`
+        if (seconds < 10) {
+          timerDisplay.innerHTML = `0:0${seconds}`
+          return timerDisplay
+        }
+        timerDisplay.innerHTML = `0:${seconds}`
         return timerDisplay
       }
-      timerDisplay.innerHTML = `0:${seconds}`
-      return timerDisplay
     }, 1000)
   }
 
@@ -689,7 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  // drop candies onces some have been cleard 
+  // drop candies onces some have been cleard
   const moveDown = () => {
     const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
     const lastRow = [56, 57, 58, 59, 60, 61, 62, 63]
