@@ -11,7 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const timerDisplay = document.getElementById('timer')
   const timerBoard = document.querySelector('.timerboard')
   const bgImage = new Image()
-  const startButton = document.getElementById('startButton')
+  const startButton = document.getElementById('startButton');
+  const stopButton = document.getElementById('stopButton');
+  const replay_popup = document.getElementById('replay_popup');
+  const replay_button = document.getElementById('replay_button');
+
   bgImage.src = 'images/cloud-background.jpg'
   // document.getElementsByTagName('body')[0].style.backgroundImage = "url('images/cloud-background.jpg')"
 
@@ -21,18 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   let score = 0
+  let pause = false
 
   let startMatchChecking
   let startCountDown
   let gameStarted = false
 
   const candyColors = [
-    "url(images/cup-candy.png)",
-    "url(images/corn-candy.png)",
-    "url(images/purple-teeth.png)",
-    "url(images/pumpkin-candy.png)",
-    "url(images/skull-candy.png)",
-    "url(images/worm-candy.png)",
+    "url(images/halloween/brain-candy.png)",
+    "url(images/halloween/corn-candy.png)",
+    "url(images/halloween/teeth-candy.png)",
+    "url(images/halloween/pumpkin-candy.png)",
+    "url(images/halloween/skull-candy.png)",
+    "url(images/halloween/worm-candy.png)",
   ]
 
   //Load background image
@@ -54,9 +59,23 @@ document.addEventListener('DOMContentLoaded', () => {
     timerBoard.style.animation = 'bounce 0.5s'
   }
 
+  function displayButton(ClickedButton){//Switch display start and stop button
+    if (ClickedButton == "start") {
+      stopButton.style.display = "block";
+      startButton.style.display = "none";
+      replay_popup.style.display = "none";
+    } else {
+      stopButton.style.display = "none";
+      startButton.style.display = "block";
+      replay_popup.style.display = "block";//Display replay pop up if game stopped.
+    }
+  }
 
   const startGame = () => {
+    window.addEventListener('blur', onPageBlur)
+    window.addEventListener('focus', onPageFocus)
     startButton.style.animation = 'click 0.2s'
+    displayButton("start");
     timerBoard.style.animation = ''
     timerBoard.addEventListener('click', stopBounce)
     gameStarted = true
@@ -67,13 +86,27 @@ document.addEventListener('DOMContentLoaded', () => {
     countDown()
     startMatchChecking = window.setInterval(function() {
       checkForAllMatches()
+      stopButton.addEventListener('click', stopGame);
     }, 100)
 
   }
 
-  startButton.addEventListener('click', startGame)
+  startButton.addEventListener('click', ()=>{
+    startGame();
+    startButton.removeEventListener('click');
+  });
+  // stopButton.addEventListener('click', stopGame());
 
 
+  replay_button.addEventListener("click",replayGame); // replay button click event listner
+
+  const onPageBlur = () => {
+    pause = true
+  }
+
+  const onPageFocus = () => {
+    pause = false
+  }
 
   const stopGame = () => {
     startButton.style.animation = ''
@@ -83,26 +116,37 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(startMatchChecking)
     saveHighScore()
     makeBoardNotDraggable()
+    window.removeEventListener('blur', onPageBlur)
+    window.removeEventListener('focus', onPageFocus)
+    displayButton(stop);//Switch display start and stop button
   }
 
+  function replayGame(){ //function to restart the game if replay button clicked.
+
+      replay_popup.style.display = "none";
+      startGame();
+
+  }
 
   const countDown = () => {
     let seconds = 60
     startCountDown = window.setInterval(function() {
-      seconds = seconds - 1
-      if (seconds < 0) {
-        //stop countdown
-        stopGame()
-        timerDisplay.innerHTML = '0:00'
-        return timerDisplay
-      }
+      if (!pause) {
+        seconds = seconds - 1
+        if (seconds < 0) {
+          //stop countdown
+          stopGame()
+          timerDisplay.innerHTML = '0:00'
+          return timerDisplay
+        }
 
-      if (seconds < 10) {
-        timerDisplay.innerHTML = `0:0${seconds}`
+        if (seconds < 10) {
+          timerDisplay.innerHTML = `0:0${seconds}`
+          return timerDisplay
+        }
+        timerDisplay.innerHTML = `0:${seconds}`
         return timerDisplay
       }
-      timerDisplay.innerHTML = `0:${seconds}`
-      return timerDisplay
     }, 1000)
   }
 
@@ -657,7 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  // drop candies onces some have been cleard 
+  // drop candies onces some have been cleard
   const moveDown = () => {
     const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
     const lastRow = [56, 57, 58, 59, 60, 61, 62, 63]
