@@ -612,9 +612,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return (currentIndex % 8) === (offsetIndex % 8)
   }
 
+  // function isValidMove() {
+  //   const validMoves = [squareIdBeingDragged - 1, squareIdBeingDragged - width, squareIdBeingDragged + 1, squareIdBeingDragged + width]
+  //   return validMoves.includes(squareIdbeingReplaced) && isFoundMatching()
+  // }
   function isValidMove() {
     const validMoves = [squareIdBeingDragged - 1, squareIdBeingDragged - width, squareIdBeingDragged + 1, squareIdBeingDragged + width]
-    return validMoves.includes(squareIdbeingReplaced) && isFoundMatching()
+    return validMoves.includes(squareIdbeingReplaced) 
   }
 
   const dragDrop = (element) => {
@@ -625,14 +629,23 @@ document.addEventListener('DOMContentLoaded', () => {
     squareIdbeingReplaced = parseInt(element.target.id) //2
 
     const validMove = isValidMove()
-
     if (!validMove) {
       squares[squareIdbeingReplaced].style.backgroundImage = colorBeingReplaced
       squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
       return
+    }else{
+      if(!isFoundMatching()){
+        let tempscore = parseFloat(scoreDisplay.innerText)
+        tempscore -=10;
+        if(tempscore<0){
+          tempscore =0;
+        }
+        scoreDisplay.innerHTML = tempscore;
+      }
+      squares[squareIdBeingDragged].style.backgroundImage = colorBeingReplaced
+      squares[squareIdbeingReplaced].style.backgroundImage = colorBeingDragged
     }
-    squares[squareIdBeingDragged].style.backgroundImage = colorBeingReplaced
-    squares[squareIdbeingReplaced].style.backgroundImage = colorBeingDragged
+ 
 
 
     //Fill the board and check for matches if there is an empty square
