@@ -2,6 +2,10 @@ import React from 'react'
 import { Item } from '../Item';
 import {motion} from 'framer-motion'
 
+// Randomly assign a board of items
+// Perhaps I should randomly create an id for each item
+// {id:"🍅_1l", "🍅"} we can use lodash unique Id for that
+
 const mockFood = [
     { id: "row1", item: ["🍅", "🥒", "🧀", "🥬"] },
     { id: "row2", item: ["🥝", "🍓", "🍑", "🍍"] },
