@@ -2,54 +2,48 @@ import React, { useCallback, useState } from "react";
 import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
+import { uniqueId, random } from "lodash";
 
-// Randomly assign a board of items
-// Perhaps I should randomly create an id for each item
-// {id:"🍅_1l", "🍅"} we can use lodash unique Id for that
+const emojiItems = ["🍌", "🍑", "🍓", "🥝", "🍒"];
+const boardWidth = 5;
 
-const mockFoods: BoardType = [
-  {
-    id: "0",
-    items: [
-      { id: "🍅_1", type: "🍅" },
-      { id: "🍑_2", type: "🍑" },
-      { id: "🧀_3", type: "🧀" },
-      { id: "🥒_4", type: "🥒" },
-    ],
-  },
-  {
-    id: "1",
-    items: [
-      { id: "🥝_4", type: "🥝" },
-      { id: "🍓_5", type: "🍓" },
-      { id: "🍑_6", type: "🍑" },
-      { id: "🍍_9", type: "🍍" },
-    ],
-  },
-  {
-    id: "2",
-    items: [
-      { id: "🍌_7", type: "🍌" },
-      { id: "🍕_8", type: "🍕" },
-      { id: "🍿_8", type: "🍿" },
-      { id: "🍍_10", type: "🍍" },
-    ],
-  },
-];
+const generateRandomBoardItem = (): BoardItem => {
+  const randomEmoji = emojiItems[random(boardWidth - 1)];
+  return { id: uniqueId(randomEmoji), type: randomEmoji };
+};
+
+const generateItems = (): BoardItem[] => {
+  const randomItems: BoardItem[] = [];
+
+  for (let i = 0; i < boardWidth; i++) {
+    const randomEmoji = generateRandomBoardItem();
+    randomItems.push(randomEmoji);
+  }
+
+  return randomItems;
+};
+
+const generateRandomBoard = (): BoardType => {
+  const board: BoardType = [];
+  for (let i = 0; i < boardWidth; i++) {
+    const row = { id: String(i), items: generateItems() };
+    board.push(row);
+  }
+
+  return board;
+};
 
 export const Board = () => {
+  const randomBoard = generateRandomBoard();
   const [legalMoves, setLegalMoves] = useState<string[] | undefined>();
-  const boardIndexBoundaries = {
-    lastIndexRow: 3,
-    lastIndexCol: 2,
-  };
 
-  const [boardState, setBoardState] = useState<BoardType>(mockFoods);
+  const [boardState, setBoardState] = useState<BoardType>(randomBoard);
   const [selectedItem, setSelectedItem] = useState<BoardItem | undefined>(
     undefined
   );
   const [selectedRow, setSelectedRow] = useState<number | undefined>();
   const [selectedCol, setSelectedCol] = useState<number | undefined>();
+
   // On drag over we need to check if its a valid move if so we can switch places with the food. If not elastic??
   // On drag drop we check if its a valid move then we save the new matrix
   // On tap we can make the food a little larger and a little transparent
@@ -129,7 +123,10 @@ export const Board = () => {
       {boardState.map((row) => (
         <motion.div
           key={row.id}
-          style={{ display: "flex", flexDirection: "row" }}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
         >
           {row.items.map(({ id, type }) => (
             <Item
@@ -141,7 +138,7 @@ export const Board = () => {
               onDragOverProp={() => handleOnDragOver(type, id, row.id)}
               legalMoves={legalMoves}
             />
-          ))}{" "}
+          ))}
         </motion.div>
       ))}
     </motion.div>
