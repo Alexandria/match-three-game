@@ -21,6 +21,7 @@ export const Item = ({
   return (
     <motion.div
       dragSnapToOrigin
+      dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
       drag
       dragConstraints={constraint}
       onDragStart={(event, info) => {
@@ -33,7 +34,6 @@ export const Item = ({
       }}
       onPointerEnter={() => {
         onDragOverProp(type);
-        console.log("Its happening! I am being passed over ", type);
       }}
       style={{ pointerEvents: isDragging ? "none" : "auto" }}
     >

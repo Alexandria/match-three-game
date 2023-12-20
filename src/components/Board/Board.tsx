@@ -9,7 +9,7 @@ const boardWidth = 5;
 
 const generateRandomBoardItem = (): BoardItem => {
   const randomEmoji = emojiItems[random(boardWidth - 1)];
-  return { id: uniqueId(randomEmoji), type: randomEmoji };
+  return { id: uniqueId(), type: randomEmoji };
 };
 
 const generateItems = (): BoardItem[] => {
@@ -38,9 +38,12 @@ export const Board = () => {
   const [legalMoves, setLegalMoves] = useState<string[] | undefined>();
 
   const [boardState, setBoardState] = useState<BoardType>(randomBoard);
-  const [selectedItem, setSelectedItem] = useState<BoardItem | undefined>(
-    undefined
-  );
+  const [selectedItem, setSelectedItem] = useState<
+    { row: number; col: number } | undefined
+  >(undefined);
+  const [dragOverItem, setDragOverItem] = useState<
+    { row: number; col: number } | undefined
+  >(undefined);
   const [selectedRow, setSelectedRow] = useState<number | undefined>();
   const [selectedCol, setSelectedCol] = useState<number | undefined>();
 
@@ -58,7 +61,7 @@ export const Board = () => {
 
     setSelectedRow(rowIndex);
     setSelectedCol(currentColIndex);
-    setSelectedItem({ id, type });
+    setSelectedItem({ row: rowIndex, col: currentColIndex });
 
     if (currentColIndex + 1 <= 3) {
       adjacentMoves.push(currentRow.items[currentColIndex + 1].id);
@@ -80,40 +83,42 @@ export const Board = () => {
 
     console.warn("onDrag start! On drag is happening on");
   };
-  const handleOnDragEnd = (type: string) => {
-    console.warn("onDrag End! On drag is happening on");
-  };
+  const handleOnDragEnd = useCallback(
+    (type: string, id: string, rowId: string) => {
+      if (!selectedItem || !dragOverItem) return;
+
+      const itemBeingDragged =
+        boardState[selectedItem.row].items[selectedItem.col];
+      const itemBeingDraggedOver =
+        boardState[dragOverItem.row].items[dragOverItem.col];
+
+      boardState[selectedItem.row].items[selectedItem.col] =
+        itemBeingDraggedOver;
+
+      boardState[dragOverItem.row].items[dragOverItem.col] = itemBeingDragged;
+
+      console.warn("onDrag End! On drag is happening on", { id, type });
+    },
+    [selectedItem, boardState, dragOverItem]
+  );
 
   const handleOnDragOver = useCallback(
     (type: string, id: string, rowId: string) => {
       // May need to check if dragging is happening
-      if (
-        !legalMoves ||
-        !legalMoves?.includes(id) ||
-        !selectedItem ||
-        !selectedRow ||
-        !selectedCol
-      )
-        return;
+      if (!legalMoves || !selectedItem) return;
 
       const rowIndex = parseInt(rowId);
-      const collumnToSwitch = boardState[rowIndex].items.findIndex(
-        (item) => item.id === id
-      );
-
-      // const updatedBoardState = [...boardState];
-      // updatedBoardState[selectedRow].items[selectedCol] = { id, type };
-      // updatedBoardState[rowIndex].items[collumnToSwitch] = {
-      //   id: selectedItem.id,
-      //   type: selectedItem.type,
-      // };
-
-      // May need to listen for changes in a use effect?
-      // setBoardState(updatedBoardState);
 
       console.warn("A legal switch operation");
+      let col = boardState[rowIndex].items.findIndex((item) => item.id === id);
+
+      if (legalMoves.includes(id)) {
+        setDragOverItem({ row: rowIndex, col });
+      } else {
+        setDragOverItem(undefined);
+      }
     },
-    [legalMoves, boardState, selectedCol, selectedItem, selectedRow]
+    [legalMoves, boardState, selectedItem]
   );
 
   console.warn("boardState", boardState);
@@ -133,7 +138,7 @@ export const Board = () => {
               key={id}
               id={id}
               type={type}
-              onDragEndProp={() => handleOnDragEnd(type)}
+              onDragEndProp={() => handleOnDragEnd(type, id, row.id)}
               onDragStartProp={() => handleOnDragStart(type, id, row.id)}
               onDragOverProp={() => handleOnDragOver(type, id, row.id)}
               legalMoves={legalMoves}
