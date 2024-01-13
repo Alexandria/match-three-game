@@ -16,7 +16,7 @@ export interface BoardItem {
   id: string;
 }
 
-interface BoardRow {
+export interface BoardRow {
   id: string;
   items: BoardItem[];
 }
