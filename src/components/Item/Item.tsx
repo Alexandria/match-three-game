@@ -1,7 +1,6 @@
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-
 import { Item as ItemProps } from "../types";
-import { useState } from "react";
 import styles from "./Item.module.css";
 
 //https://github.com/framer/motion/issues/538
