@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
-import { uniqueId, random } from "lodash";
+import { uniqueId, random, range, forEach } from "lodash";
 
 const emojiItems = ["🍌", "🍑", "🍓", "🥝", "🍒"];
 const boardWidth = 5;
@@ -44,8 +44,8 @@ export const Board = () => {
   const [dragOverItem, setDragOverItem] = useState<
     { row: number; col: number } | undefined
   >(undefined);
-  const [selectedRow, setSelectedRow] = useState<number | undefined>();
-  const [selectedCol, setSelectedCol] = useState<number | undefined>();
+
+  const [dragEnd, setDragEnd] = useState(false);
 
   // On drag over we need to check if its a valid move if so we can switch places with the food. If not elastic??
   // On drag drop we check if its a valid move then we save the new matrix
@@ -59,8 +59,6 @@ export const Board = () => {
       (item) => item.id === id
     )!;
 
-    setSelectedRow(rowIndex);
-    setSelectedCol(currentColIndex);
     setSelectedItem({ row: rowIndex, col: currentColIndex });
 
     if (currentColIndex + 1 <= 3) {
@@ -80,9 +78,66 @@ export const Board = () => {
     }
 
     setLegalMoves(adjacentMoves);
-
-    console.warn("onDrag start! On drag is happening on");
   };
+
+  // Go through the board and remove any matches 3 or more.
+  // Check the row
+  // Check the column
+
+  const checkForMatches = useCallback(
+    (
+      items: BoardItem[],
+      start?: number,
+      end?: number
+    ): BoardItem[] | undefined => {
+      const row = [...items];
+      const startIndex = start ? start : 0;
+      const endIndex = end ? end : 5;
+      const sectionToCheckForMatches =
+        endIndex === 5
+          ? row.slice(startIndex)
+          : row.slice(startIndex, endIndex);
+      const sectionLength = sectionToCheckForMatches.length;
+      const firstItemInSection = sectionToCheckForMatches[0];
+
+      if (
+        sectionToCheckForMatches.every(
+          (item) => item.type === firstItemInSection.type
+        )
+      ) {
+        console.warn(
+          `We have a match of ${sectionLength}!! of type ${firstItemInSection.type}`
+        );
+        return sectionToCheckForMatches;
+      }
+
+      if (endIndex === 5) {
+        checkForMatches(items, 0, 4);
+      }
+
+      if (sectionLength === 4 && startIndex === 0) {
+        checkForMatches(items, 1, 6);
+      }
+
+      if (sectionLength === 4 && startIndex === 1) {
+        checkForMatches(items, 0, 3);
+      }
+
+      if (sectionLength === 3 && startIndex === 0) {
+        checkForMatches(items, 1, 4);
+      }
+
+      if (sectionLength === 3 && startIndex === 1) {
+        checkForMatches(items, 2, 6);
+      }
+
+      if (sectionLength === 3 && startIndex === 2) {
+        return;
+      }
+    },
+    []
+  );
+
   const handleOnDragEnd = useCallback(
     (type: string, id: string, rowId: string) => {
       if (!selectedItem || !dragOverItem) return;
@@ -97,7 +152,7 @@ export const Board = () => {
 
       boardState[dragOverItem.row].items[dragOverItem.col] = itemBeingDragged;
 
-      console.warn("onDrag End! On drag is happening on", { id, type });
+      setBoardState([...boardState]);
     },
     [selectedItem, boardState, dragOverItem]
   );
@@ -109,7 +164,6 @@ export const Board = () => {
 
       const rowIndex = parseInt(rowId);
 
-      console.warn("A legal switch operation");
       let col = boardState[rowIndex].items.findIndex((item) => item.id === id);
 
       if (legalMoves.includes(id)) {
@@ -121,7 +175,19 @@ export const Board = () => {
     [legalMoves, boardState, selectedItem]
   );
 
-  console.warn("boardState", boardState);
+  useEffect(() => {
+    // When the board state changes, check for matches!
+    // console.warn("the board state changed! ", boardState);
+    boardState.forEach((row, index) => {
+      const column: BoardItem[] = [];
+      checkForMatches(row.items);
+      forEach(range(5), (colIndex) => {
+        const col = boardState[colIndex].items[index];
+        column.push(col);
+      });
+      checkForMatches(column);
+    });
+  }, [boardState, checkForMatches]);
 
   return (
     <motion.div>
