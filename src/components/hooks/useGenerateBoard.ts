@@ -10,17 +10,6 @@ const generateRandomBoardItem = (): BoardItem => {
   return { id: uniqueId(), type: randomEmoji };
 };
 
-const generateRow = (): BoardRow => {
-  const randomItems: BoardItem[] = [];
-
-  for (let i = 0; i < boardWidth; i++) {
-    const randomEmoji = generateRandomBoardItem();
-    randomItems.push(randomEmoji);
-  }
-
-  return { id: uniqueId(), items: generateItems() };
-};
-
 const generateItems = (): BoardItem[] => {
   const randomItems: BoardItem[] = [];
 
@@ -35,8 +24,7 @@ const generateItems = (): BoardItem[] => {
 export const useGenerateBoard = (): Board => {
   const board: Board = [];
   for (let i = 0; i < boardWidth; i++) {
-    const row = { id: String(i), items: generateItems() };
-    board.push(row);
+    board.push(generateItems());
   }
 
   return board;

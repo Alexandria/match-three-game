@@ -16,9 +16,6 @@ export interface BoardItem {
   id: string;
 }
 
-export interface BoardRow {
-  id: string;
-  items: BoardItem[];
-}
+export type BoardRow = BoardItem[];
 
 export type Board = BoardRow[];

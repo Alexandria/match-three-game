@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
-import { range, forEach, uniqueId } from "lodash";
+import { range, forEach } from "lodash";
 import { useGenerateBoard } from "../hooks/useGenerateBoard";
 
 export const Board = () => {
@@ -21,26 +21,24 @@ export const Board = () => {
   const handleOnDragStart = (type: string, id: string, rowIndex: number) => {
     let adjacentMoves: string[] = [];
     const currentRow = boardState[rowIndex];
-    const currentColIndex = currentRow?.items.findIndex(
-      (item) => item.id === id
-    )!;
+    const currentColIndex = currentRow?.findIndex((item) => item.id === id)!;
 
     setDraggedItem(id);
 
     if (currentColIndex + 1 <= 3) {
-      adjacentMoves.push(currentRow.items[currentColIndex + 1].id);
+      adjacentMoves.push(currentRow[currentColIndex + 1].id);
     }
 
     if (currentColIndex - 1 >= 0) {
-      adjacentMoves.push(currentRow.items[currentColIndex - 1].id);
+      adjacentMoves.push(currentRow[currentColIndex - 1].id);
     }
 
     if (rowIndex - 1 >= 0) {
-      adjacentMoves.push(boardState[rowIndex - 1].items[currentColIndex].id);
+      adjacentMoves.push(boardState[rowIndex - 1][currentColIndex].id);
     }
 
     if (rowIndex + 1 <= 2) {
-      adjacentMoves.push(boardState[rowIndex + 1].items[currentColIndex].id);
+      adjacentMoves.push(boardState[rowIndex + 1][currentColIndex].id);
     }
 
     setLegalMoves(adjacentMoves);
@@ -114,7 +112,7 @@ export const Board = () => {
     let rowOfDraggedOverItem: number;
     // switch items based on id
     boardState.forEach((row, index) => {
-      const col = Object.values(row.items).findIndex((item) => {
+      const col = Object.values(row).findIndex((item) => {
         return item.id === draggedItem;
       });
 
@@ -125,7 +123,7 @@ export const Board = () => {
     });
 
     boardState.forEach((row, index) => {
-      const col = Object.values(row.items).findIndex((item) => {
+      const col = Object.values(row).findIndex((item) => {
         return item.id === draggedOverItem;
       });
 
@@ -136,15 +134,13 @@ export const Board = () => {
     });
 
     const itemBeingDragged =
-      boardState[rowOfDraggedItem!].items[columnOfDraggedItem!];
+      boardState[rowOfDraggedItem!][columnOfDraggedItem!];
     const itemBeingDraggedOver =
-      boardState[rowOfDraggedOverItem!].items[colOfDraggedOverItem!];
+      boardState[rowOfDraggedOverItem!][colOfDraggedOverItem!];
 
-    boardState[rowOfDraggedItem!].items[columnOfDraggedItem!] =
-      itemBeingDraggedOver;
+    boardState[rowOfDraggedItem!][columnOfDraggedItem!] = itemBeingDraggedOver;
 
-    boardState[rowOfDraggedOverItem!].items[colOfDraggedOverItem!] =
-      itemBeingDragged;
+    boardState[rowOfDraggedOverItem!][colOfDraggedOverItem!] = itemBeingDragged;
 
     console.log("columnOfDragged", columnOfDraggedItem!);
     console.log("rowOfDraggedItem", rowOfDraggedItem!);
@@ -177,9 +173,9 @@ export const Board = () => {
     // console.warn("the board state changed! ", boardState);
     boardState.forEach((row, index) => {
       const column: BoardItem[] = [];
-      checkForMatches(row.items);
+      checkForMatches(row);
       forEach(range(5), (colIndex) => {
-        const col = boardState[colIndex].items[index];
+        const col = boardState[colIndex][index];
         column.push(col);
       });
       checkForMatches(column);
@@ -197,7 +193,7 @@ export const Board = () => {
               flexDirection: "row",
             }}
           >
-            {row.items.map(({ id, type }) => (
+            {row.map(({ id, type }) => (
               <Item
                 key={id}
                 id={id}
