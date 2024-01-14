@@ -2,39 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
-import { uniqueId, random, range, forEach } from "lodash";
-
-const emojiItems = ["🍌", "🍑", "🍓", "🥝", "🍒"];
-const boardWidth = 5;
-
-const generateRandomBoardItem = (): BoardItem => {
-  const randomEmoji = emojiItems[random(boardWidth - 1)];
-  return { id: uniqueId(), type: randomEmoji };
-};
-
-const generateItems = (): BoardItem[] => {
-  const randomItems: BoardItem[] = [];
-
-  for (let i = 0; i < boardWidth; i++) {
-    const randomEmoji = generateRandomBoardItem();
-    randomItems.push(randomEmoji);
-  }
-
-  return randomItems;
-};
-
-const generateRandomBoard = (): BoardType => {
-  const board: BoardType = [];
-  for (let i = 0; i < boardWidth; i++) {
-    const row = { id: String(i), items: generateItems() };
-    board.push(row);
-  }
-
-  return board;
-};
+import { range, forEach } from "lodash";
+import { useGenerateBoard } from "../hooks/useGenerateBoard";
 
 export const Board = () => {
-  const randomBoard = generateRandomBoard();
+  const randomBoard = useGenerateBoard();
   const [legalMoves, setLegalMoves] = useState<string[] | undefined>();
 
   const [boardState, setBoardState] = useState<BoardType>(randomBoard);
@@ -44,8 +16,6 @@ export const Board = () => {
   const [dragOverItem, setDragOverItem] = useState<
     { row: number; col: number } | undefined
   >(undefined);
-
-  const [dragEnd, setDragEnd] = useState(false);
 
   // On drag over we need to check if its a valid move if so we can switch places with the food. If not elastic??
   // On drag drop we check if its a valid move then we save the new matrix
