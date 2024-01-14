@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
 import { range, forEach } from "lodash";
 import { useGenerateBoard } from "../hooks/useGenerateBoard";
+import { findIndexById } from "../utils/findIndexById";
 
 export const Board = () => {
   const randomBoard = useGenerateBoard();
@@ -39,10 +40,6 @@ export const Board = () => {
 
     setLegalMoves(adjacentMoves);
   };
-
-  // Go through the board and remove any matches 3 or more.
-  // Check the row
-  // Check the column
 
   const checkForMatches = useCallback(
     (
@@ -101,49 +98,25 @@ export const Board = () => {
   const handleOnDragEnd = useCallback(() => {
     if (!draggedItem || !draggedOverItem) return;
 
-    let columnOfDraggedItem: number;
-    let rowOfDraggedItem: number;
-
-    let colOfDraggedOverItem: number;
-    let rowOfDraggedOverItem: number;
-    // switch items based on id
-    boardState.forEach((row, index) => {
-      const col = Object.values(row).findIndex((item) => {
-        return item.id === draggedItem;
-      });
-
-      if (col !== -1) {
-        columnOfDraggedItem = col;
-        rowOfDraggedItem = index;
-      }
-    });
-
-    boardState.forEach((row, index) => {
-      const col = Object.values(row).findIndex((item) => {
-        return item.id === draggedOverItem;
-      });
-
-      if (col !== -1) {
-        colOfDraggedOverItem = col;
-        rowOfDraggedOverItem = index;
-      }
-    });
+    const draggedItemIndex = findIndexById(draggedItem, boardState);
+    const draggedOverItemIndex = findIndexById(draggedOverItem, boardState);
 
     const itemBeingDragged =
-      boardState[rowOfDraggedItem!][columnOfDraggedItem!];
+      boardState[draggedItemIndex.row][draggedItemIndex.col];
     const itemBeingDraggedOver =
-      boardState[rowOfDraggedOverItem!][colOfDraggedOverItem!];
+      boardState[draggedOverItemIndex.row][draggedOverItemIndex.col];
 
-    boardState[rowOfDraggedItem!][columnOfDraggedItem!] = itemBeingDraggedOver;
+    boardState[draggedItemIndex.row][draggedItemIndex.col] =
+      itemBeingDraggedOver;
 
-    boardState[rowOfDraggedOverItem!][colOfDraggedOverItem!] = itemBeingDragged;
+    boardState[draggedOverItemIndex.row][draggedOverItemIndex.col] =
+      itemBeingDragged;
 
     setBoardState([...boardState]);
   }, [boardState, draggedItem, draggedOverItem]);
 
   const handleOnDragOver = useCallback(
     (type: string, id: string, rowIndex: number) => {
-      // May need to check if dragging is happening
       if (!legalMoves || !draggedItem) return;
 
       if (legalMoves.includes(id)) {
@@ -166,8 +139,6 @@ export const Board = () => {
       checkForMatches(column);
     });
   }, [boardState, checkForMatches]);
-
-  console.log("legalMove ", legalMoves);
 
   return (
     <motion.div>
