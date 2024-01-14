@@ -14,10 +14,6 @@ export const Board = () => {
   const [draggedItem, setDraggedItem] = useState("");
   const [draggedOverItem, setDraggedOverItem] = useState("");
 
-  // On drag over we need to check if its a valid move if so we can switch places with the food. If not elastic??
-  // On drag drop we check if its a valid move then we save the new matrix
-  // On tap we can make the food a little larger and a little transparent
-
   const handleOnDragStart = (type: string, id: string, rowIndex: number) => {
     let adjacentMoves: string[] = [];
     const currentRow = boardState[rowIndex];
@@ -25,7 +21,7 @@ export const Board = () => {
 
     setDraggedItem(id);
 
-    if (currentColIndex + 1 <= 3) {
+    if (currentColIndex + 1 <= 4) {
       adjacentMoves.push(currentRow[currentColIndex + 1].id);
     }
 
@@ -37,7 +33,7 @@ export const Board = () => {
       adjacentMoves.push(boardState[rowIndex - 1][currentColIndex].id);
     }
 
-    if (rowIndex + 1 <= 2) {
+    if (rowIndex + 1 <= 4) {
       adjacentMoves.push(boardState[rowIndex + 1][currentColIndex].id);
     }
 
@@ -142,12 +138,6 @@ export const Board = () => {
 
     boardState[rowOfDraggedOverItem!][colOfDraggedOverItem!] = itemBeingDragged;
 
-    console.log("columnOfDragged", columnOfDraggedItem!);
-    console.log("rowOfDraggedItem", rowOfDraggedItem!);
-
-    console.log("colOfDraggedOverItem", colOfDraggedOverItem!);
-    console.log("rowOfDraggedOverItem", rowOfDraggedOverItem!);
-
     setBoardState([...boardState]);
   }, [boardState, draggedItem, draggedOverItem]);
 
@@ -155,22 +145,17 @@ export const Board = () => {
     (type: string, id: string, rowIndex: number) => {
       // May need to check if dragging is happening
       if (!legalMoves || !draggedItem) return;
-      console.log("legal moves ", legalMoves);
 
       if (legalMoves.includes(id)) {
         setDraggedOverItem(id);
       } else {
         setDraggedOverItem("");
       }
-
-      console.log("on drag over");
     },
     [draggedItem, legalMoves, setDraggedOverItem]
   );
 
   useEffect(() => {
-    // When the board state changes, check for matches!
-    // console.warn("the board state changed! ", boardState);
     boardState.forEach((row, index) => {
       const column: BoardItem[] = [];
       checkForMatches(row);
@@ -181,6 +166,8 @@ export const Board = () => {
       checkForMatches(column);
     });
   }, [boardState, checkForMatches]);
+
+  console.log("legalMove ", legalMoves);
 
   return (
     <motion.div>
@@ -201,7 +188,6 @@ export const Board = () => {
                 onDragEndProp={() => handleOnDragEnd()}
                 onDragStartProp={() => handleOnDragStart(type, id, index)}
                 onDragOverProp={() => handleOnDragOver(type, id, index)}
-                legalMoves={legalMoves}
               />
             ))}
           </div>
