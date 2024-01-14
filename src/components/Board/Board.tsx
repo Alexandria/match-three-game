@@ -17,6 +17,9 @@ export const Board = () => {
     { row: number; col: number } | undefined
   >(undefined);
 
+  const [draggedItem, setDraggedItem] = useState("");
+  const [droppedOnItem, setDroppedOnItem] = useState("");
+
   // On drag over we need to check if its a valid move if so we can switch places with the food. If not elastic??
   // On drag drop we check if its a valid move then we save the new matrix
   // On tap we can make the food a little larger and a little transparent
@@ -30,6 +33,7 @@ export const Board = () => {
     )!;
 
     setSelectedItem({ row: rowIndex, col: currentColIndex });
+    setDraggedItem(id);
 
     if (currentColIndex + 1 <= 3) {
       adjacentMoves.push(currentRow.items[currentColIndex + 1].id);
@@ -108,24 +112,56 @@ export const Board = () => {
     []
   );
 
-  const handleOnDragEnd = useCallback(
-    (type: string, id: string, rowId: string) => {
-      if (!selectedItem || !dragOverItem) return;
+  const handleOnDragEnd = useCallback(() => {
+    if (!selectedItem || !dragOverItem) return;
 
-      const itemBeingDragged =
-        boardState[selectedItem.row].items[selectedItem.col];
-      const itemBeingDraggedOver =
-        boardState[dragOverItem.row].items[dragOverItem.col];
+    let columnOfDraggedItem: number;
+    let rowOfDraggedItem: number;
 
-      boardState[selectedItem.row].items[selectedItem.col] =
-        itemBeingDraggedOver;
+    let colOfDraggedOverItem: number;
+    let rowOfDraggedOverItem: number;
+    // switch items based on id
+    boardState.forEach((row, index) => {
+      const col = Object.values(row.items).findIndex((item) => {
+        return item.id === draggedItem;
+      });
 
-      boardState[dragOverItem.row].items[dragOverItem.col] = itemBeingDragged;
+      if (col !== -1) {
+        columnOfDraggedItem = col;
+        rowOfDraggedItem = index;
+      }
+    });
 
-      setBoardState([...boardState]);
-    },
-    [selectedItem, boardState, dragOverItem]
-  );
+    boardState.forEach((row, index) => {
+      const col = Object.values(row.items).findIndex((item) => {
+        return item.id === droppedOnItem;
+      });
+
+      if (col !== -1) {
+        colOfDraggedOverItem = col;
+        rowOfDraggedOverItem = index;
+      }
+    });
+
+    const itemBeingDragged =
+      boardState[rowOfDraggedItem!].items[columnOfDraggedItem!];
+    const itemBeingDraggedOver =
+      boardState[rowOfDraggedOverItem!].items[colOfDraggedOverItem!];
+
+    boardState[rowOfDraggedItem!].items[columnOfDraggedItem!] =
+      itemBeingDraggedOver;
+
+    boardState[rowOfDraggedOverItem!].items[colOfDraggedOverItem!] =
+      itemBeingDragged;
+
+    console.log("columnOfDragged", columnOfDraggedItem!);
+    console.log("rowOfDraggedItem", rowOfDraggedItem!);
+
+    console.log("colOfDraggedOverItem", colOfDraggedOverItem!);
+    console.log("rowOfDraggedOverItem", rowOfDraggedOverItem!);
+
+    setBoardState([...boardState]);
+  }, [selectedItem, boardState, dragOverItem, draggedItem, droppedOnItem]);
 
   const handleOnDragOver = useCallback(
     (type: string, id: string, rowId: string) => {
@@ -138,8 +174,10 @@ export const Board = () => {
 
       if (legalMoves.includes(id)) {
         setDragOverItem({ row: rowIndex, col });
+        setDroppedOnItem(id);
       } else {
         setDragOverItem(undefined);
+        setDroppedOnItem(id);
       }
     },
     [legalMoves, boardState, selectedItem]
@@ -174,7 +212,7 @@ export const Board = () => {
               key={id}
               id={id}
               type={type}
-              onDragEndProp={() => handleOnDragEnd(type, id, row.id)}
+              onDragEndProp={() => handleOnDragEnd()}
               onDragStartProp={() => handleOnDragStart(type, id, row.id)}
               onDragOverProp={() => handleOnDragOver(type, id, row.id)}
               legalMoves={legalMoves}
