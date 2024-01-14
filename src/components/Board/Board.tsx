@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
-import { range, forEach } from "lodash";
+import { range, forEach, uniqueId } from "lodash";
 import { useGenerateBoard } from "../hooks/useGenerateBoard";
 
 export const Board = () => {
@@ -10,29 +10,21 @@ export const Board = () => {
   const [legalMoves, setLegalMoves] = useState<string[] | undefined>();
 
   const [boardState, setBoardState] = useState<BoardType>(randomBoard);
-  const [selectedItem, setSelectedItem] = useState<
-    { row: number; col: number } | undefined
-  >(undefined);
-  const [dragOverItem, setDragOverItem] = useState<
-    { row: number; col: number } | undefined
-  >(undefined);
 
   const [draggedItem, setDraggedItem] = useState("");
-  const [droppedOnItem, setDroppedOnItem] = useState("");
+  const [draggedOverItem, setDraggedOverItem] = useState("");
 
   // On drag over we need to check if its a valid move if so we can switch places with the food. If not elastic??
   // On drag drop we check if its a valid move then we save the new matrix
   // On tap we can make the food a little larger and a little transparent
 
-  const handleOnDragStart = (type: string, id: string, rowId: string) => {
+  const handleOnDragStart = (type: string, id: string, rowIndex: number) => {
     let adjacentMoves: string[] = [];
-    const rowIndex = parseInt(rowId);
     const currentRow = boardState[rowIndex];
     const currentColIndex = currentRow?.items.findIndex(
       (item) => item.id === id
     )!;
 
-    setSelectedItem({ row: rowIndex, col: currentColIndex });
     setDraggedItem(id);
 
     if (currentColIndex + 1 <= 3) {
@@ -113,7 +105,7 @@ export const Board = () => {
   );
 
   const handleOnDragEnd = useCallback(() => {
-    if (!selectedItem || !dragOverItem) return;
+    if (!draggedItem || !draggedOverItem) return;
 
     let columnOfDraggedItem: number;
     let rowOfDraggedItem: number;
@@ -134,7 +126,7 @@ export const Board = () => {
 
     boardState.forEach((row, index) => {
       const col = Object.values(row.items).findIndex((item) => {
-        return item.id === droppedOnItem;
+        return item.id === draggedOverItem;
       });
 
       if (col !== -1) {
@@ -161,26 +153,23 @@ export const Board = () => {
     console.log("rowOfDraggedOverItem", rowOfDraggedOverItem!);
 
     setBoardState([...boardState]);
-  }, [selectedItem, boardState, dragOverItem, draggedItem, droppedOnItem]);
+  }, [boardState, draggedItem, draggedOverItem]);
 
   const handleOnDragOver = useCallback(
-    (type: string, id: string, rowId: string) => {
+    (type: string, id: string, rowIndex: number) => {
       // May need to check if dragging is happening
-      if (!legalMoves || !selectedItem) return;
-
-      const rowIndex = parseInt(rowId);
-
-      let col = boardState[rowIndex].items.findIndex((item) => item.id === id);
+      if (!legalMoves || !draggedItem) return;
+      console.log("legal moves ", legalMoves);
 
       if (legalMoves.includes(id)) {
-        setDragOverItem({ row: rowIndex, col });
-        setDroppedOnItem(id);
+        setDraggedOverItem(id);
       } else {
-        setDragOverItem(undefined);
-        setDroppedOnItem(id);
+        setDraggedOverItem("");
       }
+
+      console.log("on drag over");
     },
-    [legalMoves, boardState, selectedItem]
+    [draggedItem, legalMoves, setDraggedOverItem]
   );
 
   useEffect(() => {
@@ -199,27 +188,29 @@ export const Board = () => {
 
   return (
     <motion.div>
-      {boardState.map((row) => (
-        <motion.div
-          key={row.id}
-          style={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          {row.items.map(({ id, type }) => (
-            <Item
-              key={id}
-              id={id}
-              type={type}
-              onDragEndProp={() => handleOnDragEnd()}
-              onDragStartProp={() => handleOnDragStart(type, id, row.id)}
-              onDragOverProp={() => handleOnDragOver(type, id, row.id)}
-              legalMoves={legalMoves}
-            />
-          ))}
-        </motion.div>
-      ))}
+      {boardState.map((row, index) => {
+        return (
+          <div
+            key={index}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            {row.items.map(({ id, type }) => (
+              <Item
+                key={id}
+                id={id}
+                type={type}
+                onDragEndProp={() => handleOnDragEnd()}
+                onDragStartProp={() => handleOnDragStart(type, id, index)}
+                onDragOverProp={() => handleOnDragOver(type, id, index)}
+                legalMoves={legalMoves}
+              />
+            ))}
+          </div>
+        );
+      })}
     </motion.div>
   );
 };
