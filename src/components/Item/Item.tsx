@@ -6,37 +6,36 @@ import styles from "./Item.module.css";
 //https://github.com/framer/motion/issues/538
 //https://dev.to/ayka_code/creating-a-draggable-element-with-limits-and-smooth-animations-using-framer-motion-2cki
 export const Item = ({
-  type,
-  constraint = false,
-  onDragEndProp,
-  onDragOverProp,
-  onDragStartProp,
+  item,
+  onDragEnd: onDragEndProp,
+  onDragOver: onDragOverProp,
+  onDragStart: onDragStartProp,
 }: ItemProps) => {
   const [isDragging, setIsDragging] = useState(false);
 
-  // could we use dragSnapToOrigin to acheive the smooth animation effect?
-  // could we get the drag start position then update origin positions based on what the object is moving over?
-
   return (
     <motion.div
+      aria-label="draggable-item"
       dragSnapToOrigin
       dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
       drag
-      dragConstraints={constraint}
+      // dragConstraints={constraint}
       onDragStart={(event, info) => {
         setIsDragging(true);
-        onDragStartProp(type);
+        onDragStartProp(item.type);
       }}
       onDragEnd={(event, info) => {
         setIsDragging(false);
-        onDragEndProp(type);
+        onDragEndProp(item.type);
       }}
       onPointerEnter={() => {
-        onDragOverProp(type);
+        onDragOverProp(item.type);
       }}
       style={{ pointerEvents: isDragging ? "none" : "auto" }}
     >
-      <p className={styles.item}> {type} </p>
+      <p className={styles.item} aria-label="paragraph">
+        {item.type}
+      </p>
     </motion.div>
   );
 };
