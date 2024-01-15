@@ -154,11 +154,10 @@ export const Board = () => {
             {row.map(({ id, type }) => (
               <Item
                 key={id}
-                id={id}
-                type={type}
-                onDragEndProp={() => handleOnDragEnd()}
-                onDragStartProp={() => handleOnDragStart(type, id, index)}
-                onDragOverProp={() => handleOnDragOver(type, id, index)}
+                item={{ type, id }}
+                onDragEnd={() => handleOnDragEnd()}
+                onDragStart={() => handleOnDragStart(type, id, index)}
+                onDragOver={() => handleOnDragOver(type, id, index)}
               />
             ))}
           </div>
