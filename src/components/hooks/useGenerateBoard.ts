@@ -1,16 +1,16 @@
 import React from "react";
-import { BoardItem, Board, BoardRow } from "../types";
+import { BoardItem, Board } from "../types";
 import { uniqueId, random } from "lodash";
 
-const emojiItems = ["🍌", "🍑", "🍓", "🥝", "🍒"];
-const boardWidth = 5;
+export const emojiItems = ["🍌", "🍑", "🍓", "🥝", "🍒"];
+export const boardWidth = 5;
 
-const generateRandomBoardItem = (): BoardItem => {
+export const generateRandomBoardItem = (): BoardItem => {
   const randomEmoji = emojiItems[random(boardWidth - 1)];
   return { id: uniqueId(), type: randomEmoji };
 };
 
-const generateItems = (): BoardItem[] => {
+export const generateItems = (): BoardItem[] => {
   const randomItems: BoardItem[] = [];
 
   for (let i = 0; i < boardWidth; i++) {
