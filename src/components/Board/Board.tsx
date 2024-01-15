@@ -3,11 +3,11 @@ import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
 import { range, forEach } from "lodash";
-import { useGenerateBoard } from "../hooks/useGenerateBoard";
+import { generateBoard } from "../utils/generateBoard";
 import { findIndexById } from "../utils/findIndexById";
 
 export const Board = () => {
-  const randomBoard = useGenerateBoard();
+  const randomBoard = generateBoard();
   const [legalMoves, setLegalMoves] = useState<string[] | undefined>();
 
   const [boardState, setBoardState] = useState<BoardType>(randomBoard);
