@@ -1,4 +1,8 @@
 {
-    "eslint.run": "onSave",
-    "editor.dragAndDrop": true
+  "eslint.run": "onType",
+  "editor.dragAndDrop": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+  },
+  "eslint.validate": ["javascript"],
 }
