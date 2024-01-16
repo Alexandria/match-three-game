@@ -24,7 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint-staged": "eslint --fix && prettier --cache --write"
+    "lint-staged": "eslint --fix && prettier --cache --write",
+    "changelog": "changelog generate"
   },
   "eslintConfig": {
     "extends": [
