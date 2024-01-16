@@ -141,7 +141,7 @@ export const Board = () => {
   }, [boardState, checkForMatches]);
 
   return (
-    <motion.div>
+    <motion.div aria-label="game board">
       {boardState.map((row, index) => {
         return (
           <div

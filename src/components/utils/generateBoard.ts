@@ -1,4 +1,3 @@
-import React from "react";
 import { BoardItem, Board } from "../types";
 import { uniqueId, random } from "lodash";
 
