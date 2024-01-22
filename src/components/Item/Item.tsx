@@ -15,6 +15,7 @@ export const Item = ({
 
   return (
     <motion.div
+      className={styles.itemContainer}
       aria-label="draggable-item"
       dragSnapToOrigin
       dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
