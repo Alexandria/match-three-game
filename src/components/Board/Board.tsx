@@ -1,21 +1,22 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
-import { range, forEach } from "lodash";
+import { forEach, some } from "lodash";
 import { generateBoard } from "../utils/generateBoard";
 import { findIndexById } from "../utils/findIndexById";
+import { mockBoard } from "../fixtures";
 
 export const Board = () => {
   const randomBoard = generateBoard();
   const [legalMoves, setLegalMoves] = useState<string[] | undefined>();
 
-  const [boardState, setBoardState] = useState<BoardType>(randomBoard);
+  const [boardState, setBoardState] = useState<BoardType>(mockBoard);
 
   const [draggedItem, setDraggedItem] = useState("");
   const [draggedOverItem, setDraggedOverItem] = useState("");
 
-  const handleOnDragStart = (type: string, id: string, rowIndex: number) => {
+  const handleOnDragStart = (id: string, rowIndex: number) => {
     let adjacentMoves: string[] = [];
     const currentRow = boardState[rowIndex];
     const currentColIndex = currentRow?.findIndex((item) => item.id === id)!;
@@ -41,12 +42,15 @@ export const Board = () => {
     setLegalMoves(adjacentMoves);
   };
 
+  // I need to actually end out of this loop when the desired effect takes places
+  // Currently it looks like the function always returns undfined even when there is a match.
+
   const checkForMatches = useCallback(
     (
       items: BoardItem[],
       start?: number,
       end?: number
-    ): BoardItem[] | undefined => {
+    ): string[] | undefined => {
       const row = [...items];
       const startIndex = start ? start : 0;
       const endIndex = end ? end : 5;
@@ -56,44 +60,73 @@ export const Board = () => {
           : row.slice(startIndex, endIndex);
       const sectionLength = sectionToCheckForMatches.length;
       const firstItemInSection = sectionToCheckForMatches[0];
+      const idsOfSection: string[] = [];
 
+      // Basecase
       if (
-        sectionToCheckForMatches.every(
-          (item) => item.type === firstItemInSection.type
-        )
+        sectionToCheckForMatches.every((item) => {
+          idsOfSection.push(item.id);
+          return item.type === firstItemInSection.type;
+        })
       ) {
         console.warn(
-          `We have a match of ${sectionLength}!! of type ${firstItemInSection.type}`
+          `We have a match of ${sectionLength}!! of type ${firstItemInSection.type}: StartNdx: ${startIndex} EndNdx: ${endIndex}`
         );
-        return sectionToCheckForMatches;
-      }
 
-      if (endIndex === 5) {
-        checkForMatches(items, 0, 4);
-      }
+        return idsOfSection;
+        // EndBase Case
+      } else {
+        if (endIndex === 5) {
+          return checkForMatches(items, 0, 4);
+        }
 
-      if (sectionLength === 4 && startIndex === 0) {
-        checkForMatches(items, 1, 6);
-      }
+        if (sectionLength === 4 && startIndex === 0) {
+          return checkForMatches(items, 1, 6);
+        }
 
-      if (sectionLength === 4 && startIndex === 1) {
-        checkForMatches(items, 0, 3);
-      }
+        if (sectionLength === 4 && startIndex === 1) {
+          return checkForMatches(items, 0, 3);
+        }
 
-      if (sectionLength === 3 && startIndex === 0) {
-        checkForMatches(items, 1, 4);
-      }
+        if (sectionLength === 3 && startIndex === 0) {
+          return checkForMatches(items, 1, 4);
+        }
 
-      if (sectionLength === 3 && startIndex === 1) {
-        checkForMatches(items, 2, 6);
-      }
-
-      if (sectionLength === 3 && startIndex === 2) {
+        if (sectionLength === 3 && startIndex === 1) {
+          return checkForMatches(items, 2, 6);
+        }
         return;
       }
     },
     []
   );
+
+  const removeById = (itemsToRemove: string[]) => (item: BoardItem) => {
+    if (itemsToRemove.includes(item.id)) {
+      item.type = "";
+    }
+  };
+
+  const removeMatchesFromBoard = useCallback(() => {
+    some(boardState, (row, colIndex) => {
+      const column: BoardItem[] = [];
+
+      const indexOfMatches = checkForMatches(row);
+      if (indexOfMatches) {
+        some(row, removeById(indexOfMatches));
+        return true;
+      }
+      forEach(row, (value, rowIndex) => {
+        const col = boardState[rowIndex][colIndex];
+        column.push(col);
+      });
+      const indexOfColMatches = checkForMatches(column);
+      if (indexOfColMatches) {
+        some(column, removeById(indexOfColMatches));
+        return true;
+      }
+    });
+  }, [boardState, checkForMatches]);
 
   const handleOnDragEnd = useCallback(() => {
     if (!draggedItem || !draggedOverItem) return;
@@ -112,11 +145,13 @@ export const Board = () => {
     boardState[draggedOverItemIndex.row][draggedOverItemIndex.col] =
       itemBeingDragged;
 
+    removeMatchesFromBoard();
+
     setBoardState([...boardState]);
-  }, [boardState, draggedItem, draggedOverItem]);
+  }, [boardState, draggedItem, draggedOverItem, removeMatchesFromBoard]);
 
   const handleOnDragOver = useCallback(
-    (type: string, id: string, rowIndex: number) => {
+    (id: string) => {
       if (!legalMoves || !draggedItem) return;
 
       if (legalMoves.includes(id)) {
@@ -127,18 +162,6 @@ export const Board = () => {
     },
     [draggedItem, legalMoves, setDraggedOverItem]
   );
-
-  useEffect(() => {
-    boardState.forEach((row, index) => {
-      const column: BoardItem[] = [];
-      checkForMatches(row);
-      forEach(range(5), (colIndex) => {
-        const col = boardState[colIndex][index];
-        column.push(col);
-      });
-      checkForMatches(column);
-    });
-  }, [boardState, checkForMatches]);
 
   return (
     <motion.div aria-label="game board">
@@ -156,8 +179,8 @@ export const Board = () => {
                 key={id}
                 item={{ type, id }}
                 onDragEnd={() => handleOnDragEnd()}
-                onDragStart={() => handleOnDragStart(type, id, index)}
-                onDragOver={() => handleOnDragOver(type, id, index)}
+                onDragStart={() => handleOnDragStart(id, index)}
+                onDragOver={() => handleOnDragOver(id)}
               />
             ))}
           </div>
