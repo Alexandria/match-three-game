@@ -3,9 +3,9 @@ import { Board } from "./types";
 export const mockBoard: Board = [
   [
     { id: "1", type: "🍓" },
-    { id: "2", type: "🍒" },
+    { id: "2", type: "🍓" },
     { id: "3", type: "🍓" },
-    { id: "4", type: "🍓" },
+    { id: "4", type: "🍑" },
     { id: "5", type: "🍑" },
   ],
   [
