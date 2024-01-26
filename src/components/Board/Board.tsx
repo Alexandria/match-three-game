@@ -1,15 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
 import { forEach, some } from "lodash";
-import { generateBoard, generateRandomEmoji } from "../utils/generateBoard";
+import { generateRandomEmoji } from "../utils/generateBoard";
 import { findIndexById } from "../utils/findIndexById";
 import { mockBoard } from "../fixtures";
 import style from "./Board.module.css";
 
 export const Board = () => {
-  const randomBoard = generateBoard();
   const [legalMoves, setLegalMoves] = useState<string[] | undefined>();
 
   const [boardState, setBoardState] = useState<BoardType>(mockBoard);
