@@ -1,9 +1,9 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
 import { forEach, some } from "lodash";
-import { generateBoard } from "../utils/generateBoard";
+import { generateBoard, generateRandomEmoji } from "../utils/generateBoard";
 import { findIndexById } from "../utils/findIndexById";
 import { mockBoard } from "../fixtures";
 
@@ -114,7 +114,6 @@ export const Board = () => {
       const indexOfMatches = checkForMatches(row);
       if (indexOfMatches) {
         some(row, removeById(indexOfMatches));
-        return true;
       }
       forEach(row, (value, rowIndex) => {
         const col = boardState[rowIndex][colIndex];
@@ -127,6 +126,31 @@ export const Board = () => {
       }
     });
   }, [boardState, checkForMatches]);
+
+  const fillBoardFromTheTop = useCallback(() => {
+    forEach(boardState, (row, rowIndex) => {
+      debugger;
+      forEach(row, (item, colIndex) => {
+        if (rowIndex === 0 && !item.type) {
+          item.type = generateRandomEmoji();
+        }
+      });
+    });
+  }, [boardState]);
+
+  const moveItemsDown = useCallback(() => {
+    forEach(boardState, (row, rowIndex) => {
+      forEach(row, (item, colIndex) => {
+        if (rowIndex === 0) return false;
+        if (item.type === "") {
+          const itemAbove = boardState[rowIndex - 1][colIndex];
+          const currentItem = boardState[rowIndex][colIndex];
+          boardState[rowIndex][colIndex] = itemAbove;
+          boardState[rowIndex - 1][colIndex] = currentItem;
+        }
+      });
+    });
+  }, [boardState]);
 
   const handleOnDragEnd = useCallback(() => {
     if (!draggedItem || !draggedOverItem) return;
@@ -146,9 +170,25 @@ export const Board = () => {
       itemBeingDragged;
 
     removeMatchesFromBoard();
+    let boardHasEmptySpots: boolean = false;
 
+    do {
+      moveItemsDown();
+      fillBoardFromTheTop();
+      removeMatchesFromBoard();
+      boardHasEmptySpots = some(boardState, (row) =>
+        some(row, (item) => item.type === "")
+      );
+    } while (boardHasEmptySpots);
     setBoardState([...boardState]);
-  }, [boardState, draggedItem, draggedOverItem, removeMatchesFromBoard]);
+  }, [
+    boardState,
+    draggedItem,
+    draggedOverItem,
+    removeMatchesFromBoard,
+    fillBoardFromTheTop,
+    moveItemsDown,
+  ]);
 
   const handleOnDragOver = useCallback(
     (id: string) => {
@@ -162,6 +202,13 @@ export const Board = () => {
     },
     [draggedItem, legalMoves, setDraggedOverItem]
   );
+
+  // useEffect(() => {
+  //   if(){
+  //     moveItemsDown();
+  //     fillBoardFromTheTop();
+  //   }
+  // }, [boardState, fillBoardFromTheTop, moveItemsDown]);
 
   return (
     <motion.div aria-label="game board">
