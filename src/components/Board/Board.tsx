@@ -6,6 +6,7 @@ import { forEach, some } from "lodash";
 import { generateBoard, generateRandomEmoji } from "../utils/generateBoard";
 import { findIndexById } from "../utils/findIndexById";
 import { mockBoard } from "../fixtures";
+import style from "./Board.module.css";
 
 export const Board = () => {
   const randomBoard = generateBoard();
@@ -15,6 +16,7 @@ export const Board = () => {
 
   const [draggedItem, setDraggedItem] = useState("");
   const [draggedOverItem, setDraggedOverItem] = useState("");
+  const [score, setScore] = useState(0);
 
   const handleOnDragStart = (id: string, rowIndex: number) => {
     let adjacentMoves: string[] = [];
@@ -114,6 +116,8 @@ export const Board = () => {
       const indexOfMatches = checkForMatches(row);
       if (indexOfMatches) {
         some(row, removeById(indexOfMatches));
+        const points = indexOfMatches.length * 3;
+        setScore(score + points);
       }
       forEach(row, (value, rowIndex) => {
         const col = boardState[rowIndex][colIndex];
@@ -122,10 +126,11 @@ export const Board = () => {
       const indexOfColMatches = checkForMatches(column);
       if (indexOfColMatches) {
         some(column, removeById(indexOfColMatches));
-        return true;
+        const points = indexOfColMatches.length * 3;
+        setScore(score + points);
       }
     });
-  }, [boardState, checkForMatches]);
+  }, [boardState, checkForMatches, score]);
 
   const fillBoardFromTheTop = useCallback(() => {
     forEach(boardState, (row, rowIndex) => {
@@ -203,36 +208,32 @@ export const Board = () => {
     [draggedItem, legalMoves, setDraggedOverItem]
   );
 
-  // useEffect(() => {
-  //   if(){
-  //     moveItemsDown();
-  //     fillBoardFromTheTop();
-  //   }
-  // }, [boardState, fillBoardFromTheTop, moveItemsDown]);
-
   return (
-    <motion.div aria-label="game board">
-      {boardState.map((row, index) => {
-        return (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              flexDirection: "row",
-            }}
-          >
-            {row.map(({ id, type }) => (
-              <Item
-                key={id}
-                item={{ type, id }}
-                onDragEnd={() => handleOnDragEnd()}
-                onDragStart={() => handleOnDragStart(id, index)}
-                onDragOver={() => handleOnDragOver(id)}
-              />
-            ))}
-          </div>
-        );
-      })}
-    </motion.div>
+    <div>
+      <p>{score}</p>
+      <motion.div aria-label="game board" className={style.Board}>
+        {boardState.map((row, index) => {
+          return (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              {row.map(({ id, type }) => (
+                <Item
+                  key={id}
+                  item={{ type, id }}
+                  onDragEnd={() => handleOnDragEnd()}
+                  onDragStart={() => handleOnDragStart(id, index)}
+                  onDragOver={() => handleOnDragOver(id)}
+                />
+              ))}
+            </div>
+          );
+        })}
+      </motion.div>
+    </div>
   );
 };
