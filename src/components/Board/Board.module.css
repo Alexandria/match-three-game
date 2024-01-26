@@ -1,0 +1,8 @@
+.Board {
+  border: 10px double #49515f;
+}
+
+p {
+  font-size: 2rem;
+  color: aliceblue;
+}

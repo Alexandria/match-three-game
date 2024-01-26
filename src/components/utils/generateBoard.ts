@@ -4,9 +4,12 @@ import { uniqueId, random } from "lodash";
 export const emojiItems = ["🍌", "🍑", "🍓", "🥝", "🍒"];
 export const boardWidth = 5;
 
-export const generateRandomBoardItem = (): BoardItem => {
-  const randomEmoji = emojiItems[random(boardWidth - 1)];
-  return { id: uniqueId(), type: randomEmoji };
+export const generateRandomEmoji = () => {
+  return emojiItems[random(boardWidth - 1)];
+};
+
+export const generateRandomBoardItem = (emptyItem?: boolean): BoardItem => {
+  return { id: uniqueId(), type: emptyItem ? "" : generateRandomEmoji() };
 };
 
 export const generateItems = (): BoardItem[] => {
