@@ -5,17 +5,18 @@ export const emojiItems = ["🍌", "🍑", "🍓", "🥝", "🍒"];
 export const boardWidth = 5;
 
 export const generateRandomEmoji = () => {
-  return emojiItems[random(boardWidth - 1)];
+  const emojiOptions = emojiItems.length - 1;
+  return emojiItems[random(emojiOptions)];
 };
 
 export const generateRandomBoardItem = (emptyItem?: boolean): BoardItem => {
   return { id: uniqueId(), type: emptyItem ? "" : generateRandomEmoji() };
 };
 
-export const generateItems = (): BoardItem[] => {
+export const generateItems = (size: number): BoardItem[] => {
   const randomItems: BoardItem[] = [];
 
-  for (let i = 0; i < boardWidth; i++) {
+  for (let i = 0; i < size; i++) {
     const randomEmoji = generateRandomBoardItem();
     randomItems.push(randomEmoji);
   }
@@ -23,10 +24,10 @@ export const generateItems = (): BoardItem[] => {
   return randomItems;
 };
 
-export const generateBoard = (): Board => {
+export const generateBoard = (size: number): Board => {
   const board: Board = [];
-  for (let i = 0; i < boardWidth; i++) {
-    board.push(generateItems());
+  for (let i = 0; i < size; i++) {
+    board.push(generateItems(size));
   }
 
   return board;
