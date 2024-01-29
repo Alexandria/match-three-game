@@ -3,10 +3,12 @@ import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { Board as BoardType, BoardItem } from "../types";
 import { forEach, some } from "lodash";
-import { generateRandomEmoji } from "../utils/generateBoard";
+import { boardWidth, generateRandomEmoji } from "../utils/generateBoard";
 import { findIndexById } from "../utils/findIndexById";
 import { mockBoard } from "../fixtures";
 import style from "./Board.module.css";
+import { moveItemsDown } from "../utils/moveItemsDown";
+import { checkForMatches } from "../utils/checkForMatches";
 
 export const Board = () => {
   const [legalMoves, setLegalMoves] = useState<string[] | undefined>();
@@ -24,7 +26,7 @@ export const Board = () => {
 
     setDraggedItem(id);
 
-    if (currentColIndex + 1 <= 4) {
+    if (currentColIndex + 1 <= boardWidth - 1) {
       adjacentMoves.push(currentRow[currentColIndex + 1].id);
     }
 
@@ -36,71 +38,12 @@ export const Board = () => {
       adjacentMoves.push(boardState[rowIndex - 1][currentColIndex].id);
     }
 
-    if (rowIndex + 1 <= 4) {
+    if (rowIndex + 1 <= boardWidth - 1) {
       adjacentMoves.push(boardState[rowIndex + 1][currentColIndex].id);
     }
 
     setLegalMoves(adjacentMoves);
   };
-
-  // I need to actually end out of this loop when the desired effect takes places
-  // Currently it looks like the function always returns undfined even when there is a match.
-
-  const checkForMatches = useCallback(
-    (
-      items: BoardItem[],
-      start?: number,
-      end?: number
-    ): string[] | undefined => {
-      const row = [...items];
-      const startIndex = start ? start : 0;
-      const endIndex = end ? end : 5;
-      const sectionToCheckForMatches =
-        endIndex === 5
-          ? row.slice(startIndex)
-          : row.slice(startIndex, endIndex);
-      const sectionLength = sectionToCheckForMatches.length;
-      const firstItemInSection = sectionToCheckForMatches[0];
-      const idsOfSection: string[] = [];
-
-      // Basecase
-      if (
-        sectionToCheckForMatches.every((item) => {
-          idsOfSection.push(item.id);
-          return item.type === firstItemInSection.type;
-        })
-      ) {
-        console.warn(
-          `We have a match of ${sectionLength}!! of type ${firstItemInSection.type}: StartNdx: ${startIndex} EndNdx: ${endIndex}`
-        );
-
-        return idsOfSection;
-        // EndBase Case
-      } else {
-        if (endIndex === 5) {
-          return checkForMatches(items, 0, 4);
-        }
-
-        if (sectionLength === 4 && startIndex === 0) {
-          return checkForMatches(items, 1, 6);
-        }
-
-        if (sectionLength === 4 && startIndex === 1) {
-          return checkForMatches(items, 0, 3);
-        }
-
-        if (sectionLength === 3 && startIndex === 0) {
-          return checkForMatches(items, 1, 4);
-        }
-
-        if (sectionLength === 3 && startIndex === 1) {
-          return checkForMatches(items, 2, 6);
-        }
-        return;
-      }
-    },
-    []
-  );
 
   const removeById = (itemsToRemove: string[]) => (item: BoardItem) => {
     if (itemsToRemove.includes(item.id)) {
@@ -129,30 +72,13 @@ export const Board = () => {
         setScore(score + points);
       }
     });
-  }, [boardState, checkForMatches, score]);
+  }, [boardState, score]);
 
-  const fillBoardFromTheTop = useCallback(() => {
-    forEach(boardState, (row, rowIndex) => {
-      debugger;
-      forEach(row, (item, colIndex) => {
-        if (rowIndex === 0 && !item.type) {
-          item.type = generateRandomEmoji();
-        }
-      });
-    });
-  }, [boardState]);
-
-  const moveItemsDown = useCallback(() => {
-    forEach(boardState, (row, rowIndex) => {
-      forEach(row, (item, colIndex) => {
-        if (rowIndex === 0) return false;
-        if (item.type === "") {
-          const itemAbove = boardState[rowIndex - 1][colIndex];
-          const currentItem = boardState[rowIndex][colIndex];
-          boardState[rowIndex][colIndex] = itemAbove;
-          boardState[rowIndex - 1][colIndex] = currentItem;
-        }
-      });
+  const fillTopRow = useCallback(() => {
+    forEach(boardState[0], (item) => {
+      if (!item.type) {
+        item.type = generateRandomEmoji();
+      }
     });
   }, [boardState]);
 
@@ -173,25 +99,24 @@ export const Board = () => {
     boardState[draggedOverItemIndex.row][draggedOverItemIndex.col] =
       itemBeingDragged;
 
-    removeMatchesFromBoard();
     let boardHasEmptySpots: boolean = false;
 
     do {
-      moveItemsDown();
-      fillBoardFromTheTop();
       removeMatchesFromBoard();
+      moveItemsDown(boardState);
       boardHasEmptySpots = some(boardState, (row) =>
         some(row, (item) => item.type === "")
       );
+      fillTopRow();
     } while (boardHasEmptySpots);
+
     setBoardState([...boardState]);
   }, [
     boardState,
     draggedItem,
     draggedOverItem,
     removeMatchesFromBoard,
-    fillBoardFromTheTop,
-    moveItemsDown,
+    fillTopRow,
   ]);
 
   const handleOnDragOver = useCallback(
