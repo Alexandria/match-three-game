@@ -3,7 +3,7 @@ import {
   generateItems,
   generateRandomBoardItem,
   generateBoard,
-} from "./generateBoard";
+} from "../generateBoard";
 
 const boardWidth = 3;
 
