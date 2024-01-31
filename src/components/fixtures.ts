@@ -1,4 +1,4 @@
-import { Board } from "./types";
+import { Board, BoardRow } from "./types";
 
 export const mockBoard: Board = [
   [
@@ -93,3 +93,11 @@ export const mockBoardSize3 = [
     { id: "13", type: "🍒" },
   ],
 ];
+
+export const updateRowInMockBoard = (row: BoardRow, indexToReplace: number) => {
+  const newBoard = [...mockBoard];
+
+  newBoard.splice(indexToReplace, 1, row);
+
+  return newBoard;
+};
