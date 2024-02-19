@@ -1,51 +1,36 @@
 import { BoardItem } from "../types";
+import { size, map } from "lodash";
 
-export const checkForMatches = (
+export const checkForMatchesV2 = (
   items: BoardItem[],
   start?: number,
   end?: number
 ): string[] | undefined => {
-  const row = [...items];
   const startIndex = start ? start : 0;
   const endIndex = end ? end : 5;
-  const sectionToCheckForMatches =
-    endIndex === 5 ? row.slice(startIndex) : row.slice(startIndex, endIndex);
-  const sectionLength = sectionToCheckForMatches.length;
-  const firstItemInSection = sectionToCheckForMatches[0];
-  const idsOfSection: string[] = [];
+  const sectionToCheckForMatches = items.slice(startIndex, endIndex);
 
-  if (
-    sectionToCheckForMatches.every((item) => {
-      idsOfSection.push(item.id);
-      return item.type === firstItemInSection.type;
-    })
-  ) {
-    console.warn(
-      `We have a match of ${sectionLength}!! of type ${firstItemInSection.type}: StartNdx: ${startIndex} EndNdx: ${endIndex}`
-    );
+  const allItemsMatch = sectionToCheckForMatches.every((item) => {
+    return item.type === sectionToCheckForMatches[0].type;
+  });
 
-    return idsOfSection;
+  if (allItemsMatch) {
+    return map(sectionToCheckForMatches, (item) => item.id);
     // EndBase Case
-  } else {
-    if (endIndex === 5) {
-      return checkForMatches(items, 0, 4);
-    }
+  }
 
-    if (sectionLength === 4 && startIndex === 0) {
-      return checkForMatches(items, 1, 6);
-    }
+  if (size(sectionToCheckForMatches) === 5) {
+    if (startIndex === 0) return checkForMatchesV2([...items], 0, 4);
+  }
 
-    if (sectionLength === 4 && startIndex === 1) {
-      return checkForMatches(items, 0, 3);
-    }
+  if (size(sectionToCheckForMatches) === 4) {
+    if (startIndex === 0) return checkForMatchesV2([...items], 1, 5);
+    if (startIndex === 1) return checkForMatchesV2([...items], 0, 3);
+  }
 
-    if (sectionLength === 3 && startIndex === 0) {
-      return checkForMatches(items, 1, 4);
-    }
-
-    if (sectionLength === 3 && startIndex === 1) {
-      return checkForMatches(items, 2, 6);
-    }
-    return;
+  if (size(sectionToCheckForMatches) === 3) {
+    if (startIndex === 0) return checkForMatchesV2([...items], 1, 4);
+    if (startIndex === 1) return checkForMatchesV2([...items], 2, 6);
+    if (startIndex === 2) return;
   }
 };

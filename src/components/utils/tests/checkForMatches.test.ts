@@ -1,8 +1,8 @@
 import { updateRowInMockBoard } from "../../fixtures";
 import { BoardRow } from "../../types";
-import { checkForMatches } from "../checkForMatches";
+import { checkForMatchesV2 } from "../checkForMatches";
 
-describe("checkForMatches", () => {
+describe("checkForMatchesV2", () => {
   describe("when checking for a match of 5", () => {
     const row5: BoardRow = [
       { id: "1", type: "🍓" },
@@ -12,10 +12,11 @@ describe("checkForMatches", () => {
       { id: "5", type: "🍓" },
     ];
     it("will return the ids of all matching items if there is a match of 5", () => {
-      const matchingIds = checkForMatches(row5);
+      const matchingIds = checkForMatchesV2(row5);
       expect(matchingIds).toEqual(
         expect.arrayContaining(["1", "2", "3", "4", "5"])
       );
+      expect(matchingIds).toHaveLength(5);
     });
   });
   describe("when checking for a match of 4", () => {
@@ -27,16 +28,18 @@ describe("checkForMatches", () => {
       { id: "5", type: "🍌" },
     ];
     it("will return the ids of all matching items if the match started at index 0", () => {
-      const matchingIds = checkForMatches(row4);
+      const matchingIds = checkForMatchesV2(row4);
       expect(matchingIds).toEqual(expect.arrayContaining(["1", "2", "3", "4"]));
+      expect(matchingIds).toHaveLength(4);
     });
 
     it("will return the ids of all matching items if the match started at index 1", () => {
       const newRow = [...row4];
       newRow.splice(0, 1, { id: "1", type: "🍌" });
       newRow.splice(4, 1, { id: "5", type: "🍓" });
-      const matchingIds = checkForMatches(newRow);
+      const matchingIds = checkForMatchesV2(newRow);
       expect(matchingIds).toEqual(expect.arrayContaining(["2", "3", "4", "5"]));
+      expect(matchingIds).toHaveLength(4);
     });
   });
   describe("when checking for a match of 3", () => {
@@ -48,16 +51,18 @@ describe("checkForMatches", () => {
       { id: "5", type: "🍌" },
     ];
     it("will return the ids of all matching items if the match started at 0", () => {
-      const matchingIds = checkForMatches(row3);
+      const matchingIds = checkForMatchesV2(row3);
       expect(matchingIds).toEqual(expect.arrayContaining(["1", "2", "3"]));
+      expect(matchingIds).toHaveLength(3);
     });
 
     it("will return the ids of all matching items if the match started at 1", () => {
       const newRow = [...row3];
       newRow.unshift({ id: "5", type: "🍌" });
       newRow.pop();
-      const matchingIds = checkForMatches(newRow);
+      const matchingIds = checkForMatchesV2(newRow);
       expect(matchingIds).toEqual(expect.arrayContaining(["1", "2", "3"]));
+      expect(matchingIds).toHaveLength(3);
     });
 
     it("will return the ids of all matching items if the match started at 2", () => {
@@ -65,8 +70,9 @@ describe("checkForMatches", () => {
       newRow.unshift({ id: "5", type: "🍌" }, { id: "4", type: "🍑" });
       newRow.pop();
       newRow.pop();
-      const matchingIds = checkForMatches(newRow);
+      const matchingIds = checkForMatchesV2(newRow);
       expect(matchingIds).toEqual(expect.arrayContaining(["1", "2", "3"]));
+      expect(matchingIds).toHaveLength(3);
     });
   });
   describe("when there is no matches", () => {
@@ -78,7 +84,7 @@ describe("checkForMatches", () => {
       { id: "10", type: "🍑" },
     ];
     it("will return undefined", () => {
-      const matchingIds = checkForMatches(row);
+      const matchingIds = checkForMatchesV2(row);
       expect(matchingIds).toEqual(undefined);
     });
   });
