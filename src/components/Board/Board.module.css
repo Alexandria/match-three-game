@@ -1,5 +1,7 @@
 .Board {
-  border: 10px double #49515f;
+  border: 10px groove #e2d1b6;
+  /* background-image: url("https://unsplash.com/photos/yellow-painted-wall-ZK1WQDMQvik"); */
+  /* #49515f */
 }
 
 p {
