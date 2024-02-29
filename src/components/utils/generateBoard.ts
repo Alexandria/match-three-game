@@ -27,7 +27,7 @@ export const generateItems = (size: number): BoardItem[] => {
 export const generateBoard = (size: number): Board => {
   const board: Board = [];
   for (let i = 0; i < size; i++) {
-    board.push(generateItems(size));
+    board.push(generateItems(5));
   }
 
   return board;
