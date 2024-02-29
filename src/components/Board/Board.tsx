@@ -1,19 +1,20 @@
 import React, { useCallback, useState } from "react";
 import { Item } from "../Item";
 import { motion } from "framer-motion";
-import { Board as BoardType, BoardItem } from "../types";
-import { forEach, some } from "lodash";
-import { boardWidth, generateRandomEmoji } from "../utils/generateBoard";
+import { boardWidth } from "../utils/generateBoard";
 import { findIndexById } from "../utils/findIndexById";
 import { mockBoard } from "../fixtures";
 import style from "./Board.module.css";
 import { moveItemsDown } from "../utils/moveItemsDown";
-import { checkForMatches } from "../utils/checkForMatches";
+import {
+  removeColumnMatches,
+  removeRowMatches,
+} from "../utils/removeMatchedItems";
+
+const boardState = mockBoard;
 
 export const Board = () => {
   const [legalMoves, setLegalMoves] = useState<string[] | undefined>();
-
-  const [boardState, setBoardState] = useState<BoardType>(mockBoard);
 
   const [draggedItem, setDraggedItem] = useState("");
   const [draggedOverItem, setDraggedOverItem] = useState("");
@@ -45,43 +46,6 @@ export const Board = () => {
     setLegalMoves(adjacentMoves);
   };
 
-  const removeById = (itemsToRemove: string[]) => (item: BoardItem) => {
-    if (itemsToRemove.includes(item.id)) {
-      item.type = "";
-    }
-  };
-
-  const removeMatchesFromBoard = useCallback(() => {
-    some(boardState, (row, colIndex) => {
-      const column: BoardItem[] = [];
-
-      const indexOfMatches = checkForMatches(row);
-      if (indexOfMatches) {
-        some(row, removeById(indexOfMatches));
-        const points = indexOfMatches.length * 3;
-        setScore(score + points);
-      }
-      forEach(row, (value, rowIndex) => {
-        const col = boardState[rowIndex][colIndex];
-        column.push(col);
-      });
-      const indexOfColMatches = checkForMatches(column);
-      if (indexOfColMatches) {
-        some(column, removeById(indexOfColMatches));
-        const points = indexOfColMatches.length * 3;
-        setScore(score + points);
-      }
-    });
-  }, [boardState, score]);
-
-  const fillTopRow = useCallback(() => {
-    forEach(boardState[0], (item) => {
-      if (!item.type) {
-        item.type = generateRandomEmoji();
-      }
-    });
-  }, [boardState]);
-
   const handleOnDragEnd = useCallback(() => {
     if (!draggedItem || !draggedOverItem) return;
 
@@ -99,25 +63,18 @@ export const Board = () => {
     boardState[draggedOverItemIndex.row][draggedOverItemIndex.col] =
       itemBeingDragged;
 
-    let boardHasEmptySpots: boolean = false;
+    let boardHasMatches: boolean = true;
 
     do {
-      removeMatchesFromBoard();
+      const rowMatchesRemoved = removeRowMatches(boardState, setScore);
+      const colMatchesRemoved = removeColumnMatches(boardState, setScore);
       moveItemsDown(boardState);
-      boardHasEmptySpots = some(boardState, (row) =>
-        some(row, (item) => item.type === "")
-      );
-      fillTopRow();
-    } while (boardHasEmptySpots);
-
-    setBoardState([...boardState]);
-  }, [
-    boardState,
-    draggedItem,
-    draggedOverItem,
-    removeMatchesFromBoard,
-    fillTopRow,
-  ]);
+      const matchesFound = rowMatchesRemoved || colMatchesRemoved;
+      if (!matchesFound) {
+        boardHasMatches = false;
+      }
+    } while (boardHasMatches);
+  }, [draggedItem, draggedOverItem]);
 
   const handleOnDragOver = useCallback(
     (id: string) => {
@@ -135,6 +92,38 @@ export const Board = () => {
   return (
     <div>
       <p>{score}</p>
+      {/* <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          //background: "Menu",
+        }}
+      >
+        {upComingRow.map((item, index) => {
+          return (
+            <motion.div
+              key={index}
+              style={{
+                fontSize: " 2.8rem",
+                margin: "1.1rem",
+                //background: "AppWorkspace",
+                visibility: item.visibility ? "visible" : "hidden",
+              }}
+              animate={{ y: item.animate ? 100 : 0 }}
+              transition={{
+                type: "spring",
+                duration: 1,
+                bounce: 0.6,
+              }}
+              onAnimationStart={() => setAnimateTopRow(true)}
+              onAnimationEnd={() => setAnimateTopRow(false)}
+            >
+              {item.type}
+            </motion.div>
+          );
+        })}
+      </div> */}
       <motion.div aria-label="game board" className={style.Board}>
         {boardState.map((row, index) => {
           return (
@@ -145,15 +134,27 @@ export const Board = () => {
                 flexDirection: "row",
               }}
             >
-              {row.map(({ id, type }) => (
-                <Item
-                  key={id}
-                  item={{ type, id }}
-                  onDragEnd={() => handleOnDragEnd()}
-                  onDragStart={() => handleOnDragStart(id, index)}
-                  onDragOver={() => handleOnDragOver(id)}
-                />
-              ))}
+              {row.map(({ id, type, animate, visibility }) => {
+                if (index == 0) {
+                  return;
+                }
+
+                return (
+                  <Item
+                    key={id}
+                    animate={animate ?? false}
+                    item={{
+                      type,
+                      id,
+                      visibility: index > 0 ? true : false,
+                      draggable: index === 0 ? false : true,
+                    }}
+                    onDragEnd={() => handleOnDragEnd()}
+                    onDragStart={() => handleOnDragStart(id, index)}
+                    onDragOver={() => handleOnDragOver(id)}
+                  />
+                );
+              })}
             </div>
           );
         })}
