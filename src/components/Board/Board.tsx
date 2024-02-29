@@ -135,10 +135,6 @@ export const Board = () => {
               }}
             >
               {row.map(({ id, type, animate, visibility }) => {
-                if (index == 0) {
-                  return;
-                }
-
                 return (
                   <Item
                     key={id}
@@ -146,8 +142,8 @@ export const Board = () => {
                     item={{
                       type,
                       id,
-                      visibility: index > 0 ? true : false,
-                      draggable: index === 0 ? false : true,
+                      visibility,
+                      draggable: true,
                     }}
                     onDragEnd={() => handleOnDragEnd()}
                     onDragStart={() => handleOnDragStart(id, index)}
