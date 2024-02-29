@@ -1,4 +1,4 @@
-import { Board, BoardRow } from "./types";
+import { Board, BoardItem, BoardRow } from "./types";
 
 export const mockBoard: Board = [
   [
@@ -36,6 +36,13 @@ export const mockBoard: Board = [
     { id: "24", type: "🍑" },
     { id: "25", type: "🥝" },
   ],
+  [
+    { id: "26", type: "🍌" },
+    { id: "27", type: "🍒" },
+    { id: "28", type: "🍒" },
+    { id: "29", type: "🍑" },
+    { id: "30", type: "🥝" },
+  ],
 ];
 
 export const mockEmptyBoard: Board = [
@@ -60,12 +67,13 @@ export const mockEmptyBoard: Board = [
     { id: "14", type: "" },
     { id: "15", type: "" },
   ],
+
   [
     { id: "16", type: "🥝" },
     { id: "17", type: "🍌" },
     { id: "18", type: "🥝" },
-    { id: "19", type: "" },
-    { id: "20", type: "" },
+    { id: "19", type: "🍒" },
+    { id: "20", type: "🥝" },
   ],
   [
     { id: "21", type: "🍑" },
@@ -74,24 +82,21 @@ export const mockEmptyBoard: Board = [
     { id: "24", type: "🍑" },
     { id: "25", type: "🥝" },
   ],
+  [
+    { id: "26", type: "🍌" },
+    { id: "27", type: "🥝" },
+    { id: "28", type: "🍒" },
+    { id: "29", type: "🍌" },
+    { id: "30", type: "🥝" },
+  ],
 ];
 
-export const mockBoardSize3 = [
-  [
-    { id: "1", type: "🍓" },
-    { id: "2", type: "🍌" },
-    { id: "3", type: "🍓" },
-  ],
-  [
-    { id: "6", type: "🍌" },
-    { id: "7", type: "🍒" },
-    { id: "8", type: "🍌" },
-  ],
-  [
-    { id: "11", type: "🍑" },
-    { id: "12", type: "🍑" },
-    { id: "13", type: "🍒" },
-  ],
+export const mockUpcomingItems: Partial<BoardItem>[] = [
+  { type: "🥝" },
+  { type: "🍌" },
+  { type: "🍒" },
+  { type: "🍑" },
+  { type: "🍒" },
 ];
 
 export const updateRowInMockBoard = (row: BoardRow, indexToReplace: number) => {
