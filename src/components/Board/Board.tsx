@@ -92,38 +92,6 @@ export const Board = () => {
   return (
     <div>
       <p>{score}</p>
-      {/* <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          //background: "Menu",
-        }}
-      >
-        {upComingRow.map((item, index) => {
-          return (
-            <motion.div
-              key={index}
-              style={{
-                fontSize: " 2.8rem",
-                margin: "1.1rem",
-                //background: "AppWorkspace",
-                visibility: item.visibility ? "visible" : "hidden",
-              }}
-              animate={{ y: item.animate ? 100 : 0 }}
-              transition={{
-                type: "spring",
-                duration: 1,
-                bounce: 0.6,
-              }}
-              onAnimationStart={() => setAnimateTopRow(true)}
-              onAnimationEnd={() => setAnimateTopRow(false)}
-            >
-              {item.type}
-            </motion.div>
-          );
-        })}
-      </div> */}
       <motion.div aria-label="game board" className={style.Board}>
         {boardState.map((row, index) => {
           return (
