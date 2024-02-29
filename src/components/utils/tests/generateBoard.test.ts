@@ -8,10 +8,10 @@ import {
 const boardWidth = 3;
 
 describe("useGenerateBoard", () => {
-  it("will create a board that is boardWidth by boardWith", () => {
+  it("will create a board that is boardWidth by 5", () => {
     const randomBoard = generateBoard(boardWidth);
     expect(randomBoard).toHaveLength(boardWidth);
-    randomBoard.forEach((row) => expect(row).toHaveLength(boardWidth));
+    randomBoard.forEach((row) => expect(row).toHaveLength(5));
   });
 });
 
