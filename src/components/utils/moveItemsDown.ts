@@ -31,7 +31,6 @@ export const moveItemsDown = (board: Board): Board => {
   const isEverySpotFilled = every(board, (row) => {
     return every(row, (item) => item.type !== "");
   });
-  console.log("isEverySpotFilled", isEverySpotFilled);
 
   if (!isEverySpotFilled) {
     return moveItemsDown(board);
