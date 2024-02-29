@@ -1,24 +1,23 @@
-import * as React from "react";
-import { render, screen } from "@testing-library/react";
 import {
-  boardWidth,
   emojiItems,
   generateItems,
   generateRandomBoardItem,
   generateBoard,
-} from "./generateBoard";
+} from "../generateBoard";
+
+const boardWidth = 3;
 
 describe("useGenerateBoard", () => {
-  it("will create a board that is boardWidth by boardWith", () => {
-    const randomBoard = generateBoard();
+  it("will create a board that is boardWidth by 5", () => {
+    const randomBoard = generateBoard(boardWidth);
     expect(randomBoard).toHaveLength(boardWidth);
-    randomBoard.forEach((row) => expect(row).toHaveLength(boardWidth));
+    randomBoard.forEach((row) => expect(row).toHaveLength(5));
   });
 });
 
 describe("generateItems", () => {
   it("will generate an array of items at length of boardWidth", () => {
-    const newRow = generateItems();
+    const newRow = generateItems(boardWidth);
     expect(newRow).toHaveLength(boardWidth);
   });
 });

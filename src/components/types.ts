@@ -1,13 +1,10 @@
-export interface Item {
-  item: BoardItem;
-  onDragStart: (type?: string) => void;
-  onDragEnd: (type?: string) => void;
-  onDragOver: (type?: string) => void;
-}
-
 export interface BoardItem {
   type?: string;
   id: string;
+  animate?: boolean;
+  visibility?: boolean;
+  draggable?: boolean;
+  delay?: number;
 }
 
 export type BoardRow = BoardItem[];

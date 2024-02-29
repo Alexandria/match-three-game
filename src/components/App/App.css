@@ -1,5 +1,10 @@
 .App {
-  background-color: #282c34;
+  /* background-color: #282c34; */
+  /* Photo by <a href="https://unsplash.com/@janke?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Janke Laskowski</a> on <a href="https://unsplash.com/photos/a-man-riding-a-surfboard-on-top-of-a-wave-jz-ayLjk2nk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+   */
+  /* https://unsplash.com/photos/a-man-riding-a-surfboard-on-top-of-a-wave-jz-ayLjk2nk */
+  background-image: url("/public/janke-laskowski-unsplash.jpg");
+  background-size: 2000px;
   min-height: 100vh;
   display: flex;
   align-items: center;
