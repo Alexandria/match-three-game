@@ -91,7 +91,7 @@ export const Board = () => {
 
   return (
     <div>
-      <p>{score}</p>
+      {/* <p>{score}</p> */}
       <motion.div aria-label="game board" className={style.Board}>
         {boardState.map((row, index) => {
           return (
