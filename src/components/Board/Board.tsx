@@ -18,7 +18,6 @@ export const Board = () => {
 
   const [draggedItem, setDraggedItem] = useState("");
   const [draggedOverItem, setDraggedOverItem] = useState("");
-  const [score, setScore] = useState(0);
 
   const handleOnDragStart = (id: string, rowIndex: number) => {
     let adjacentMoves: string[] = [];
@@ -66,8 +65,8 @@ export const Board = () => {
     let boardHasMatches: boolean = true;
 
     do {
-      const rowMatchesRemoved = removeRowMatches(boardState, setScore);
-      const colMatchesRemoved = removeColumnMatches(boardState, setScore);
+      const rowMatchesRemoved = removeRowMatches(boardState, () => {});
+      const colMatchesRemoved = removeColumnMatches(boardState, () => {});
       moveItemsDown(boardState);
       const matchesFound = rowMatchesRemoved || colMatchesRemoved;
       if (!matchesFound) {
@@ -91,7 +90,6 @@ export const Board = () => {
 
   return (
     <div>
-      {/* <p>{score}</p> */}
       <motion.div aria-label="game board" className={style.Board}>
         {boardState.map((row, index) => {
           return (
