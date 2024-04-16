@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Item } from "../Item";
 import { motion } from "framer-motion";
 import { boardWidth } from "../utils/generateBoard";
@@ -6,15 +6,13 @@ import { findIndexById } from "../utils/findIndexById";
 import { mockBoard } from "../fixtures";
 import style from "./Board.module.css";
 import { moveItemsDown } from "../utils/moveItemsDown";
-import {
-  removeColumnMatches,
-  removeRowMatches,
-} from "../utils/removeMatchedItems";
+import { removeMatchedItems } from "../utils/removeMatchedItems";
 
-const boardState = mockBoard;
+const defaultBoard = mockBoard;
 
 export const Board = () => {
   const [legalMoves, setLegalMoves] = useState<string[] | undefined>();
+  const [boardState, setBoardState] = useState(defaultBoard);
 
   const [draggedItem, setDraggedItem] = useState("");
   const [draggedOverItem, setDraggedOverItem] = useState("");
@@ -62,18 +60,8 @@ export const Board = () => {
     boardState[draggedOverItemIndex.row][draggedOverItemIndex.col] =
       itemBeingDragged;
 
-    let boardHasMatches: boolean = true;
-
-    do {
-      const rowMatchesRemoved = removeRowMatches(boardState, () => {});
-      const colMatchesRemoved = removeColumnMatches(boardState, () => {});
-      moveItemsDown(boardState);
-      const matchesFound = rowMatchesRemoved || colMatchesRemoved;
-      if (!matchesFound) {
-        boardHasMatches = false;
-      }
-    } while (boardHasMatches);
-  }, [draggedItem, draggedOverItem]);
+    setBoardState([...boardState]);
+  }, [draggedItem, draggedOverItem, boardState]);
 
   const handleOnDragOver = useCallback(
     (id: string) => {
@@ -87,6 +75,16 @@ export const Board = () => {
     },
     [draggedItem, legalMoves, setDraggedOverItem]
   );
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      removeMatchedItems(boardState, () => {});
+      moveItemsDown(boardState);
+      setBoardState([...boardState]);
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, [boardState]);
 
   return (
     <div>
