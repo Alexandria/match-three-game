@@ -38,9 +38,6 @@ export const Item = ({
     return item.draggable;
   })();
 
-  // If animate has changed then set visible to true
-
-  console.log("delay", item.delay);
   return (
     <motion.div
       className={styles.itemContainer}

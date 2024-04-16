@@ -1,11 +1,15 @@
 import { BoardItem } from "../types";
-import { size, map } from "lodash";
+import { size, forEach } from "lodash";
+
+const removeById = (item: BoardItem) => {
+  item.type = "";
+};
 
 export const checkForMatchesV2 = (
   items: BoardItem[],
   start?: number,
   end?: number
-): string[] | undefined => {
+): void => {
   const startIndex = start ? start : 0;
   const endIndex = end ? end : 5;
   const sectionToCheckForMatches = items.slice(startIndex, endIndex);
@@ -15,8 +19,8 @@ export const checkForMatchesV2 = (
   });
 
   if (allItemsMatch) {
-    return map(sectionToCheckForMatches, (item) => item.id);
-    // EndBase Case
+    console.warn("Match was found");
+    forEach(sectionToCheckForMatches, removeById);
   }
 
   if (size(sectionToCheckForMatches) === 5) {
