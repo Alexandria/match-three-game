@@ -79,46 +79,49 @@ export const Board = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       removeMatchedItems(boardState, () => {});
-      moveItemsDown(boardState);
+      // TODO: Check if items was actually removed before setting board state
       setBoardState([...boardState]);
     }, 100);
 
     return () => clearInterval(timer);
   }, [boardState]);
 
+  useEffect(() => {
+    moveItemsDown(boardState);
+  }, [boardState]);
+
   return (
-    <div>
-      <motion.div aria-label="game board" className={style.Board}>
-        {boardState.map((row, index) => {
-          return (
-            <div
-              key={index}
-              style={{
-                display: "flex",
-                flexDirection: "row",
-              }}
-            >
-              {row.map(({ id, type, animate, visibility }) => {
-                return (
-                  <Item
-                    key={id}
-                    animate={animate ?? false}
-                    item={{
-                      type,
-                      id,
-                      visibility,
-                      draggable: true,
-                    }}
-                    onDragEnd={() => handleOnDragEnd()}
-                    onDragStart={() => handleOnDragStart(id, index)}
-                    onDragOver={() => handleOnDragOver(id)}
-                  />
-                );
-              })}
-            </div>
-          );
-        })}
-      </motion.div>
-    </div>
+    <motion.div aria-label="game board" className={style.Board}>
+      {boardState.map((row, index) => {
+        return (
+          <div
+            key={index}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            {row.map(({ id, type, animate, visibility, isMatch }) => {
+              return (
+                <Item
+                  key={id}
+                  item={{
+                    type,
+                    id,
+                    animate,
+                    visibility,
+                    draggable: true,
+                    isMatch,
+                  }}
+                  onDragEnd={() => handleOnDragEnd()}
+                  onDragStart={() => handleOnDragStart(id, index)}
+                  onDragOver={() => handleOnDragOver(id)}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
+    </motion.div>
   );
 };

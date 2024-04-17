@@ -5,6 +5,7 @@ export interface BoardItem {
   visibility?: boolean;
   draggable?: boolean;
   delay?: number;
+  isMatch?: boolean;
 }
 
 export type BoardRow = BoardItem[];

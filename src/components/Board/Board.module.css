@@ -1,5 +1,9 @@
 .Board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 10px groove #e2d1b6;
+  width: 500px;
   /* background-image: url("https://unsplash.com/photos/yellow-painted-wall-ZK1WQDMQvik"); */
   /* #49515f */
 }
