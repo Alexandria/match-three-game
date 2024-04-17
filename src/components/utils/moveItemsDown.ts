@@ -8,17 +8,9 @@ export const moveItemsDown = (board: Board): Board => {
       if (rowIndex > 5) return;
       if (rowIndex === 0 && item.type === "") {
         item.type = generateRandomEmoji();
-        const itemBelow = board[rowIndex + 1][colIndex];
-        const currentItem = board[rowIndex][colIndex];
-        board[rowIndex][colIndex] = itemBelow;
-        board[rowIndex + 1][colIndex] = currentItem;
         board[rowIndex + 1][colIndex].animate = true;
       }
       if (item.type === "" && rowIndex > 0) {
-        // this section may need to swap slower perhaps wrap in a function
-        if (rowIndex > 1) {
-          board[rowIndex - 2][colIndex].delay = 0.8;
-        }
         const itemAbove = board[rowIndex - 1][colIndex];
         const currentItem = board[rowIndex][colIndex];
         board[rowIndex][colIndex] = itemAbove;
