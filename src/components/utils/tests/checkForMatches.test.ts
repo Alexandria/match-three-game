@@ -11,13 +11,13 @@ describe("checkForMatchesV2 rows", () => {
       { id: "4", type: "🍓" },
       { id: "5", type: "🍓" },
     ];
-    it("will remove the types of all matching items if there is a match of 5", () => {
+    it("will set isMatch of all matching items to true for a match of 5", () => {
       checkForMatchesV2(row5);
-      expect(every(row5, (item) => item.type === "")).toBeTruthy();
+      expect(every(row5, (item) => item.isMatch === true)).toBeTruthy();
     });
   });
   describe("when checking for a match of 4", () => {
-    it("will remove the types of all matching items if the match started at index 0", () => {
+    it("will set isMatch of all matching items to true if the match started at index 0", () => {
       const row: BoardRow = [
         { id: "1", type: "🍓" },
         { id: "2", type: "🍓" },
@@ -26,14 +26,14 @@ describe("checkForMatchesV2 rows", () => {
         { id: "5", type: "🍌" },
       ];
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 4) return;
-        expect(item.type).toEqual("");
+        expect(item.isMatch).toBeTruthy();
       });
       expect(row[4].type).toEqual("🍌");
     });
 
-    it("will remove the types of all matching items if the match started at index 1", () => {
+    it("will set isMatch of all matching items to true if the match started at index 1", () => {
       const row: BoardRow = [
         { id: "1", type: "🍌" },
         { id: "2", type: "🍓" },
@@ -42,15 +42,15 @@ describe("checkForMatchesV2 rows", () => {
         { id: "5", type: "🍓" },
       ];
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 0) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[0].type).toEqual("🍌");
     });
   });
   describe("when checking for a match of 3", () => {
-    it("will remove the types of all matching items if the match started at 0", () => {
+    it("will set isMatch of all matching items to true if the match started at 0", () => {
       const row: BoardRow = [
         { id: "1", type: "🍓" },
         { id: "2", type: "🍓" },
@@ -59,15 +59,15 @@ describe("checkForMatchesV2 rows", () => {
         { id: "5", type: "🍌" },
       ];
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 3 || index === 4) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[3].type).toEqual("🍑");
       expect(row[4].type).toEqual("🍌");
     });
 
-    it("will remove the types of all matching items if the match started at 1", () => {
+    it("will set isMatch of all matching items to true if the match started at 1", () => {
       const row: BoardRow = [
         { id: "5", type: "🍌" },
         { id: "1", type: "🍓" },
@@ -77,15 +77,15 @@ describe("checkForMatchesV2 rows", () => {
       ];
 
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 0 || index === 4) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[4].type).toEqual("🍑");
       expect(row[0].type).toEqual("🍌");
     });
 
-    it("will remove the types of all matching items if the match started at 2", () => {
+    it("will set isMatch of all matching items to true if the match started at 2", () => {
       const row: BoardRow = [
         { id: "4", type: "🍑" },
         { id: "5", type: "🍌" },
@@ -95,9 +95,9 @@ describe("checkForMatchesV2 rows", () => {
       ];
 
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 0 || index === 1) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[0].type).toEqual("🍑");
       expect(row[1].type).toEqual("🍌");
@@ -136,14 +136,14 @@ describe("checkForMatchesV2 col", () => {
       { id: "5", type: "🍓" },
       { id: "5", type: "🍓" },
     ];
-    it("will remove the types of all matching items if there is a match of 5", () => {
+    it("will set isMatch of all matching items to true if there is a match of 5", () => {
       checkForMatchesV2(row5);
-      expect(every(row5, (item) => item.type === "")).toBeTruthy();
+      expect(every(row5, (item) => item.isMatch === true)).toBeTruthy();
     });
   });
 
   describe("when checking for a match of 5", () => {
-    it("will remove the types of all matching items if the match started at index 0", () => {
+    it("will set isMatch of all matching items to true if the match started at index 0", () => {
       const row: BoardRow = [
         { id: "1", type: "🍓" },
         { id: "2", type: "🍓" },
@@ -153,14 +153,14 @@ describe("checkForMatchesV2 col", () => {
         { id: "6", type: "🍌" },
       ];
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 5) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[5].type).toEqual("🍌");
     });
 
-    it("will remove the types of all matching items if the match started at index 1", () => {
+    it("will set isMatch of all matching items to true if the match started at index 1", () => {
       const row: BoardRow = [
         { id: "1", type: "🍌" },
         { id: "2", type: "🍓" },
@@ -170,16 +170,16 @@ describe("checkForMatchesV2 col", () => {
         { id: "6", type: "🍓" },
       ];
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 0) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[0].type).toEqual("🍌");
     });
   });
 
   describe("when checking for a match of 4", () => {
-    it("will remove the types of all matching items if the match started at index 0", () => {
+    it("will set isMatch of all matching items to true if the match started at index 0", () => {
       const row: BoardRow = [
         { id: "1", type: "🍓" },
         { id: "2", type: "🍓" },
@@ -190,15 +190,15 @@ describe("checkForMatchesV2 col", () => {
       ];
       checkForMatchesV2(row);
       console.log(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 4 || index === 5) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[4].type).toEqual("🍑");
       expect(row[5].type).toEqual("🍌");
     });
 
-    it("will remove the types of all matching items if the match started at index 1", () => {
+    it("will set isMatch of all matching items to true if the match started at index 1", () => {
       const row: BoardRow = [
         { id: "1", type: "🍌" },
         { id: "2", type: "🍓" },
@@ -208,15 +208,15 @@ describe("checkForMatchesV2 col", () => {
         { id: "6", type: "🍑" },
       ];
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 0 || index === 5) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[0].type).toEqual("🍌");
       expect(row[5].type).toEqual("🍑");
     });
 
-    it("will remove the types of all matching items if the match started at index 2", () => {
+    it("will set isMatch of all matching items to true if the match started at index 2", () => {
       const row: BoardRow = [
         { id: "1", type: "🍌" },
         { id: "2", type: "🍑" },
@@ -226,9 +226,9 @@ describe("checkForMatchesV2 col", () => {
         { id: "6", type: "🍓" },
       ];
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 0 || index === 1) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[0].type).toEqual("🍌");
       expect(row[1].type).toEqual("🍑");
@@ -236,7 +236,7 @@ describe("checkForMatchesV2 col", () => {
   });
 
   describe("when checking for a match of 3", () => {
-    it("will remove the types of all matching items if the match started at index 0", () => {
+    it("will set isMatch of all matching items to true if the match started at index 0", () => {
       const row: BoardRow = [
         { id: "1", type: "🍓" },
         { id: "2", type: "🍓" },
@@ -247,16 +247,16 @@ describe("checkForMatchesV2 col", () => {
       ];
       checkForMatchesV2(row);
       console.log(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 3 || index === 4 || index === 5) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[3].type).toEqual("🥝");
       expect(row[4].type).toEqual("🍑");
       expect(row[5].type).toEqual("🍌");
     });
 
-    it("will remove the types of all matching items if the match started at index 1", () => {
+    it("will set isMatch of all matching items to true if the match started at index 1", () => {
       const row: BoardRow = [
         { id: "1", type: "🍌" },
         { id: "2", type: "🍓" },
@@ -266,16 +266,16 @@ describe("checkForMatchesV2 col", () => {
         { id: "6", type: "🍑" },
       ];
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 0 || index === 4 || index === 5) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[0].type).toEqual("🍌");
       expect(row[4].type).toEqual("🥝");
       expect(row[5].type).toEqual("🍑");
     });
 
-    it("will remove the types of all matching items if the match started at index 2", () => {
+    it("will set isMatch of all matching items to true if the match started at index 2", () => {
       const row: BoardRow = [
         { id: "1", type: "🍌" },
         { id: "2", type: "🥝" },
@@ -285,16 +285,16 @@ describe("checkForMatchesV2 col", () => {
         { id: "6", type: "🍑" },
       ];
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 0 || index === 1 || index === 5) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[0].type).toEqual("🍌");
       expect(row[1].type).toEqual("🥝");
       expect(row[5].type).toEqual("🍑");
     });
 
-    it("will remove the types of all matching items if the match started at index 3", () => {
+    it("will set isMatch of all matching items to true if the match started at index 3", () => {
       const row: BoardRow = [
         { id: "1", type: "🍌" },
         { id: "2", type: "🍑" },
@@ -304,9 +304,9 @@ describe("checkForMatchesV2 col", () => {
         { id: "6", type: "🍓" },
       ];
       checkForMatchesV2(row);
-      forEach(row, (item, index) => {
+      forEach(row, (item, index): void => {
         if (index === 0 || index === 1 || index === 2) return;
-        expect(item.type).toEqual("");
+        expect(item.type).toBeTruthy();
       });
       expect(row[0].type).toEqual("🍌");
       expect(row[1].type).toEqual("🍑");
