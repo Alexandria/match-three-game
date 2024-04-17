@@ -7,8 +7,6 @@ import styles from "./Item.module.css";
 //https://dev.to/ayka_code/creating-a-draggable-element-with-limits-and-smooth-animations-using-framer-motion-2cki
 export interface Props {
   item: BoardItem;
-  animate: boolean;
-  delay?: number;
   onDragStart?: (type?: string) => void;
   onDragEnd?: (type?: string) => void;
   onDragOver?: (type?: string) => void;
@@ -16,7 +14,6 @@ export interface Props {
 
 export const Item = ({
   item,
-  animate,
   onDragEnd: onDragEndProp,
   onDragOver: onDragOverProp,
   onDragStart: onDragStartProp,
@@ -42,13 +39,16 @@ export const Item = ({
     <motion.div
       className={styles.itemContainer}
       aria-label="draggable-item"
-      animate={{ y: animate ? 5 : undefined }}
+      animate={{
+        y: item.animate ? 5 : undefined,
+        scale: item.isMatch ? 1.5 : 1,
+      }}
       transition={{
         type: "spring",
         duration: 0.8,
-        bounce: 0.6,
-        delay: item.delay,
+        bounce: 0.7,
       }}
+      whileTap={{ scale: 1.3 }}
       dragSnapToOrigin
       dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
       drag={isItemDraggable}
