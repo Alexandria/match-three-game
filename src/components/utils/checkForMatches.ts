@@ -1,8 +1,20 @@
 import { BoardItem } from "../types";
-import { size, forEach } from "lodash";
+import { size, forEach, delay } from "lodash";
 
-const removeById = (item: BoardItem) => {
-  item.type = "";
+const removeItem = (item: BoardItem) => {
+  delay(() => {
+    item.type = "";
+    setIsMatchFalse(item);
+  }, 500);
+};
+
+const setIsMatch = (item: BoardItem) => {
+  item.isMatch = true;
+  removeItem(item);
+};
+
+const setIsMatchFalse = (item: BoardItem) => {
+  item.isMatch = false;
 };
 
 export const checkForMatchesV2 = (
@@ -16,11 +28,13 @@ export const checkForMatchesV2 = (
   const sectionToCheckForMatches = items.slice(startIndex, endIndex);
 
   const allItemsMatch = sectionToCheckForMatches.every((item) => {
+    if (item.type === "") return false;
     return item.type === sectionToCheckForMatches[0].type;
   });
 
   if (allItemsMatch) {
-    forEach(sectionToCheckForMatches, removeById);
+    forEach(sectionToCheckForMatches, setIsMatch);
+    return;
   }
   if (isCol) {
     if (size(sectionToCheckForMatches) === 6) {
