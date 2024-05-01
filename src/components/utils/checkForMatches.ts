@@ -8,7 +8,7 @@ const removeItem = (item: BoardItem) => {
   }, 500);
 };
 
-const setIsMatch = (item: BoardItem) => {
+const removeMatchingFruit = (item: BoardItem) => {
   item.isMatch = true;
   removeItem(item);
 };
@@ -25,34 +25,36 @@ export const checkForMatchesV2 = (
   const isCol = size(items) === 6 ? true : false;
   const startIndex = start ? start : 0;
   const endIndex = end ? end : size(items);
-  const sectionToCheckForMatches = items.slice(startIndex, endIndex);
 
-  const allItemsMatch = sectionToCheckForMatches.every((item) => {
-    if (item.type === "") return false;
-    return item.type === sectionToCheckForMatches[0].type;
+  const arrayOfFruit = items.slice(startIndex, endIndex);
+
+  const allItemsMatch = arrayOfFruit.every((fruit) => {
+    if (fruit.type === "") return false;
+    return fruit.type === arrayOfFruit[0].type;
   });
 
   if (allItemsMatch) {
-    forEach(sectionToCheckForMatches, setIsMatch);
+    forEach(arrayOfFruit, removeMatchingFruit);
     return;
   }
+
   if (isCol) {
-    if (size(sectionToCheckForMatches) === 6) {
+    if (size(arrayOfFruit) === 6) {
       if (startIndex === 0) return checkForMatchesV2([...items], 0, 5);
     }
 
-    if (size(sectionToCheckForMatches) === 5) {
+    if (size(arrayOfFruit) === 5) {
       if (startIndex === 0) return checkForMatchesV2([...items], 1, 6);
       if (startIndex === 1) return checkForMatchesV2([...items], 0, 4);
     }
 
-    if (size(sectionToCheckForMatches) === 4) {
+    if (size(arrayOfFruit) === 4) {
       if (startIndex === 0) return checkForMatchesV2([...items], 1, 5);
       if (startIndex === 1) return checkForMatchesV2([...items], 2, 6);
       if (startIndex === 2) return checkForMatchesV2([...items], 0, 3);
     }
 
-    if (size(sectionToCheckForMatches) === 3) {
+    if (size(arrayOfFruit) === 3) {
       if (startIndex === 0) return checkForMatchesV2([...items], 1, 4);
       if (startIndex === 1) return checkForMatchesV2([...items], 2, 5);
       if (startIndex === 2) return checkForMatchesV2([...items], 3, 6);
@@ -61,16 +63,16 @@ export const checkForMatchesV2 = (
   }
 
   if (!isCol) {
-    if (size(sectionToCheckForMatches) === 5) {
+    if (size(arrayOfFruit) === 5) {
       if (startIndex === 0) return checkForMatchesV2([...items], 0, 4);
     }
 
-    if (size(sectionToCheckForMatches) === 4) {
+    if (size(arrayOfFruit) === 4) {
       if (startIndex === 0) return checkForMatchesV2([...items], 1, 5);
       if (startIndex === 1) return checkForMatchesV2([...items], 0, 3);
     }
 
-    if (size(sectionToCheckForMatches) === 3) {
+    if (size(arrayOfFruit) === 3) {
       if (startIndex === 0) return checkForMatchesV2([...items], 1, 4);
       if (startIndex === 1) return checkForMatchesV2([...items], 2, 6);
       if (startIndex === 2) return;
