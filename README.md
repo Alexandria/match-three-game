@@ -18,7 +18,7 @@
 - Create combos by matching more than 3 candies.
 - Click the timer box to stop it from bouncing.
 
-### Play it [here](https://alexandria.github.io/match-three-game/index.html)!
+### Play it [here](https://match-three-game.netlify.app/)!
 
 ---
 
